@@ -1,0 +1,88 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body .calendar_month_view .controls_bar {
+  margin-bottom: 10px; }
+body .calendar_month_view table.month_view {
+  border-collapse: collapse;
+  width: 100%; }
+  body .calendar_month_view table.month_view thead tr th {
+    text-align: center;
+    background-color: #efefef;
+    border: 1px solid #cccccc;
+    padding: 3px 0px; }
+  body .calendar_month_view table.month_view tbody tr td {
+    padding: 0px;
+    width: 150px;
+    height: 75px;
+    border: 1px solid #cccccc;
+    vertical-align: top;
+    cursor: pointer; }
+    body .calendar_month_view table.month_view tbody tr td div.day_date, body .calendar_month_view table.month_view tbody tr td div.contents {
+      padding: 2px 3px; }
+  body .calendar_month_view table.month_view tbody tr td.today {
+    font-weight: bold;
+    text-decoration: underline; }
+    body .calendar_month_view table.month_view tbody tr td.today div.day_date {
+      background-color: #bdd8e6; }
+  body .calendar_month_view table.month_view tbody tr td.other_month {
+    opacity: 0.5; }
+  body .calendar_month_view table.month_view tbody tr td.with_mma {
+    background-color: #ddffe3; }
+  body .calendar_month_view table.month_view tbody tr td.without_mma {
+    background-color: #ffd8d7; }
+  body .calendar_month_view table.month_view tbody tr td:hover {
+    background-color: #fae4cc; }
+body .fbox.mm_a {
+  width: 650px; }
+  body .fbox.mm_a form .tabbable ul.nav.nav-tabs li a img {
+    height: 24px; }
+  body .fbox.mm_a form .tabbable .tab-pane {
+    position: relative; }
+    body .fbox.mm_a form .tabbable .tab-pane textarea {
+      width: 100%;
+      height: 175px;
+      box-sizing: border-box; }
+    body .fbox.mm_a form .tabbable .tab-pane a.guiding_questions {
+      position: absolute;
+      top: 5px;
+      left: 5px; }
+  body .fbox.mm_a.show div.attr_wrapper {
+    margin-bottom: 15px; }
+    body .fbox.mm_a.show div.attr_wrapper h4 {
+      margin-bottom: 5px;
+      border-bottom: 1px dashed #cccccc;
+      padding-bottom: 2px;
+      font-size: 15px; }
+      body .fbox.mm_a.show div.attr_wrapper h4 img {
+        height: 24px; }
+      body .fbox.mm_a.show div.attr_wrapper h4 .btn[data-remote=true] {
+        visibility: hidden; }
+    body .fbox.mm_a.show div.attr_wrapper:hover h4 .btn[data-remote=true] {
+      visibility: visible; }

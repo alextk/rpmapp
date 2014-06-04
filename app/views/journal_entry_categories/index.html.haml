@@ -1,0 +1,16 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+-content_for :html_title, 'סיווג רישומי יומן'
+-content_for(:active_pill, :journal)
+
+%div.pull-right
+  =link_to_fbox new_journal_entry_category_path, :class => 'btn btn-large btn-success' do
+    %i.icon-plus.icon-white
+    ='הוספה'
+
+-filter_bar :submit_via_grid_id => @dgc.grid_id, :bar_class => 'pull-left' do
+  %div.float
+
+%div.clear
+
+=render 'grid', :dgc => @dgc

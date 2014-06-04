@@ -1,0 +1,4 @@
+var apiDataGrid = $.datagrid.helpers.firstAPI();
+<% if @category.blank? || @category.destroyed? %>
+  apiDataGrid.onAjaxRowDestroyed('<%= params[:id] %>');
+<% end %>

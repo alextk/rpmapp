@@ -1,0 +1,369 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body div.grid div.toolbar {
+  border: 1px solid #e1d7c0;
+  background-color: #f8f3e5;
+  padding: 6px 10px;
+  height: 28px; }
+  body div.grid div.toolbar div.pagination_wrapper div.pageSize, body div.grid div.toolbar div.pagination_wrapper div.pages, body div.grid div.toolbar div.pagination_wrapper div.pagesInfo {
+    float: left;
+    margin: 0px 5px; }
+  body div.grid div.toolbar div.pagination_wrapper div.pagesInfo {
+    line-height: 28px; }
+  body div.grid div.toolbar div.pagination_wrapper div.pageSize select {
+    width: auto;
+    margin: 0px 5px;
+    height: 30px;
+    line-height: 30px; }
+  body div.grid div.toolbar div.pagination_wrapper div.pages a, body div.grid div.toolbar div.pagination_wrapper div.pages em.current, body div.grid div.toolbar div.pagination_wrapper div.pages span.disabled, body div.grid div.toolbar div.pagination_wrapper div.pages span.gap {
+    float: left; }
+  body div.grid div.toolbar div.pagination_wrapper div.pages a, body div.grid div.toolbar div.pagination_wrapper div.pages em.current, body div.grid div.toolbar div.pagination_wrapper div.pages span.disabled {
+    padding: 5px 8px;
+    background-color: white;
+    border: 1px solid #bababa;
+    color: #949488;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin: 0px 1px; }
+  body div.grid div.toolbar div.pagination_wrapper div.pages a:hover {
+    color: white;
+    background-color: #41769b; }
+  body div.grid div.toolbar div.pagination_wrapper div.pages em.current {
+    color: white;
+    background-color: #63a0ce; }
+  body div.grid div.toolbar div.pagination_wrapper div.pages span.disabled {
+    color: #cccccc;
+    background-color: #efefef; }
+  body div.grid div.toolbar div.right_wrapper {
+    float: right; }
+    body div.grid div.toolbar div.right_wrapper div.loading {
+      padding-left: 20px;
+      color: #777777;
+      background: transparent url(/images/ajax_data_grid/spinner-16x16.gif) no-repeat left center;
+      display: none;
+      line-height: 28px; }
+    body div.grid div.toolbar div.right_wrapper div.activeView {
+      padding: 4px 0px; }
+      body div.grid div.toolbar div.right_wrapper div.activeView select {
+        margin: 0px 5px; }
+  body div.grid div.toolbar div.multirow_actions {
+    display: none; }
+    body div.grid div.toolbar div.multirow_actions a.button3 {
+      padding: 5px 10px;
+      margin: 0px 3px; }
+  body div.grid div.toolbar.top {
+    -webkit-border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    border-radius: 15px 15px 0px 0px; }
+  body div.grid div.toolbar.bottom {
+    -webkit-border-radius: 0px 0px 15px 15px;
+    -moz-border-radius: 0px 0px 15px 15px;
+    border-radius: 0px 0px 15px 15px; }
+body div.grid.loading div.toolbar div.right_wrapper div.loading {
+  display: block; }
+body div.grid.loading div.toolbar div.right_wrapper div.activeView {
+  display: none; }
+body div.grid.loading div.toolbar div.pagination_wrapper {
+  display: none; }
+body div.grid.has_selection div.toolbar div.multirow_actions {
+  display: block; }
+body div.grid.has_selection div.toolbar div.pagination_wrapper, body div.grid.has_selection div.toolbar div.right_wrapper {
+  display: none; }
+body div.grid div.no-data {
+  text-align: center;
+  padding: 20px; }
+  body div.grid div.no-data div.no {
+    padding: 20px;
+    margin: 0px auto;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #f7ffbb;
+    width: 300px; }
+    body div.grid div.no-data div.no div.message {
+      text-align: center;
+      padding-bottom: 15px; }
+    body div.grid div.no-data div.no div.buttonsBar {
+      text-align: center;
+      padding: 11px 0px; }
+      body div.grid div.no-data div.no div.buttonsBar a.button3 {
+        margin: 0px 10px; }
+  body div.grid div.no-data.any-filter div.no.rows {
+    display: block; }
+  body div.grid div.no-data.filter-results div.no.filter-results {
+    display: block; }
+body div.grid div.tiles_view div.tile {
+  float: left;
+  margin: 10px 15px;
+  border: 1px solid #aaaaaa; }
+body div.grid table.grid_table {
+  width: 100%;
+  border: 1px solid #e4e4e4;
+  border-collapse: collapse;
+  table-layout: fixed; }
+  body div.grid table.grid_table thead tr th.right div.cell, body div.grid table.grid_table tbody tr td.right div.cell {
+    text-align: right; }
+  body div.grid table.grid_table thead tr th.left div.cell, body div.grid table.grid_table tbody tr td.left div.cell {
+    text-align: left; }
+  body div.grid table.grid_table thead tr th.center div.cell, body div.grid table.grid_table tbody tr td.center div.cell {
+    text-align: center; }
+  body div.grid table.grid_table thead tr th.selection, body div.grid table.grid_table tbody tr td.selection {
+    width: 30px;
+    cursor: pointer;
+    text-align: center; }
+    body div.grid table.grid_table thead tr th.selection div.cell, body div.grid table.grid_table tbody tr td.selection div.cell {
+      padding: 0px; }
+      body div.grid table.grid_table thead tr th.selection div.cell span.checkbox, body div.grid table.grid_table tbody tr td.selection div.cell span.checkbox {
+        background: transparent url(/images/ajax_data_grid/unchecked-19x20.png) no-repeat center center;
+        display: inline-block;
+        width: 24px;
+        height: 24px; }
+        body div.grid table.grid_table thead tr th.selection div.cell span.checkbox.selected, body div.grid table.grid_table tbody tr td.selection div.cell span.checkbox.selected {
+          background-image: url(/images/ajax_data_grid/checked-19x20.png); }
+  body div.grid table.grid_table thead tr th.bootstrap_dropdown div.cell, body div.grid table.grid_table tbody tr td.bootstrap_dropdown div.cell {
+    overflow: visible; }
+    body div.grid table.grid_table thead tr th.bootstrap_dropdown div.cell .btn-group a, body div.grid table.grid_table tbody tr td.bootstrap_dropdown div.cell .btn-group a {
+      text-decoration: none; }
+    body div.grid table.grid_table thead tr th.bootstrap_dropdown div.cell .dropdown-menu a, body div.grid table.grid_table tbody tr td.bootstrap_dropdown div.cell .dropdown-menu a {
+      text-decoration: none; }
+  body div.grid table.grid_table thead tr th {
+    height: 36px;
+    padding: 5px 0px;
+    background: #3b698c url(/images/ajax_data_grid/table_header_bg.png) repeat-x left top;
+    color: white;
+    font-size: 18px;
+    text-align: left;
+    border: 1px solid #6297b4; }
+    body div.grid table.grid_table thead tr th div.cell {
+      padding: 0px 5px; }
+      body div.grid table.grid_table thead tr th div.cell div.maintitle.with_subtitle {
+        font-size: 15px; }
+      body div.grid table.grid_table thead tr th div.cell div.subtitle {
+        font-size: 11px;
+        line-height: 12px;
+        font-style: italic;
+        font-weight: normal;
+        color: #c6d9e7; }
+    body div.grid table.grid_table thead tr th.header_medium {
+      font-size: 14px; }
+    body div.grid table.grid_table thead tr th.sortable {
+      cursor: pointer; }
+      body div.grid table.grid_table thead tr th.sortable div.cell {
+        background-position: right center;
+        background-repeat: no-repeat; }
+      body div.grid table.grid_table thead tr th.sortable.asc div.cell, body div.grid table.grid_table thead tr th.sortable.desc div.cell {
+        padding-right: 15px;
+        margin-right: 5px; }
+      body div.grid table.grid_table thead tr th.sortable.asc div.cell {
+        background-image: url(/images/ajax_data_grid/up-white-9x9.gif); }
+      body div.grid table.grid_table thead tr th.sortable.desc div.cell {
+        background-image: url(/images/ajax_data_grid/down-white-9x9.gif); }
+    body div.grid table.grid_table thead tr th.small {
+      font-size: 15px; }
+  body div.grid table.grid_table tfoot {
+    border-top: 2px solid #333333; }
+    body div.grid table.grid_table tfoot tr th, body div.grid table.grid_table tfoot tr td {
+      height: 36px;
+      padding: 5px 10px;
+      border: 1px solid #e4e4e4;
+      background-color: #fffeef; }
+  body div.grid table.grid_table > tbody > tr.no-data td {
+    text-align: center;
+    padding: 20px; }
+  body div.grid table.grid_table > tbody > tr.row {
+    margin: 0px; }
+  body div.grid table.grid_table > tbody > tr.template {
+    display: none; }
+  body div.grid table.grid_table > tbody > tr.working td {
+    padding: 0px 10px; }
+    body div.grid table.grid_table > tbody > tr.working td div.message {
+      background: transparent url(/images/ajax_data_grid/spinner-16x16.gif) no-repeat left center;
+      padding: 0px 25px; }
+    body div.grid table.grid_table > tbody > tr.working td span.row_title {
+      font-weight: bold; }
+  body div.grid table.grid_table > tbody > tr.creating div.original, body div.grid table.grid_table > tbody > tr.destroying div.original {
+    display: none; }
+  body div.grid table.grid_table > tbody > tr.creating div.row_action_error, body div.grid table.grid_table > tbody > tr.creating div.error, body div.grid table.grid_table > tbody > tr.destroying div.row_action_error, body div.grid table.grid_table > tbody > tr.destroying div.error {
+    display: none; }
+  body div.grid table.grid_table > tbody > tr.creating.error, body div.grid table.grid_table > tbody > tr.destroying.error {
+    background-color: #ffe6e6; }
+    body div.grid table.grid_table > tbody > tr.creating.error div.row_action_error, body div.grid table.grid_table > tbody > tr.creating.error div.error, body div.grid table.grid_table > tbody > tr.destroying.error div.row_action_error, body div.grid table.grid_table > tbody > tr.destroying.error div.error {
+      display: block; }
+      body div.grid table.grid_table > tbody > tr.creating.error div.row_action_error a.close, body div.grid table.grid_table > tbody > tr.creating.error div.error a.close, body div.grid table.grid_table > tbody > tr.destroying.error div.row_action_error a.close, body div.grid table.grid_table > tbody > tr.destroying.error div.error a.close {
+        color: #1d6dff;
+        text-decoration: underline;
+        padding: 1px 2px; }
+        body div.grid table.grid_table > tbody > tr.creating.error div.row_action_error a.close:hover, body div.grid table.grid_table > tbody > tr.creating.error div.error a.close:hover, body div.grid table.grid_table > tbody > tr.destroying.error div.row_action_error a.close:hover, body div.grid table.grid_table > tbody > tr.destroying.error div.error a.close:hover {
+          text-decoration: none;
+          background-color: #175ede;
+          color: white; }
+    body div.grid table.grid_table > tbody > tr.creating.error div.message, body div.grid table.grid_table > tbody > tr.destroying.error div.message {
+      display: none; }
+  body div.grid table.grid_table > tbody > tr.creating {
+    background-color: #e6ffe6; }
+  body div.grid table.grid_table > tbody > tr.odd > td {
+    background-color: #eef3f5; }
+  body div.grid table.grid_table > tbody > tr.even > td {
+    background-color: white; }
+  body div.grid table.grid_table > tbody > tr:hover.odd > td {
+    background-color: #d0dfe5; }
+  body div.grid table.grid_table > tbody > tr:hover.even > td {
+    background-color: #d9d9d9; }
+  body div.grid table.grid_table > tbody > tr:hover td.edit, body div.grid table.grid_table > tbody > tr:hover td.destroy {
+    opacity: 1;
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=100); }
+  body div.grid table.grid_table > tbody > tr > td {
+    border: 1px solid #e4e4e4;
+    height: 36px;
+    padding: 0px; }
+    body div.grid table.grid_table > tbody > tr > td div.cell {
+      overflow: hidden;
+      padding: 0px 10px; }
+      body div.grid table.grid_table > tbody > tr > td div.cell a {
+        text-decoration: underline; }
+        body div.grid table.grid_table > tbody > tr > td div.cell a.button3 {
+          text-decoration: none; }
+    body div.grid table.grid_table > tbody > tr > td.selection:hover {
+      background-color: #fce4cc; }
+    body div.grid table.grid_table > tbody > tr > td.editable:hover {
+      background-color: #fce4cc; }
+    body div.grid table.grid_table > tbody > tr > td.editable.editing {
+      background-color: #ffcc99; }
+      body div.grid table.grid_table > tbody > tr > td.editable.editing input {
+        border: 1px solid orange;
+        padding: 0px 5px;
+        outline: none; }
+      body div.grid table.grid_table > tbody > tr > td.editable.editing.center input {
+        text-align: center; }
+    body div.grid table.grid_table > tbody > tr > td.working div.saving {
+      padding: 0px 5px; }
+      body div.grid table.grid_table > tbody > tr > td.working div.saving span.message span.text, body div.grid table.grid_table > tbody > tr > td.working div.saving span.message img {
+        vertical-align: middle; }
+      body div.grid table.grid_table > tbody > tr > td.working div.saving div.original {
+        display: none; }
+    body div.grid table.grid_table > tbody > tr > td.working.no_saving_text {
+      text-align: center; }
+      body div.grid table.grid_table > tbody > tr > td.working.no_saving_text span.message span.text {
+        display: none; }
+    body div.grid table.grid_table > tbody > tr > td.error {
+      background-color: #ffe1ee; }
+      body div.grid table.grid_table > tbody > tr > td.error:hover {
+        background-color: #fecfe3; }
+      body div.grid table.grid_table > tbody > tr > td.error div.validation-error div.message a {
+        text-decoration: underline; }
+      body div.grid table.grid_table > tbody > tr > td.error div.validation-error div.original {
+        display: none; }
+    body div.grid table.grid_table > tbody > tr > td.destroy {
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      -khtml-opacity: 0.6;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+      filter: alpha(opacity=60); }
+      body div.grid table.grid_table > tbody > tr > td.destroy.confirming {
+        opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+        filter: alpha(opacity=100);
+        background-color: #ff9999; }
+      body div.grid table.grid_table > tbody > tr > td.destroy a img {
+        background: transparent url(/images/ajax_data_grid/delete-32x32.png) no-repeat center center;
+        width: 32px;
+        height: 32px; }
+    body div.grid table.grid_table > tbody > tr > td.edit {
+      opacity: 0.6;
+      -moz-opacity: 0.6;
+      -khtml-opacity: 0.6;
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+      filter: alpha(opacity=60); }
+      body div.grid table.grid_table > tbody > tr > td.edit a img {
+        background: transparent url(/images/ajax_data_grid/edit-32x32.png) no-repeat center center;
+        width: 32px;
+        height: 32px; }
+body div.grid_editor_qtip {
+  min-width: 250px; }
+  body div.grid_editor_qtip .qtip_editor_loading_message {
+    margin: 10px 0px;
+    text-align: center; }
+  body div.grid_editor_qtip .qtip_editor_loading_failed {
+    margin: 10px 0px;
+    font-weight: bold;
+    text-align: center;
+    color: red; }
+  body div.grid_editor_qtip .center {
+    text-align: center; }
+  body div.grid_editor_qtip .tabbable ul.nav.nav-tabs {
+    margin-bottom: 10px; }
+  body div.grid_editor_qtip form .row {
+    margin-bottom: 5px; }
+    body div.grid_editor_qtip form .row .field label {
+      font-size: 12px; }
+  body div.grid_editor_qtip form .row.float .field {
+    margin-right: 10px; }
+body #fancybox-content div.fbox.multiple_editing {
+  width: 500px; }
+  body #fancybox-content div.fbox.multiple_editing .qtip_editor_loading_message, body #fancybox-content div.fbox.multiple_editing .qtip_editor_loading_failed {
+    text-align: center;
+    margin: 20px 0px; }
+  body #fancybox-content div.fbox.multiple_editing .qtip_editor_loading_failed {
+    color: red;
+    font-weight: bold; }
+
+body.rtl div.grid div.toolbar div.pagination_wrapper div.pageSize, body.rtl div.grid div.toolbar div.pagination_wrapper div.pages, body.rtl div.grid div.toolbar div.pagination_wrapper div.pagesInfo {
+  float: right; }
+body.rtl div.grid div.toolbar div.pagination_wrapper div.pages a, body.rtl div.grid div.toolbar div.pagination_wrapper div.pages em.current, body.rtl div.grid div.toolbar div.pagination_wrapper div.pages span.disabled, body.rtl div.grid div.toolbar div.pagination_wrapper div.pages span.gap {
+  float: right; }
+body.rtl div.grid div.toolbar div.right_wrapper {
+  float: left; }
+  body.rtl div.grid div.toolbar div.right_wrapper div.loading {
+    padding-right: 20px;
+    padding-left: 0px;
+    background-position: right center; }
+body.rtl div.grid div.tiles_view div.tile {
+  float: right; }
+body.rtl div.grid table.grid_table thead tr th.selection div.cell, body.rtl div.grid table.grid_table tbody tr td.selection div.cell {
+  text-align: center; }
+body.rtl div.grid table.grid_table thead tr th {
+  text-align: right; }
+  body.rtl div.grid table.grid_table thead tr th.sortable div.cell {
+    background-position: left center; }
+  body.rtl div.grid table.grid_table thead tr th.sortable.asc div.cell, body.rtl div.grid table.grid_table thead tr th.sortable.desc div.cell {
+    padding-right: 5px;
+    padding-left: 15px;
+    margin-right: 0px;
+    margin-left: 5px; }
+body.rtl div.grid table.grid_table tbody tr.working td div.message {
+  background-position: right center; }
+body.rtl div.grid_editor_qtip form .row.float .field {
+  margin-left: 10px; }

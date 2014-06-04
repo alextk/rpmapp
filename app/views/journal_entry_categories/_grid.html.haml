@@ -1,0 +1,34 @@
+%div.grid{'data-grid-id' => dgc.grid_id}
+
+  -data_grid_toolbar(dgc)
+
+  -data_grid_table(dgc, :urls => {:update_grid => grid_api_journal_entry_categories_path}) do |t|
+    -t.column '', :class => 'bootstrap_dropdown', :width => 60 do |category|
+      %div.btn-group{:style => ''}
+        =link_to '#', :class=>'btn dropdown-toggle', 'data-toggle'=>'dropdown' do
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            =link_to_fbox edit_journal_entry_category_path(category) do
+              %i.icon-pencil
+              =t('application.edit')
+          %li.divider
+          %li
+            =link_to journal_entry_category_path(category), :method => :delete, :remote => true, :confirm => t('application.are_you_sure') do
+              %i.icon-remove
+              =t('application.delete')
+
+    -t.column '', :width => 60 do |category|
+      =image_tag category.icon_path
+    -t.column JournalEntryCategory.human_attribute_name(:name), :binding_path => :name, :sortable => true, :width => 120 do |category|
+      %div.strong=category.name
+    -t.column JournalEntryCategory.human_attribute_name(:description), :binding_path => :description, :sortable => true do |category|
+      =markdown_html category.description if category.description.present?
+    -t.column JournalEntryCategory.human_attribute_name(:guiding_questions), :binding_path => :description, :sortable => true do |category|
+      -if category.guiding_questions.present?
+        %span.qtipTarget
+          =image_tag 'icons/target_arrow-24x24.png'
+          %div.qtipContents
+            %div.markdown=markdown_html category.guiding_questions
+    -t.column JournalEntryCategory.human_attribute_name(:default_entry_name) do |category|
+      =category.default_entry_name

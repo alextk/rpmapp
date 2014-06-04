@@ -1,0 +1,77 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body {
+  /* global max size */
+  /*! Error tooltip style */
+  /*! help tooltips max width should be 400 */
+  /*! help tooltips max width should be 400 */ }
+  body .tooltipContents, body .qtipContents {
+    display: none; }
+  body .ui-tooltip, body .qtip {
+    max-width: 1024px;
+    min-width: 50px; }
+  body .ui-tooltip-default {
+    border-color: #f0c36d;
+    background-color: #f9edbe;
+    color: #222222;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  body .ui-tooltip-error {
+    border-color: red;
+    background-color: #fcd0e4;
+    color: #454545; }
+  body .ui-tooltip-bootstrap {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 3px;
+    border-radius: 6px;
+    border: 0px; }
+  body .ui-tooltip-help {
+    max-width: 400px; }
+    body .ui-tooltip-help p {
+      margin: 2px 0px; }
+      body .ui-tooltip-help p .underline {
+        text-decoration: underline; }
+  body .ui-tooltip-ajax {
+    border: 1px solid #888888;
+    background-color: #fafafa;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  body .qtip-initializer .ui-tooltip-content {
+    padding: 0px; }
+    body .qtip-initializer .ui-tooltip-content .tooltipContents, body .qtip-initializer .ui-tooltip-content .qtipContents {
+      padding: 5px 9px; }
+      body .qtip-initializer .ui-tooltip-content .tooltipContents.rtl, body .qtip-initializer .ui-tooltip-content .qtipContents.rtl {
+        direction: rtl;
+        text-align: right; }
+
+body.rtl .ui-tooltip-content {
+  text-align: right; }

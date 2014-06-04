@@ -1,0 +1,16 @@
+%div.fancybox.redirect
+  -local_assigns[:success_message] = success_message = local_assigns[:message] if local_assigns[:message].present?
+  -if local_assigns[:success_message].present?
+    =flash_message(:success, success_message)
+  -if local_assigns[:error_message].present?
+    =flash_message(:error, error_message)
+  %div.redirecting
+    %span.working=t('application.please_wait')
+
+  -if local_assigns[:url].present?
+    :javascript
+      if(window.location.href != "#{url}"){
+        window.location.href = "#{url}";
+      } else {
+        window.location.replace("#{url}");
+      }

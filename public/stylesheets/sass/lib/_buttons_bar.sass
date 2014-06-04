@@ -1,0 +1,54 @@
+body
+  div.actions
+    div.buttons
+      text-align: right
+      a.button3, input.button3, .btn
+        margin-left: 10px
+
+    div.working_spinner, div.ajax_error
+      display: none
+      line-height: 38px
+      text-align: right
+    div.ajax_error
+      span.message
+        color: red
+        font-weight: bold
+
+    &.ajax_error
+      div.buttons
+        display: none
+      div.ajax_error
+        display: block
+    &.working
+      div.buttons
+        display: none
+      div.working_spinner
+        display: block
+    &.reversed
+      div.buttons
+        text-align: left
+        a.button3, input.button3, .btn
+          margin-left: 0px
+          margin-right: 10px
+      div.working_spinner, div.ajax_error
+        text-align: left
+
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  div.actions
+    div.buttons
+      text-align: left
+      a.button3, input.button3, .btn
+        margin-left: 0px
+        margin-right: 10px
+    div.working_spinner, div.ajax_error
+      text-align: left
+    &.reversed
+      div.buttons
+        text-align: right
+        a.button3, input.button3, .btn
+          margin-left: 10px
+          margin-right: 0px
+      div.working_spinner, div.ajax_error
+        text-align: right

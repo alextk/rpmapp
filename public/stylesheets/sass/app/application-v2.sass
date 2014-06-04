@@ -1,0 +1,117 @@
+@import "lib/_mixin"
+@import "lib/_markdown"
+@import "lib/_simple_format"
+
+*
+  margin: 0
+  padding: 0
+
+body.ltr
+  direction: ltr
+body
+
+  a, button, a:focus, .btn:focus
+    outline: none
+
+  img, .vmiddle
+    vertical-align: middle
+  .ul
+    text-decoration: underline
+  .font-weight-normal, .font_weight_normal
+    font-weight: normal
+  .em
+    font-style: italic
+  .strong
+    font-weight: bold
+  .ltr
+    direction: ltr
+  .inline-block, .inline_block
+    display: inline-block
+  span.money
+    direction: ltr
+    display: inline-block
+    white-space: nowrap
+  span.phone
+    display: inline-block
+    vertical-align: middle
+
+  .muted4
+    color: #999
+  .muted3
+    color: #777
+  .muted2
+    color: #555
+  .muted1
+    color: #333
+
+  .smaller1
+    font-size: 12px
+    line-height: 14px
+  .smaller2
+    font-size: 11px
+  .smaller3
+    font-size: 10px
+  .smaller4
+    font-size: 9px
+
+  .bigger1
+    font-size: 14px
+  .bigger2
+    font-size: 16px
+  .bigger3
+    font-size: 18px
+  .bigger4
+    font-size: 20px
+  .bigger5
+    font-size: 22px
+  .bigger6
+    font-size: 22px
+
+  .tcenter
+    text-align: center
+  .tright
+    text-align: right
+  .tleft
+    text-align: left
+
+  .subtext
+    font-size: 11px
+    color: #444
+    font-style: italic
+
+  div.clear
+    clear: both
+    &.left
+      clear: left
+    &.right
+      clear: right
+
+  div.working_spinner
+    display: none
+    span.text
+      color: #777
+      background: transparent url(/images/spinner-16x16.gif) no-repeat left center
+      padding-left: 24px
+
+  span.count
+    font-weight: bold
+
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  direction: rtl
+  font-family: Arial, sans-serif
+
+  div.working_spinner
+    span.text
+      background-position: right center
+      padding-right: 24px
+      padding-left: 0px
+
+
+  .tcenter
+    text-align: center
+  .tright
+    text-align: left
+  .tleft
+    text-align: right

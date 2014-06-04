@@ -1,0 +1,44 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =javascript_include_tag "app/controllers/#{controller_name}.#{action_name}"
+
+-content_for :html_title, 'רישומי יומן - ' + l(@day_date, :format => '%d %B %Y - %A')
+-content_for :active_pill, :journal
+
+%div.pull-right
+  %div.btn-group.plans_nav
+    =link_to day_view_journal_entries_path(:date=>(@day_date-1.day).strftime), :class => 'btn btn-large' do
+      %i.icon-chevron-right
+    =link_to day_view_journal_entries_path, :class => 'btn btn-large' do
+      ='היום'
+    =link_to 'javascript:;', :class => 'btn btn-large go_to_date', 'data-url'=>day_view_journal_entries_path(:date=>'__0__') do
+      %i.icon-calendar
+      =hidden_field_tag :go_to_date, ''
+    =link_to day_view_journal_entries_path(:date=>(@day_date+1.day).strftime), :class => 'btn btn-large' do
+      %i.icon-chevron-left
+%div
+  %span.bigger6.strong
+    =link_to 'רישומי יומן', month_view_journal_entries_path(:month => @day_date.beginning_of_month.strftime('%Y-%m'))
+  &nbsp;
+  %i.icon-chevron-left{:style=>'margin-top: -2px;'}
+  &nbsp;
+  %span.bigger4.muted4.em=l(@day_date, :format => '%d %B %Y - %A')
+%div.clear
+
+%div.box
+  %div.contents
+    -journal_entries = JournalEntry.where(:date => @day_date).includes(:category)
+    %div.journal_entries_list
+      =render :partial => 'journal_entry', :collection => journal_entries
+
+      %div.journal_entry.new
+        %div.show_view=link_to 'להוספת רישום חדש', new_journal_entry_path(:date => @day_date.strftime('%Y-%m-%d')), :class => 'btn btn-success', :remote => true
+        %div.edit_view
+
+:javascript
+  var controller = new MyRPM.controllers.JournalEntriesDayViewController({
+    defaultEntryNames: #{JournalEntryCategory.order('name asc').all.each_with_object({}){|c,h| h[c.id]=c.default_entry_name }.to_json},
+    urls: {
+
+    }
+  });

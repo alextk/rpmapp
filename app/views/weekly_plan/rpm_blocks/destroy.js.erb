@@ -1,0 +1,28 @@
+<% if @rpm_block.present? && @rpm_block.destroyed? %>
+  controller.onAjaxRpmBlockAssocsDestroyed(<%=@rpm_block.weekly_plan_assocs.collect(&:id).to_json %>);
+<% elsif @rpm_block.present? %>
+  $('.rpm_block_assoc[data-rpm_block_id=<%=@rpm_block.id %>] .info .btn.dropdown-toggle').qtip({
+    content: "<%=escape_javascript render(:template => 'weekly_plan/rpm_blocks/destroy.html') %>",
+    position: {
+      my: 'top center',
+      at: 'bottom center',
+      effect: false
+    },
+    show: {
+      event: false,
+      effect: false
+    },
+    hide: {
+      event: 'unfocus',
+      effect: false
+    },
+    style:{
+      classes: 'ui-tooltip-ajax',
+      tip: {
+        corner: true,
+        width: 10,
+        height: 10
+      }
+    }
+  }).qtip('api').show();
+<% end %>

@@ -1,0 +1,2 @@
+module DailyPlan::DailyPlanHelper
+end

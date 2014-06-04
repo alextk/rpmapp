@@ -1,0 +1,71 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body .fbox.journal_entry {
+  width: 600px; }
+  body .fbox.journal_entry h3 a {
+    color: white; }
+body .fbox.journal_entry.day_view div.content div.journal_entry {
+  padding: 10px 10px;
+  border: 1px solid white; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry img {
+    height: 16px; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry .description {
+    display: none;
+    margin-top: 5px;
+    margin-right: 25px; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry .on_hover {
+    visibility: hidden; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry:hover .on_hover {
+    visibility: visible; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry.collapsed .description {
+    display: block; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry.odd {
+    background-color: #fffdd7; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry.even {
+    background-color: #fff8f2; }
+
+body .journal_entries_list .journal_entry {
+  border-top: 1px solid #cccccc;
+  padding: 15px 10px; }
+  body .journal_entries_list .journal_entry img.category_icon {
+    height: 24px; }
+  body .journal_entries_list .journal_entry div.description {
+    margin-top: 10px;
+    margin-right: 20px;
+    display: none; }
+  body .journal_entries_list .journal_entry .on_hover {
+    visibility: hidden; }
+  body .journal_entries_list .journal_entry.show_description div.description {
+    display: block; }
+  body .journal_entries_list .journal_entry:hover .on_hover {
+    visibility: visible; }
+body .add_journal_entry {
+  border-top: 1px solid #cccccc;
+  padding: 15px 10px; }

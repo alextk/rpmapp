@@ -1,0 +1,27 @@
+!!!
+%html{:xmlns=>'http://www.w3.org/1999/xhtml', :lang => 'he' , :'xml:lang'=>'he', :dir=>'rtl' }
+  %head
+    =csrf_meta_tag
+    %meta{:name=>"SKYPE_TOOLBAR", :content=>"SKYPE_TOOLBAR_PARSER_COMPATIBLE"}
+    %title=yield :html_title
+
+    =stylesheet_link_tag 'vendor/fancybox/jquery.fancybox-1.3.4', 'vendor/jquery.qtip', 'lib/jquery.qtip', 'vendor/jquery.togglebar', 'lib/jquery.fancybox', 'vendor/jquery-ui/jquery-ui-1.8.16.custom'
+    =stylesheet_link_tag 'vendor/bootstrap-2.1.1/bootstrap', 'lib/bootstrap-2.1.1'
+    =stylesheet_link_tag 'app/application-v2', 'app/layouts/application'
+
+    =javascript_include_tag :jquery, :lib, 'vendor/bootstrap-2.1.1', 'app/layouts/application', 'vendor/ajax_data_grid'
+
+    =yield :head
+
+  %body.rtl
+    =render '_shared/environment_alert'
+    =render 'layouts/navigation'
+    %div#content.container
+      %div.flash_messages
+      -flash.each do |name, message|
+        =flash_message(name, simple_format(message), :close_button => true)
+
+      %div.yield
+        =yield
+
+    =render '/layouts/footer'

@@ -1,0 +1,59 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =javascript_include_tag "app/controllers/#{controller_name}.#{action_name}"
+
+-content_for :html_title, 'יומן'
+-content_for :active_pill, :journal
+
+%div.calendar_month_view
+  %div.controls_bar
+    %div.pull-right
+      =link_to 'javascript:;', :class => 'qtipTarget' do
+        =image_tag 'icons/target_arrow-24x24.png'
+        %div.qtipContents=render 'journal_purpose'
+    %div.btn-group.inline-block
+      =link_to month_view_journal_entries_path(:month => @beginning_of_month.prev_month.strftime('%Y-%m')), :class => 'btn' do
+        %i.icon-chevron-right
+      =link_to month_view_journal_entries_path, :class => 'btn' do
+        ='היום'
+      =link_to month_view_journal_entries_path(:month => @beginning_of_month.next_month.strftime('%Y-%m')), :class => 'btn' do
+        %i.icon-chevron-left
+
+    &nbsp;&nbsp;
+    %span.strong.bigger3.inline-block.vmiddle=l(@beginning_of_month, :format => '%B %Y')
+
+  %table.month_view{:border => 0, :cellpadding => 0, :cellspacing => 0}
+    %thead
+      %tr
+        -(0..6).each do |wday|
+          %th='יום ' + I18n.t('date.abbr_day_names')[wday] + '\''
+    %tbody
+      -days = []
+      -(@beginning_of_month.beginning_of_week-1.day).upto(@beginning_of_month.end_of_month.end_of_week-1.day){|date| days << date }
+      -days.each_slice(7) do |weeks|
+        %tr.week
+          -weeks.each do |date|
+            -cls = ''
+            -cls << string_if('other_month ', date.month != @beginning_of_month.month)
+            -cls << string_if('today ', date == Time.zone.now.to_date)
+            -if date <= Time.zone.now.to_date
+              -entries = JournalEntry.where(:date => date).all
+              -cls << (entries.any? ? 'with_journal_entries ' : 'without_journal_entries ')
+            %td.day{:class => cls, 'data-date'=>date.strftime}
+              %div.day_date
+                =link_to day_view_journal_entries_path(:date=>date.strftime) do
+                  =l(date, :format => (date.day == 1 ? '%d %B' : '%d'))
+              %div.contents
+                -if date <= Time.zone.now.to_date
+                  -entries.each do |entry|
+                    %div
+                      =link_to day_view_journal_entries_path(:date=>date.strftime) do
+                        =image_tag entry.category.icon_path, :style => 'height: 10px'
+                        =entry.name
+
+-#:javascript
+  var controller = new MyRPM.controllers.JournalEntriesMonthViewController({
+    urls: {
+      day_view: '#{day_view_journal_entries_path}'
+    }
+  });

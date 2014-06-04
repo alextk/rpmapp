@@ -1,0 +1,11 @@
+%div.journal_entry{'data-id'=>journal_entry.id}
+  %div.show_view
+    =image_tag journal_entry.category.icon_path, :class => 'category_icon'
+    &nbsp;
+    %span.bigger1.strong=journal_entry.name
+    =link_to edit_journal_entry_path(journal_entry), :class => 'btn btn-small on_hover pull-right', :remote => true do
+      %i.icon-pencil
+      ='עריכה'
+    %div.description
+      %div.markdown=markdown_html journal_entry.description
+  %div.edit_view

@@ -1,0 +1,164 @@
+@import "lib/_mixin"
+@import "_rpm_block_plan_assoc_fbox"
+
+body
+  div.rpm_block_assocs
+    .ui-sortable-placeholder, .ui-sortable-helper
+      background-color: #FBF9EE
+      border: 1px solid #FCEFA1
+      border-left: 0px
+      border-right: 0px
+      height: 46px
+    .ui-sortable-helper
+      background-color: #efefef
+      border-color: #aaa
+      padding: 10px 10px
+    div.rpm_block_assoc
+      //margin-bottom: 10px
+      padding: 10px 0px
+      border-bottom: 1px solid #aaa
+      div.info
+        .controls
+          margin: 0px 5px
+          //display: none
+        .outcome
+          line-height: 25px
+        .completion_status
+          cursor: pointer
+          i
+            display: none
+            border: 1px solid #ccc
+          &:hover
+            i
+              border-color: #333
+        i.icon-move
+          visibility: hidden
+        .purpose
+          img
+            height: 20px
+            opacity: 0.2
+      div.actions
+        //padding: 0px 15px
+        display: none
+        margin-right: 60px
+      &:hover
+        div.info
+          //.controls
+            display: block
+          i.icon-move
+            visibility: visible
+          .purpose
+            img
+              opacity: 1
+      &.show_actions
+        div.info
+        div.actions
+          display: block
+    div.rpm_block_assoc[data-completed=true]
+      background-color: #D7FFD7
+      opacity: 0.4
+      div.info
+        .completion_status
+          i.completed
+            display: inline-block
+    div.rpm_block_assoc[data-completed=false]
+      div.info
+        .completion_status
+          i.uncompleted
+            display: inline-block
+
+  .day_view_schedule_table
+    div.scroll_wrapper
+      overflow-y: scroll
+      height: 750px
+      border-top: 1px solid #DDD
+      border-bottom: 1px solid #DDD
+
+      table.day_view
+        width: 100%
+        table-layout: fixed
+        border-collapse: collapse
+        >tbody
+          >tr
+            >td
+              vertical-align: top
+            >td.day_times_spacer
+              width: 45px
+              font-size: 1px
+            >td.hours_markers
+              @include unselectable()
+              .hours_markers_wrapper
+                position: relative
+                .hours_markers_abs
+                  position: absolute
+                  width: 100%
+                  div.marker_wrapper:first-child
+                    .dual_marker
+                      border-top: 0px
+                  div.marker_wrapper
+                    height: 42px
+                    .dual_marker
+                      height: 20px
+                      margin-bottom: 20px
+                      border-bottom: 1px dotted #DDD
+                      border-top: 1px solid #DDD
+                      font-size: 1px
+
+            >td.day_times
+              @include unselectable()
+              width: 45px
+              text-align: left
+              border-left: 1px solid #DDD
+              div.time:last-child
+                border-bottom: 0px
+              div.time
+                border-bottom: 1px solid #DDD
+                height: 39px
+                padding-top: 2px
+                padding-left: 3px
+                font-size: 12px
+                color: #333
+            >td.col_day_contents
+              div.event_boxes_wrapper
+                position: relative
+                height: 1008px
+                .event_boxes_abs
+                  position: absolute
+                  width: 100%
+                  .event_box
+                    position: absolute
+                    font-size: 11px
+                    overflow: hidden
+                    background-color: pink
+                    border: 1px solid #ff69b4
+
+
+  .ui-tooltip
+    div.time_commitment_qtip
+      form
+        .input-prepend
+          .add-on
+            width: 30px
+          .add-on.dash
+            width: auto
+            padding-left: 0px
+            padding-right: 0px
+            margin-left: -1px
+            margin-right: -1px
+          input.start_at_time, input.end_at_time
+            width: 32px
+          input.end_at_time
+            border-radius: 0px
+
+
+  .daily_planning_steps
+    div.step
+      h4
+        font-size: 14px
+        margin: 5px 0px
+      div.contents
+        ul,ol
+          margin: 0px 20px 0px 0px
+          >li
+            margin: 2px 0px
+            line-height: 13px

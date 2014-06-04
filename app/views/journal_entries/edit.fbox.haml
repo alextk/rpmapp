@@ -1,0 +1,9 @@
+%div.fbox.blue.journal_entry
+  %h3
+    %span.inline-block='עדכון רישום יומן'
+    &nbsp;
+    %span.bigger4.em.inline-block=l(@je.date, :format => '%d %B %Y - %A')
+  =render 'form.html'
+
+:javascript
+  $.fancybox.resize();

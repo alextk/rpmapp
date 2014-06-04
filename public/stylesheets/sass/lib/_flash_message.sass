@@ -1,0 +1,98 @@
+body
+  div.flash
+    margin: 0px 10px
+    &.error, &.alert, &.notice, &.help
+      :clear both
+      padding-left: 25px
+      background-position: 5px center
+      background-repeat: no-repeat
+      border-width: 1px
+      border-style: solid
+      font-size: 15px
+      line-height: 30px
+    &.error, &.alert
+      border-color: #a3032e
+      background-image: url(/images/icons/delete.png)
+      background-color: #ffe4e1
+      color: black
+    &.notice
+      border-color: #9c9
+      background-image: url(/images/icons/accept.png)
+      background-color: #E2F9E3
+      color: #060
+    &.help
+      border-color: #173052
+      background-image: url(/images/icons/help.png)
+      background-color: #bfddff
+      color: #173052
+
+  div.flash_message
+    padding: 10px
+    border: 1px solid
+    font-size: 13px
+    line-height: 18px
+    color: #333
+    margin-bottom: 10px
+    @include round(4px)
+    p
+      margin: 0px
+      padding: 0px
+      display: inline
+    //img
+    //  display: inline-block
+    //  background: transparent url(/images/blank.gif) no-repeat center center
+    //  width: 16px
+    //  height: 16px
+    //  vertical-align: top
+    //  margin-right: 5px
+    .text
+      padding-left: 20px
+      background: transparent url(/images/blank.gif) no-repeat top left
+      vertical-align: top
+    &.success, &.notice
+      .text
+        background-image: url(/images/flash_messages/success-16x16.png)
+      border-color: #C5D6A8
+      background-color: #DFF2BF
+    &.tip
+      .text
+        background-image: url(/images/flash_messages/tip-16x16.png)
+      border-color: #FBEED5
+      background-color: #ffffcc
+    &.info
+      .text
+        background-image: url(/images/flash_messages/info-16x16.png)
+      border-color: #C4D8E3
+      background-color: #d9f1ff
+    &.warning, &.warn
+      .text
+        background-image: url(/images/flash_messages/warning2-16x16.png)
+      border-color: #D9B38C
+      background-color: #fc9
+    &.error, &.alert
+      .text
+        background-image: url(/images/flash_messages/error2-16x16.png)
+      border-color: #EBC6C2
+      background-color: #ffe4e1
+
+    &.center
+      text-align: center
+    &.no_icon
+      .text
+        background: none
+        padding:  0px
+
+body.rtl
+  div.flash_message
+    .text
+      background-position: right top
+      padding-left: 0px
+      padding-right: 20px
+    &.no_icon
+      .text
+        padding:  0px
+  div.flash
+    &.error, &.alert, &.notice, &.help
+      padding-right: 25px
+      padding-left: 0px
+      background-position: right center

@@ -1,0 +1,5 @@
+<% if @time_commitment.errors.any? %>
+  <%= controller.render :action => :new %>
+<% else %>
+  controller.onAjaxNewTimeCommitmentCreated("<%=@time_commitment.id %>", "<%=escape_javascript render('daily_plans/event_box_commit_time', :commit_time => @time_commitment)  %>");
+<% end %>

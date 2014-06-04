@@ -1,0 +1,92 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =javascript_include_tag "lib/timed_events_layouter"
+  =javascript_include_tag "app/controllers/#{controller_name}.#{action_name}"
+
+-content_for :html_title, 'תכנון שבוע'
+-content_for(:active_pill, :weekly_plans)
+
+%div.pull-right
+  %div.btn-group.plans_nav
+    =link_to week_view_weekly_plans_path(:date=>(@beginning_of_week_date-7.days).strftime), :class => 'btn btn-large' do
+      %i.icon-chevron-right
+    =link_to 'javascript:;', :class => 'btn btn-large go_to_date', 'data-url'=>week_view_weekly_plans_path(:date=>'__0__') do
+      %i.icon-calendar
+      =hidden_field_tag :go_to_date, ''
+    =link_to week_view_weekly_plans_path(:date=>(@beginning_of_week_date+7.days).strftime), :class => 'btn btn-large' do
+      %i.icon-chevron-left
+%h1
+  ='Weekly plan:'
+  %span.bigger4
+    =l(@beginning_of_week_date, :format => '%A, %d %B %Y')
+    ='-'
+    =l(@beginning_of_week_date+6.days, :format => '%A, %d %B %Y')
+
+
+
+-if @weekly_plan.blank?
+  =flash_message(:error) do
+    ='אין תכנון שבוע למועד זה.'
+    =link_to 'יצירה', weekly_plans_path(:date => @beginning_of_week_date.strftime), :method => :post, :class => 'blue_link2'
+-else
+  %table.page_layout{:border => 0, :cellpadding => 0, :cellspacing => 0}
+    %tr
+      %td.main_contents
+        %div.box
+          %div.pull-right
+            =link_to_fbox new_weekly_plan_rpm_block_path(@weekly_plan), :class => 'btn btn-success' do
+              %i.icon-plus.icon-white
+          %h3='בלוקי RPM'
+          %div.contents
+            %div.rpm_block_assocs{'data-update_positions_url' => update_positions_weekly_plan_rpm_block_assocs_path(@weekly_plan)}
+              -@weekly_plan.rpm_block_assocs.includes(:rpm_block).order('position').each do |rpm_block_assoc|
+                -rpm_block = rpm_block_assoc.rpm_block
+                %div.rpm_block_assoc{'data-id'=>rpm_block_assoc.id, 'data-rpm_block_id'=>rpm_block.id, 'data-completed'=>rpm_block.completed?.to_s}
+                  %div.info
+                    %div.pull-right.controls
+                      %div.btn-group
+                        =link_to_fbox edit_weekly_plan_rpm_block_path(@weekly_plan, rpm_block), :class => 'btn btn-small' do
+                          %i.icon-edit
+                        %div.btn-group.inline-block
+                          =link_to 'javascript:;', :class=>'btn btn-small dropdown-toggle', 'data-toggle'=>'dropdown' do
+                            %b.caret
+                          %ul.dropdown-menu
+                            %li
+                              =link_to_fbox new_rpm_block_plan_assoc_path(rpm_block, :source=>:weekly_plan, :source_assoc_id=>rpm_block_assoc.id) do
+                                %i.icon-plus
+                                ='הוספה לתכנון יום/שבוע'
+                            %li.divider
+                            %li
+                              =link_to duplicate_weekly_plan_rpm_block_path(@weekly_plan, rpm_block), :method => :post, :remote => true do
+                                %i.icon-tags
+                                ='שכפול'
+                            %li.divider
+                            %li
+                              =link_to weekly_plan_rpm_block_path(@weekly_plan, rpm_block), :method => :delete, :remote => true do
+                                %i.icon-remove
+                                ='מחיקה'
+                            %li
+                              =link_to weekly_plan_rpm_block_assoc_path(@weekly_plan, rpm_block_assoc), :method => :delete, :remote => true do
+                                %i.icon-remove
+                                ='הסרה מתכנון שבוע זה'
+
+                    %i.icon-move
+                    %span.completion_status{'data-url' => modify_completion_weekly_plan_rpm_block_path(@weekly_plan, rpm_block)}
+                      %i.icon-ok.completed
+                      %i.icon-uncompleted.uncompleted
+                    %span.vmiddle.qtipTarget.purpose
+                      =image_tag 'icons/target_arrow-24x24.png'
+                      %div.qtipContents
+                        %div
+                          %span.strong='סיבות'
+                          %span.muted3.smaller3.em='מדוע אני רוצה להשיג את זה? מה זה יתן לי? מה המטרה?'
+                        %div.markdown=markdown_html rpm_block.purpose
+                    %span.vmiddle.outcome.bigger1.strong=rpm_block.result
+
+
+                  %div.actions
+                    %div.markdown=markdown_html rpm_block.actions
+
+:javascript
+  var controller = new MyRPM.controllers.WeeklyPlansDayViewController({
+  });

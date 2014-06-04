@@ -1,0 +1,65 @@
+he-IL:
+  attributes:
+    name: שם
+    full_name: שם מלא
+    first_name: שם פרטי
+    last_name: שם משפחה‎
+    logo: לוגו
+    sex: מין
+    fax: פקס
+    code: קוד
+    language: שפה
+    title: כותרת
+    description: תיאור
+    content: תוכן
+    published: מפורסם
+    mobile_phone: סלולרי
+    phone: טלפון
+    email: אימייל
+    message: הודעה
+    address: כתובת
+    password: סיסמה
+    password_confirmation: סיסמה שוב
+    new_password: סיסמה חדשה
+    new_password_repeat: סיסמה חדשה שוב
+    date: תאריך
+    time: שעה
+    photo: תמונה
+    width: רוחב
+    height: גובה
+    id: קוד
+    position: מיקום
+    updated_at: עדכון אחרון
+    sent_at: נשלחה ב
+    received_at: התקבלה ב
+    note: הערה
+    notes: הערות
+    amount: סכום
+    status: סטטוס
+    type: סוג
+    color: צבע
+    created_at: נוצר ב
+    planned_at: מתוכנן ל
+    active: בשימוש
+
+  activerecord:
+    models:
+    attributes:
+      magic_moments_achievements_log:
+        magic_moments: חוויות ורגעים קסומים
+        achievements: הישגים
+        general_thoughts: מחשבות כלליות
+      rpm_block:
+        result: תוצאה
+        purpose: סיבות
+        actions: פעולות
+      journal_entry:
+        category: סיווג
+      journal_entry_category:
+        default_entry_name: שם ברירת מחדל לרישום יומן
+        guiding_questions: הוראות ושאלות הכוונה
+      snippets_list:
+        purpose: מטרה
+      snippet:
+        purpose: מטרה
+

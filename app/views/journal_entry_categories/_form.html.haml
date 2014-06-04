@@ -1,0 +1,35 @@
+=form_for @category, :url => @category.new_record? ? journal_entry_categories_path : journal_entry_category_path(@category), :remote => true do |f|
+  %div.frow.float
+    %div.field
+      =f.label :name
+      =f.text_field :name, :class => 'input-large'
+    %div.field
+      =f.label :icon, 'אייקון'
+      =f.hidden_field :icon
+      %div.btn-group.icon
+        -JournalEntryCategory.available_icons.sort.each do |icon_path|
+          %button{:type=>:button, 'data-value'=>File.basename(icon_path), :class=>'btn '+string_if('active', File.basename(icon_path) == @category.icon)}
+            =image_tag icon_path, :style => 'height: 24px'
+      =f.field_errors :icon
+
+  %div.frow.float
+    %div.field
+      =f.label :description
+      =f.text_area :description, :style => 'width: 260px; height: 150px;'
+    %div.field
+      =f.label :guiding_questions
+      =f.text_area :guiding_questions, :style => 'width: 260px; height: 150px;'
+  %div.frow
+    %div.field
+      =f.label :default_entry_name
+      =f.text_field :default_entry_name, :class => 'input-large'
+
+  -buttons_bar do
+    =link_to_function t('application.cancel'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+    =f.submit t('application.save'), :class => 'btn btn-large btn-primary'
+
+:javascript
+  $('.fbox .btn-group.icon button').on('click', function(){
+    $(this).addClass('active').siblings().removeClass('active');
+    $(this).closest('.field').find('input[name*=icon]').val($(this).data('value'));
+  });

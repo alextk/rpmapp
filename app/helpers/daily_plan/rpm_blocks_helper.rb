@@ -1,0 +1,2 @@
+module DailyPlan::RpmBlocksHelper
+end

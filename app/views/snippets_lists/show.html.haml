@@ -1,0 +1,100 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =javascript_include_tag "app/controllers/#{controller_name}.#{action_name}"
+
+-content_for :html_title, @snippets_list.name
+-content_for :active_pill, :snippets
+
+
+%div.btn-group.pull-left{:style => 'margin-left: 10px; margin-top: 8px'}
+  =link_to '#', :class=>'btn dropdown-toggle', 'data-toggle'=>'dropdown' do
+    %span.caret
+  %ul.dropdown-menu
+    %li
+      =link_to_fbox edit_snippets_list_path(@snippets_list) do
+        %i.icon-pencil
+        =t('application.edit')
+    %li.divider
+    %li
+      =link_to snippets_list_path(@snippets_list), :method => :delete, :remote => true, :confirm => t('application.are_you_sure') do
+        %i.icon-remove
+        =t('application.delete')
+
+%h1=@snippets_list.name
+
+%table.page_layout{:border => 0, :cellpadding => 0, :cellspacing => 0}
+  %tr
+    %td.main_contents
+      %div.box
+        %div.pull-right
+          =link_to_fbox new_snippets_list_snippet_path(@snippets_list), :class => 'btn btn-success' do
+            %i.icon-plus.icon-white
+        %h3='רשימה'
+        %div.contents
+          %div.snippets_list{'data-update_positions_url' => update_positions_snippets_list_snippets_path(@snippets_list)}
+            -@snippets_list.snippets.order('snippets_list_position').each do |snippet|
+              %div.snippet{'data-id'=>snippet.id}
+                %div.info
+                  %div.pull-right.controls
+                    %div.btn-group
+                      =link_to_fbox edit_snippets_list_snippet_path(@snippets_list, snippet), :class => 'btn btn-small' do
+                        %i.icon-edit
+                      %div.btn-group.inline-block
+                        =link_to 'javascript:;', :class=>'btn btn-small dropdown-toggle', 'data-toggle'=>'dropdown' do
+                          %b.caret
+                        %ul.dropdown-menu
+                          %li
+                            =link_to_fbox duplicate_snippets_list_snippet_path(@snippets_list, snippet) do
+                              %i.icon-tags
+                              ='שכפול'
+                          %li.divider
+                          %li
+                            =link_to snippets_list_snippet_path(@snippets_list, snippet), :method => :delete, :remote => true do
+                              %i.icon-remove
+                              ='מחיקה'
+
+                  %i.icon-move
+                  %span.vmiddle.name.bigger1.strong.inline-block{:class => string_if('ltr tright', !LocaleUtils.instance.name_in_locale?(snippet.name, :locale => 'he-IL'))}=snippet.name
+                  %div.clear
+
+                  -#%button.btn.btn-small.toggle_actions{:type => 'button'}
+                    %i.icon-th-list
+
+
+                %div.collapsible
+                  -if snippet.description.present?
+                    %div.box
+                      %div.ul
+                        =image_tag 'icons/description-32x32.png', :style => 'height: 14px'
+                        ='תיאור'
+                      %div.markdown=markdown_html snippet.description
+                  -if snippet.purpose.present?
+                    %div.box
+                      %div.ul
+                        =image_tag 'icons/target_arrow-24x24.png', :style => 'height: 16px'
+                        ='מטרה'
+                      %div.markdown=markdown_html snippet.purpose
+
+
+    %td.sidebar.left
+      -if @snippets_list.description.present?
+        %div.box
+          %h3
+            =image_tag 'icons/description-32x32.png'
+            ='תיאור'
+          %div.contents
+            %div.markdown=markdown_html @snippets_list.description
+
+      -if @snippets_list.purpose.present?
+        %div.box
+          %h3
+            =image_tag 'icons/target_arrow-24x24.png'
+            ='מטרה'
+          %div.contents
+            %div.markdown=markdown_html @snippets_list.purpose
+
+
+
+:javascript
+  var controller = new MyRPM.controllers.SnippetsListsShowController({
+  });

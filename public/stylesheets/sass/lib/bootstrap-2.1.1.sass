@@ -1,0 +1,196 @@
+@import "mixin"
+@import "bootstrap_forms-v2"
+
+body
+  i.icon-phone
+    background-position: 0 -168px
+
+  //font-family: Arial, "Helvetica Neue", Helvetica, sans-serif
+  //font-size: 13px
+  .row
+    margin: 0px
+    &:before, &:after
+      display: none
+      content: ""
+    &:after
+      clear: none
+
+  line-height: normal
+
+  .btn-mini // increase font size from 10 to 11px
+    font-size: 11px
+
+  img // overriden so images won't be fucked up
+    max-width: none
+
+  h1, h2, h3, h4, h5, h6 // remove margin top from headers and weird line-height: 40px
+    margin-bottom: 10px
+    margin-top: 0px
+    line-height: normal
+
+  .pagination //override bootstrap pagination styles, to will_paginate in ajax datagrid would look as expected
+    height: auto
+    margin: 0px
+
+  .close //decrease close button size
+    font-size: 14px
+
+  .label-warning2
+    background-color: #D6BD00
+
+  i.icon-spinner
+    display: inline-block
+    background-image: url('/images/spinner-16x16.gif')
+    background-position: center center
+    background-size: 14px 14px
+
+  .dropdown-menu
+    a
+      padding: 3px 15px
+    li.divider.short
+      margin: 2px 1px
+    li
+      .title
+        display: inline-block
+        font-weight: bold
+        margin: 2px 5px
+        text-decoration: underline
+
+  .navbar .nav
+    //color: #333
+    >li
+      >a
+        outline: none
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+        text-shadow: 0 0 0
+        //color: #333
+        //&:hover
+          color: #4A5E73
+  .nav  li.dropdown .caret
+    border-top-color: #999
+    border-bottom-color: #999
+  .nav  li.dropdown.open .caret, .nav li.dropdown.open.active .caret, .nav li.dropdown a:hover .caret
+    border-top-color: white
+    border-bottom-color: white
+
+body.rtl
+  .pull-right
+    float: left
+  .pull-left
+    float: right
+  .pull-right > .dropdown-menu
+    right: auto
+    left: 0px
+
+  .close
+    float: left
+  .alert
+    padding: 8px 14px 8px 35px
+    .close
+      right: auto
+      left: -21px
+
+  .btn-group > .btn + .btn
+    margin-left: 0px
+    margin-right: -1px
+
+  .btn-group > .btn:first-child 
+    margin-right: 0
+    @include round(0px 4px 4px 0px)
+
+  .btn-group > .btn:first-child:last-child
+    @include round(4px)
+  .btn-group > .btn.large:first-child:last-child
+    @include round(6px)
+
+  .btn-group > .btn:last-child, .btn-group > .dropdown-toggle
+    @include round(4px 0px 0px 4px)
+
+  .btn-group > .btn.large:first-child
+    @include round(0px 6px 6px 0px)
+    margin-right: 0
+
+  .btn-group > .btn.large:last-child, .btn-group > .large.dropdown-toggle
+    @include round(6px 0px 0px 6px)
+
+  .btn-group > .btn.dropdown-toggle
+    @include round(4px)
+
+  //  support for btn dropdowns inside btn groups
+  .btn-group > .btn-group > .btn.dropdown-toggle
+    border-left: 0px
+    border-right: 0px
+    @include round(0px)
+
+  .btn-group > .btn-group:last-child > .btn.dropdown-toggle
+    @include round(4px 0px 0px 4px)
+    border-left: 1px
+
+  .btn-group > .btn-group:first-child > .btn.dropdown-toggle
+    @include round(0px 4px 4px 0px)
+    border-right: 1px
+
+  .btn-group-vertical > .btn + .btn
+    margin-left: 0px
+    margin-right: 0px
+
+  .btn-group-vertical .btn:first-child
+    @include round(4px 4px 0px 0px)
+
+  .btn-group-vertical .btn:last-child
+    @include round(0px 0px 4px 4px)
+
+  .dropdown-menu
+    left: auto
+    right: 0
+    float: right
+    &.pull-right
+      left: 0
+      right: auto
+  .navbar .nav
+    right: 0
+    left: auto
+    float: right
+    margin: 0 0 0 10px
+    .dropdown-menu
+      &::before
+        right: 12px
+        left: auto
+      &::after
+        right: 13px
+        left: auto
+      &.pull-right
+        right: auto
+        left: 0
+        &::before
+          right: auto
+          left: 12px
+        &::after
+          right: auto
+          left: 13px
+    &.pull-right
+      margin-right: 10px
+      margin-left: 0
+      float: left
+      .dropdown-menu
+        right: auto
+        left: 0
+        &::before
+          right: auto
+          left: 12px
+        &::after
+          right: auto
+          left: 13px
+    > li
+      float: right
+
+
+  .tabs-left > .nav-tabs > li, .tabs-right > .nav-tabs > li
+    float: none
+
+  .nav-tabs, .nav-pills
+    > li
+      float: right
+      > a
+        padding-right: 13px
+        padding-left: 12px

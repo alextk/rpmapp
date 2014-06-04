@@ -1,0 +1,5 @@
+<% if @rpm_block.errors.any? %>
+  $('div.fbox').replaceWith("<%=escape_javascript render(:template => 'weekly_plan/rpm_blocks/new.fbox') %>");
+<% else %>
+  $('div.fbox').replaceWith("<%=escape_javascript render('_shared/fancybox_redirect.fbox', :url => week_view_weekly_plans_path(:date => @weekly_plan.start_date.strftime)) %>");
+<% end %>

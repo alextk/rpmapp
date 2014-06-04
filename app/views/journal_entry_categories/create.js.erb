@@ -1,0 +1,11 @@
+<% if @category.errors.any? %>
+  $('div.fbox form').replaceWith("<%=escape_javascript render('form') %>");
+<% else %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var rowId = '<%= @category.id %>';
+  var newTableHtml = $('<%=escape_javascript render('grid', :dgc => AjaxDataGrid::Config.new(:rows => [@category]), :skip_toolbar => true) %>');
+  apiDataGrid.addCreatingRow(rowId, '<%= @category.id %>');
+  apiDataGrid.onAjaxRowCreated(rowId, rowId, newTableHtml);
+  $.fancybox.close();
+<% end %>
+

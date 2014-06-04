@@ -1,0 +1,7 @@
+%div.event_box.commit_time{'data-id'=>commit_time.id, 'data-rpm_block_assoc_id'=>commit_time.rpm_block_daily_plan_assoc_id,
+  'data-start_at_from_midnight_in_minutes'=>commit_time.start_at_from_midnight_in_minutes,
+  'data-duration_in_minutes'=>commit_time.duration_in_minutes,
+  'data-edit_url'=>edit_daily_plan_rpm_block_assoc_time_commitment_path(@daily_plan, commit_time.rpm_block_daily_plan_assoc_id, commit_time.id)}
+  %div.result.strong.bigger1=commit_time.rpm_block_daily_plan_assoc.rpm_block.result
+  -if commit_time.notes.present?
+    %div.muted3.smaller3.em=commit_time.notes

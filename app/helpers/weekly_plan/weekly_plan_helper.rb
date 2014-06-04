@@ -1,0 +1,2 @@
+module WeeklyPlan::WeeklyPlanHelper
+end

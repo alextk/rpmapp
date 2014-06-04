@@ -1,0 +1,40 @@
+he-IL:
+  errors:
+    messages:
+      not_found: "לא נמצא במערכת"
+      already_confirmed: "was already confirmed"
+      not_locked: "was not locked"
+
+  devise:
+    failure:
+      unauthenticated: עליך להתחבר למערכת לפני שתוכל להמשיך
+      unauthorized: אין לך הרשאות לגשת לחלק זה של המערכת או לביצוע פעולה זו
+      unconfirmed: עליך לאשר את האימייל שלך לפני שתוכל להתחבר למערכת
+      locked: החשבון שלך נעול
+      invalid: 'שם משתמש ו/או סיסמא אינם מתאימים'
+      invalid_token: 'Invalid authentication token.'
+      timeout: אינך מחובר יותר למערכת, נא להתחבר כדי להמשיך
+      inactive: 'Your account was not activated yet.'
+      permission: 'אין לך הרשאות לגשת לדף: %{page}'
+    sessions:
+      signed_in: התחברות למערכת עברה בהצלחה
+      signed_out: יציאה מהמערכת בוצעה בהצלחה
+    passwords:
+      send_instructions: 'הוראות לאיפוס סיממה נשלחו לאימייל שלך. נא לבדוק את האימייל שלך בעוד כמה דקות ולעקוב אחרי ההוראות לאיפוס סיסמה.'
+      please_choose_new_password: נא לבחור סיסמה חדשה שתשמש אותך לכניסה למערכת iPlan
+      updated: 'הסיסמה שונתה בהצלחה!'
+    confirmations:
+      send_instructions: 'You will receive an email with instructions about how to confirm your account in a few minutes.'
+      confirmed: האימייל שלך אושר בהצלחה, הינך מחובר למערכת כעת
+      invalid_confirmation_token: קוד לאימות אימייל פג תוקף או אינו חוקי
+    registrations:
+      signed_up: 'You have signed up successfully. If enabled, a confirmation was sent your e-mail.'
+      updated: 'You updated your account successfully.'
+      destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+    unlocks:
+      send_instructions: 'You will receive an email with instructions about how to unlock your account in a few minutes.'
+      unlocked: 'Your account was successfully unlocked. You are now signed in.'
+    mailer:
+      confirmation_instructions: 'Confirmation instructions'
+      reset_password_instructions: 'Reset password instructions'
+      unlock_instructions: 'Unlock Instructions'

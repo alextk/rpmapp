@@ -1,0 +1,2 @@
+module RpmBlock::WeeklyPlanAssocsHelper
+end

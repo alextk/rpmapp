@@ -1,0 +1,45 @@
+body div.fbox {
+  width: 500px; }
+  body div.fbox.green h3 {
+    background: linear-gradient(to bottom, #cbe2b2 0%, #b1d48b 1%, #a9cd82 26%, #93b968 75%, #8cb360 99%, #7b9d54 100%); }
+  body div.fbox.blue h3 {
+    background: linear-gradient(to bottom, #a6c2da 0%, #78a3c8 1%, #6c96bc 26%, #49709a 75%, #3d638f 99%, #35577d 100%); }
+  body div.fbox.red h3 {
+    background: linear-gradient(to bottom, #eca3a5 0%, #e07277 1%, #d3666b 26%, #ab3b41 84%, #a4353b 99%, #902e34 100%); }
+  body div.fbox h3 {
+    margin: 0px;
+    white-space: nowrap;
+    font-size: 34px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8); }
+    body div.fbox h3 img {
+      vertical-align: middle; }
+    body div.fbox h3.with_subtext {
+      font-size: 28px;
+      padding: 5px 10px;
+      line-height: 27px; }
+      body div.fbox h3.with_subtext img {
+        float: left;
+        margin-right: 15px; }
+      body div.fbox h3.with_subtext div.subtext {
+        font-size: 20px;
+        font-style: italic;
+        color: white; }
+  body div.fbox form, body div.fbox .content {
+    padding: 10px; }
+  body div.fbox .content div.actions {
+    border-top: 1px dashed #aaaaaa;
+    margin-top: 10px;
+    padding-top: 10px; }
+  body div.fbox .subtext {
+    font-size: 11px;
+    color: #444444;
+    font-style: italic; }
+
+body.rtl div.fbox h3.with_subtext img {
+  float: right;
+  margin-right: 0px;
+  margin-left: 15px; }

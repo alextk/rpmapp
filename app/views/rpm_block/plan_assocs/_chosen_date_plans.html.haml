@@ -1,0 +1,57 @@
+%table{:border => 0, :cellpadding => 0, :cellspacing => 0}
+  %thead
+    %tr
+      %th.tleft.left_border
+        ='תכנון יום:'
+        =link_to day_view_daily_plans_path(:date => @daily_plan.date.strftime), :class => 'blue_link2 font-weight-normal', :target => :_blank do
+          =l(@daily_plan.date, :format => '%d %B %Y')
+      %th.tleft
+        ='תכנון שבוע:'
+        =link_to week_view_weekly_plans_path(:date => @weekly_plan.start_date.strftime), :class => 'blue_link2 font-weight-normal', :target => :_blank do
+          =l(@weekly_plan.start_date, :format => '%d %B')
+          ='-'
+          =l(@weekly_plan.end_date, :format => '%d %B')
+  %tbody
+    %tr
+      %td.left_border
+        %div.plan_assocs
+          -@daily_plan.rpm_block_assocs.includes(:rpm_block).order('position asc').each do |rpm_block_assoc|
+            -rpm_block = rpm_block_assoc.rpm_block
+            %div.assoc{:class => string_if('already_exists', rpm_block_assoc.rpm_block_id == @rpm_block.id), 'data-completed'=>rpm_block.completed?.to_s}
+              %i.icon-ok.completed
+              %i.icon-uncompleted.uncompleted
+              =rpm_block.result
+      %td
+        %div.plan_assocs
+          -@weekly_plan.rpm_block_assocs.includes(:rpm_block).order('position asc').each do |rpm_block_assoc|
+            -rpm_block = rpm_block_assoc.rpm_block
+            %div.assoc{:class => string_if('already_exists', rpm_block_assoc.rpm_block_id == @rpm_block.id), 'data-completed'=>rpm_block.completed?.to_s}
+              %i.icon-ok.completed
+              %i.icon-uncompleted.uncompleted
+              =rpm_block.result
+  %tfoot
+    %tr
+      -source_params = Hash[params.select{|k,v| k.to_s.start_with?('source') }]
+      %td.left_border
+        &nbsp;
+        -if @rpm_block.daily_plan_assocs.where(:daily_plan_id => @daily_plan.id).blank?
+          =link_to rpm_block_daily_plan_assocs_path(@rpm_block, source_params.merge(:target_daily_plan_id=>@daily_plan.id)), :method=>:post, :remote=>true, :class=>'btn btn-success btn-small' do
+            %i.icon-white.icon-plus
+            ='הוספה'
+          -if params[:source_assoc_id].present? && params[:source] == 'daily_plan'
+            &nbsp;
+            &nbsp;
+            =link_to rpm_block_daily_plan_assocs_path(@rpm_block, source_params.merge(:target_daily_plan_id=>@daily_plan.id, :move=>true)), :method=>:post, :remote=>true, :class=>'btn btn-info btn-small' do
+              %i.icon-white.icon-share
+              ='הזזה'
+      %td
+        &nbsp;
+        -if @rpm_block.weekly_plan_assocs.where(:weekly_plan_id => @weekly_plan.id).blank?
+          =link_to rpm_block_weekly_plan_assocs_path(@rpm_block, source_params.merge(:target_weekly_plan_id=>@weekly_plan.id)), :method => :post, :remote => true, :class => 'btn btn-success btn-small' do
+            ='הוספה'
+          -if params[:source_assoc_id].present?
+            &nbsp;
+            &nbsp;
+            =link_to rpm_block_weekly_plan_assocs_path(@rpm_block, source_params.merge(:target_weekly_plan_id=>@weekly_plan.id, :move=>true)), :method=>:post, :remote=>true, :class=>'btn btn-info btn-small' do
+              %i.icon-white.icon-share
+              ='הזזה'

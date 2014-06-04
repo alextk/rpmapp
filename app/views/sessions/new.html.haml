@@ -1,0 +1,36 @@
+!!!
+%html{:xmlns=>'http://www.w3.org/1999/xhtml', :lang => 'he' , :'xml:lang'=>'he', :dir=>'rtl' }
+  %head
+    =csrf_meta_tag
+    %meta{:content=>"text/html; charset=UTF-8", 'http-equiv'=>"Content-Type"}
+    %meta{:name=>"SKYPE_TOOLBAR", :content=>"SKYPE_TOOLBAR_PARSER_COMPATIBLE"}
+    %title=t('application.sign_in')
+    %link{:rel=>"shortcut icon", :href=>"/images/favicon.ico"}
+    =javascript_include_tag :jquery
+    =stylesheet_link_tag 'vendor/bootstrap-2.1.1/bootstrap', 'lib/bootstrap-2.1.1'
+    =stylesheet_link_tag 'app/application-v2', 'app/sessions.new'
+  %body{:class => 'rtl', 'data-i18n-locale' => I18n.locale}
+    %div.box2.blue.sign_in
+      %h2=t('application.sign_in')
+      =form_for(resource, :as => resource_name, :url => admin_user_session_path, :html => {:method => :post, :class => 'form-horizontal'}) do |f|
+        -flash.each do |name, message| # flash messages can appear when signed out (:notice) or session expired (:alert) or bad username password (:alert)
+          =flash_message(name, message, :class => 'no_icon center')
+        %div.control-group
+          =f.label :email, resource.class.human_attribute_name(:email), :class => 'control-label'
+          %div.controls
+            =f.email_field :email, :class => 'input-large ltr'
+        %div.control-group
+          =f.label :password, resource.class.human_attribute_name(:password), :class => 'control-label'
+          %div.controls
+            =f.password_field :password, :class => 'input-large ltr'
+
+        -buttons_bar do
+          =f.submit t('application.sign_in'), :class => 'btn btn-success btn-large'
+
+
+    =render '/layouts/footer'
+
+:javascript
+  $(document).ready(function(){
+    $('input[name*=password]').focus();
+  });

@@ -1,0 +1,22 @@
+body
+  div.fancybox.redirect
+    //width: 300px
+    padding: 20px
+    text-align: center
+    div.message
+      font-size: 18px
+    div.redirecting
+      span.working
+        background: transparent url(/images/spinner-10x10.gif) no-repeat left center
+        padding-left: 20px
+        font-size: 14px
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  div.fancybox.redirect
+    div.redirecting
+      span
+        background-position: right center
+        padding-left: 0px
+        padding-right: 20px
+

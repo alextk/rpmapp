@@ -1,0 +1,11 @@
+<% if @snippets_list.errors.any? %>
+  $('div.fbox form').replaceWith("<%=escape_javascript render('form') %>");
+<% else %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var rowId = '<%= @snippets_list.id %>';
+  var newTableHtml = $('<%=escape_javascript render('grid', :dgc => AjaxDataGrid::Config.new(:rows => [@snippets_list]), :skip_toolbar => true) %>');
+  apiDataGrid.addCreatingRow(rowId, '<%= @snippets_list.id %>');
+  apiDataGrid.onAjaxRowCreated(rowId, rowId, newTableHtml);
+  $.fancybox.close();
+<% end %>
+

@@ -1,0 +1,77 @@
+@import "lib/_mixin"
+
+body
+  .calendar_month_view
+    .controls_bar
+      margin-bottom: 10px
+    table.month_view
+      border-collapse: collapse
+      width: 100%
+      thead
+        tr
+          th
+            text-align: center
+            background-color: #EFEFEF
+            border: 1px solid #CCC
+            padding: 3px 0px
+      tbody
+        tr
+          td
+            padding: 0px
+            width: 150px
+            height: 75px
+            border: 1px solid #ccc
+            vertical-align: top
+            cursor: pointer
+            div.day_date, div.contents
+              padding: 2px 3px
+          td.today
+            font-weight: bold
+            text-decoration: underline
+            div.day_date
+              background-color: #bdd8e6
+          td.other_month
+            opacity: 0.5
+          td.with_mma
+            background-color: #DDFFE3
+          td.without_mma
+            background-color: #ffd8d7
+          td:hover
+            background-color: #FAE4CC
+
+
+  .fbox.mm_a
+    width: 650px
+    form
+      .tabbable
+        ul.nav.nav-tabs
+          li
+            a
+              img
+                height: 24px
+        .tab-pane
+          position: relative
+          textarea
+            width: 100%
+            height: 175px
+            box-sizing: border-box
+          a.guiding_questions
+            position: absolute
+            top: 5px
+            left: 5px
+    &.show
+      div.attr_wrapper
+        margin-bottom: 15px
+        h4
+          margin-bottom: 5px
+          border-bottom: 1px dashed #CCC
+          padding-bottom: 2px
+          font-size: 15px
+          img
+            height: 24px
+          .btn[data-remote=true]
+            visibility: hidden
+        &:hover
+          h4
+            .btn[data-remote=true]
+              visibility: visible

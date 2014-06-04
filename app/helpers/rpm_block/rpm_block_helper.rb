@@ -1,0 +1,2 @@
+module ::RpmBlock::RpmBlockHelper
+end

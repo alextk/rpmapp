@@ -1,0 +1,251 @@
+@import 'lib/mixin'
+
+body
+  //no margin bottom on inputs (will be added in frows)
+  select, textarea, select, .uneditable-input, .uneditable-textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"]
+    margin-bottom: 0px
+  .input-prepend, .input-append
+    margin-bottom: 0px
+
+  label //no margin bottom on labels also
+    margin-bottom: 0px
+    vertical-align: middle
+
+
+  //error style
+  select, textarea, select, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"]
+    //background-color: #FFFFF5
+    &.error
+      background-color: #FFE1EE
+      border-color: #FFB3AB
+
+  .uneditable-input //make spans that look like inputs to be vertically aligned
+    vertical-align: middle
+
+  input, button, select, textarea //override font style in inputs
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif
+
+
+  //new sizes x-mini and auto to autosize inputs/selects etc.
+  .input-xmini
+    width: 30px
+  .input-auto
+    width: auto
+
+  //updated sizes for select to match those of inputs
+  select
+    width: auto
+    &.input-mini
+      width: 74px
+    &.input-small
+      width: 104px
+    &.input-medium
+      width: 164px
+    &.input-large
+      width: 224px
+    &.input-xlarge
+      width: 284px
+    &.input-xxlarge
+      width: 544px
+
+  //show datepicker icon
+  input.hasDatepicker
+    background-image: url(/images/icons/calendar-28x16.gif)
+    background-repeat: no-repeat
+    background-position: right center
+    padding-right: 28px
+    &.input-mini
+      width: 38px
+    &.input-small
+      width: 68px
+    &.input-medium
+      width: 128px
+    &.input-large
+      width: 188px
+    &.input-xlarge
+      width: 248px
+    &.input-xxlarge
+      width: 508px
+
+  form
+    margin: 0px
+    .error-explanation
+      color: red
+      font-weight: bold
+      font-size: 13px
+      &.inline
+        display: inline-block
+
+    label
+      display: block
+      font-size: 14px
+      font-weight: bold
+      &.checkbox, &.radio
+        font-size: 13px
+        font-weight: normal
+        line-height: normal
+        display: inline-block
+        padding: 0px
+        input, input[type="radio"], input[type="checkbox"]
+          float: none
+          margin: 0px
+          vertical-align: middle
+          margin-top: 2px
+        .lbl
+          vertical-align: middle
+
+    .frow
+      margin-bottom: 10px
+      .field.inline
+        label, .input-append, .input-prepend, .error-explanation
+          display: inline-block
+          vertical-align: middle
+
+
+      &.float
+        .field
+          float: right
+          margin-left: 10px
+          .error-explanation
+            display: block
+        .field:last-child
+          margin-left: 0px
+        &:after
+          display: table
+          line-height: 0
+          content: ""
+        &:after
+          clear: both
+    .togglebar
+      label
+        font-size: 13px
+        padding: 4px 8px
+    div.actions
+      border-top: 1px dashed #aaa
+      padding-top: 10px
+      div.working_spinner
+        line-height: 37px
+
+      &.working
+        div.buttons
+          display: none
+        div.working_spinner
+          display: block
+
+  form.form-horizontal
+    margin: 0px
+    div.control-group
+      margin-bottom: 10px
+      .control-label
+        font-weight: bold
+        width: 110px
+      .help-inline
+        width: 200px
+        font-style: italic
+        color: #888
+      .error-explanation
+        display: none
+      div.controls
+        margin-left: 120px
+      div.controls.error
+        font-weight: bold
+        color: #E60000
+        margin-top: 3px
+
+    div.actions
+      border-top: 1px dashed #aaa
+      padding-top: 10px
+      div.working_spinner
+        display: none
+        line-height: 38px
+
+      div.buttons, div.working_spinner
+        margin-left: 120px
+
+      &.working
+        div.buttons
+          display: none
+        div.working_spinner
+          display: block
+
+body.rtl
+  .input-prepend .add-on, .input-prepend .btn
+    margin-right: 0px
+    margin-left: -1px
+
+  .input-prepend .add-on:first-child, .input-prepend .btn:first-child
+    -webkit-border-radius: 0 3px 3px 0
+    -moz-border-radius: 0 3px 3px 0
+    border-radius: 0 3px 3px 0
+
+
+  .input-append .add-on, .input-append .btn
+    margin-left: 0px
+    margin-right: -1px
+
+  .input-append .add-on:last-child, .input-append .btn:last-child
+    -webkit-border-radius: 3px 0 0 3px
+    -moz-border-radius: 3px 0 0 3px
+    border-radius: 3px 0 0 3px
+
+  .input-append input, .input-append select, .input-append .uneditable-input
+    -webkit-border-radius: 0 3px 3px 0
+    -moz-border-radius: 0 3px 3px 0
+    border-radius: 0 3px 3px 0
+
+  .input-prepend input, .input-prepend select, .input-prepend .uneditable-input
+    -webkit-border-radius: 3px 0 0 3px
+    -moz-border-radius: 3px 0 0 3px
+    border-radius: 3px 0 0 3px
+
+  .input-prepend.input-append input, .input-prepend.input-append select, .input-prepend.input-append .uneditable-input
+    -webkit-border-radius: 0
+    -moz-border-radius: 0
+    border-radius: 0
+
+  .input-prepend.input-append .add-on:first-child, .input-prepend.input-append .btn:first-child
+    margin-left: -1px
+    -webkit-border-radius: 0 3px 3px 0
+    -moz-border-radius: 0 3px 3px 0
+    border-radius: 0 3px 3px 0
+
+  .input-prepend.input-append .add-on:last-child, .input-prepend.input-append .btn:last-child
+    -webkit-border-radius: 3px 0 0 3px
+    -moz-border-radius: 3px 0 0 3px
+    border-radius: 3px 0 0 3px
+
+  input.hasDatepicker
+    background-position: left center
+    padding-left: 28px
+    padding-right: 6px
+
+  form.form-horizontal
+    div.control-group
+      .control-label
+        width: 90px
+      div.controls
+        margin-left: 0px
+        margin-right: 100px
+
+    .control-label
+      float: right
+      text-align: left
+    .controls
+      margin-left: 0px
+      margin-right: 160px
+
+    div.actions
+      div.buttons, div.working_spinner
+        margin-left: 0px
+        margin-right: 100px
+
+  //.radio, .checkbox
+  //  padding-left: 0px
+  //  padding-right: 18px
+  //.radio input[type="radio"], .checkbox input[type="checkbox"]
+  //  float: right
+  //  margin-right: -18px
+  //  margin-left: -0px
+  .help-inline
+    padding-left: 0px
+    padding-right: 5px

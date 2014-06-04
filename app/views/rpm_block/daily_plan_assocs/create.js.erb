@@ -1,0 +1,8 @@
+<% if params[:source] == 'rpm_blocks_grid' %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var newTableHtml = $('<%=escape_javascript render('rpm_blocks/grid', :dgc => AjaxDataGrid::Config.new(:rows => [@rpm_block.reload]), :skip_toolbar => true) %>');
+  apiDataGrid.onAjaxUpdateRow('<%= @rpm_block.id %>', newTableHtml);
+  $.fancybox.close();
+<% else %>
+  FancyBoxInitalizer.reloadCurrentPage();
+<% end %>

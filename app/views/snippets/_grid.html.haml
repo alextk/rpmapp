@@ -1,0 +1,38 @@
+%div.grid{'data-grid-id' => dgc.grid_id}
+
+  -data_grid_toolbar(dgc)
+
+  -data_grid_table(dgc, :urls => {:update_grid => grid_api_snippets_path}) do |t|
+    -t.column '', :class => 'bootstrap_dropdown', :width => 60 do |snippet|
+      %div.btn-group{:style => ''}
+        =link_to '#', :class=>'btn dropdown-toggle', 'data-toggle'=>'dropdown' do
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            =link_to_fbox edit_snippet_path(snippet) do
+              %i.icon-pencil
+              =t('application.edit')
+          %li.divider
+          %li
+            =link_to snippet_path(snippet), :method => :delete, :remote => true, :confirm => t('application.are_you_sure') do
+              %i.icon-remove
+              =t('application.delete')
+    -t.column Snippet.human_attribute_name(:name), :binding_path => :name, :sortable => true, :editor => {:fbox => true, :url => edit_snippet_path('_0_', :format => :fbox)} do |snippet|
+      %div{:class => string_if('ltr', !LocaleUtils.instance.name_in_locale?(snippet.name, :locale => 'he-IL'))}
+        %div.simple_format=simple_format snippet.name
+    -t.column Snippet.human_attribute_name(:description), :binding_path => :description, :width => 50 do |snippet|
+      -if snippet.description.present?
+        %span.qtipTarget
+          =image_tag 'icons/description-32x32.png'
+          %div.qtipContents
+            %div.markdown=markdown_html snippet.description
+    -t.column Snippet.human_attribute_name(:purpose), :binding_path => :purpose, :width => 50 do |snippet|
+      -if snippet.purpose.present?
+        %span.qtipTarget
+          =image_tag 'icons/target_arrow-24x24.png'
+          %div.qtipContents
+            %div.markdown=markdown_html snippet.purpose
+    -t.column 'רשימה' do |snippet|
+      =link_to snippet.snippets_list.name, snippets_list_path(snippet.snippets_list) if snippet.snippets_list.present?
+
+  -data_grid_toolbar(dgc, :pos => :bottom)

@@ -1,0 +1,9 @@
+<% if @snippet.errors.any? %>
+  $('div.fbox').replaceWith("<%=escape_javascript render(:template => 'snippets/edit.fbox') %>");
+<% else %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var newTableHtml = $('<%=escape_javascript render('grid', :dgc => AjaxDataGrid::Config.new(:rows => [@snippet.reload]), :skip_toolbar => true) %>');
+  apiDataGrid.onAjaxUpdateRow('<%= @snippet.id %>', newTableHtml);
+  $.fancybox.close();
+<% end %>
+

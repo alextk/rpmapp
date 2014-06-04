@@ -1,0 +1,18 @@
+%div.grid{'data-grid-id' => dgc.grid_id}
+
+  -data_grid_toolbar(dgc)
+
+  -data_grid_table(dgc, :urls => {:update_grid => grid_api_journal_entries_path}) do |t|
+    -t.column 'תאריך', :width => 120 do |entry|
+      =link_to_fbox l(entry.date, :format => '%d %B %Y'), day_view_journal_entries_path(:date => entry.date.strftime('%Y-%m-%d'))
+    -t.column JournalEntry.human_attribute_name(:name), :binding_path => :name, :sortable => true do |entry|
+      =link_to_fbox journal_entry_path(entry), :class => 'blue_link2' do
+        %div.strong=entry.name
+    -t.column JournalEntry.human_attribute_name(:description), :binding_path => :description, :width => 50 do |entry|
+      %span.qtipTarget
+        =image_tag 'icons/description-32x32.png'
+        %div.qtipContents
+          %div.markdown=markdown_html entry.description
+    -t.column '' do |entry|
+      =image_tag entry.category.icon_path, :style => 'height: 16px'
+      =entry.category.name

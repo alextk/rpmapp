@@ -1,0 +1,5 @@
+-envs = {'development' => 'label-info', 'staging1' => 'label-warning', 'staging2' => 'label-warning2'}
+-unless envs[Rails.env.to_s].nil?
+  %div#environment_alert.ltr.label{:class => envs[Rails.env.to_s], :style => 'text-align: center'}
+    =Rails.env.to_s
+    ="- CLASSES ARE CACHED" if Rails.env.development? && MyRpm::Application.config.cache_classes

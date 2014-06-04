@@ -1,0 +1,5 @@
+<% if @je.errors.any? %>
+  controller.loadEditForm(<%=@je.id%>, "<%=escape_javascript render('new_form') %>");
+<% else %>
+  controller.onAjaxJournalEntryUpdated(<%=@je.id%>, "<%=escape_javascript render('journal_entries/journal_entry', :journal_entry => @je) %>");
+<% end %>

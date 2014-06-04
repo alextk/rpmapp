@@ -1,0 +1,112 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body div.fbox.rpm_block_plan_assoc {
+  width: 800px; }
+  body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table {
+    width: 505px;
+    border-collapse: collapse; }
+    body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr .left_border {
+      border-left: 1px solid #aaaaaa; }
+    body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td, body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr th {
+      padding: 2px 5px;
+      vertical-align: top;
+      width: 50%; }
+    body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr th {
+      border-bottom: 1px solid #aaaaaa;
+      font-size: 15px; }
+    body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs {
+      margin: 5px 5px; }
+      body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc {
+        padding: 6px 4px;
+        border-bottom: 1px dotted #cccccc; }
+        body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc i.completed, body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc i.uncompleted {
+          display: none;
+          border: 1px solid #cccccc; }
+        body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc:last-child {
+          border-bottom: 0px; }
+        body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc.already_exists, body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc.already_exists[data-completed=true] {
+          background-color: #fff7d7; }
+        body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc[data-completed=true] {
+          background-color: #d7ffd7;
+          opacity: 0.4; }
+          body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc[data-completed=true] i.completed {
+            display: inline-block; }
+        body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tr td div.plan_assocs div.assoc[data-completed=false] i.uncompleted {
+          display: inline-block; }
+    body div.fbox.rpm_block_plan_assoc div.chosen_date_plans table tfoot tr td {
+      padding-top: 6px;
+      border-top: 1px solid #aaaaaa;
+      text-align: center; }
+
+body div.rpm_block_assocs .ui-sortable-placeholder, body div.rpm_block_assocs .ui-sortable-helper {
+  background-color: #fbf9ee;
+  border: 1px solid #fcefa1;
+  border-left: 0px;
+  border-right: 0px;
+  height: 46px; }
+body div.rpm_block_assocs .ui-sortable-helper {
+  background-color: #efefef;
+  border-color: #aaaaaa;
+  padding: 10px 10px; }
+body div.rpm_block_assocs div.rpm_block_assoc {
+  padding: 10px 0px;
+  border-bottom: 1px solid #aaaaaa; }
+  body div.rpm_block_assocs div.rpm_block_assoc div.info .controls {
+    margin: 0px 5px; }
+  body div.rpm_block_assocs div.rpm_block_assoc div.info .outcome {
+    line-height: 25px; }
+  body div.rpm_block_assocs div.rpm_block_assoc div.info .completion_status {
+    cursor: pointer; }
+    body div.rpm_block_assocs div.rpm_block_assoc div.info .completion_status i {
+      display: none;
+      border: 1px solid #cccccc; }
+    body div.rpm_block_assocs div.rpm_block_assoc div.info .completion_status:hover i {
+      border-color: #333333; }
+  body div.rpm_block_assocs div.rpm_block_assoc div.info i.icon-move {
+    visibility: hidden; }
+  body div.rpm_block_assocs div.rpm_block_assoc div.info .purpose img {
+    height: 20px;
+    opacity: 0.2; }
+  body div.rpm_block_assocs div.rpm_block_assoc div.actions {
+    display: none;
+    margin-right: 60px; }
+  body div.rpm_block_assocs div.rpm_block_assoc:hover div.info i.icon-move {
+    visibility: visible; }
+  body div.rpm_block_assocs div.rpm_block_assoc:hover div.info .purpose img {
+    opacity: 1; }
+  body div.rpm_block_assocs div.rpm_block_assoc.show_actions div.actions {
+    display: block; }
+body div.rpm_block_assocs div.rpm_block_assoc[data-completed=true] {
+  background-color: #d7ffd7;
+  opacity: 0.4; }
+  body div.rpm_block_assocs div.rpm_block_assoc[data-completed=true] div.info .completion_status i.completed {
+    display: inline-block; }
+body div.rpm_block_assocs div.rpm_block_assoc[data-completed=false] div.info .completion_status i.uncompleted {
+  display: inline-block; }

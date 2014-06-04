@@ -1,0 +1,68 @@
+%div.grid{'data-grid-id' => dgc.grid_id}
+
+  -data_grid_toolbar(dgc)
+
+  -data_grid_table(dgc, :urls => {:update_grid => grid_api_rpm_blocks_path}) do |t|
+    -t.column '', :class => 'bootstrap_dropdown', :width => 60 do |rpm_block|
+      %div.btn-group{:style => ''}
+        =link_to '#', :class=>'btn dropdown-toggle', 'data-toggle'=>'dropdown' do
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            =link_to_fbox new_rpm_block_plan_assoc_path(rpm_block, :source=>:rpm_blocks_grid) do
+              %i.icon-plus
+              ='הוספה לתכנון יום/שבוע'
+          %li.divider
+          %li
+            =link_to duplicate_rpm_block_path(rpm_block), :method => :post, :remote => true do
+              %i.icon-tags
+              ='שכפול'
+          %li
+            =link_to_fbox edit_rpm_block_path(rpm_block) do
+              %i.icon-pencil
+              =t('application.edit')
+          %li.divider
+          %li
+            =link_to rpm_block_path(rpm_block), :method => :delete, :remote => true do
+              %i.icon-remove
+              =t('application.delete')
+    -t.column '', :class => 'tcenter', :width => 50 do |rpm_block|
+      %span.completion_status{'data-url' => modify_completion_rpm_block_path(rpm_block, :completed => (!rpm_block.completed?).to_s)}
+        -if rpm_block.completed?
+          %span.qtipTarget
+            %i.icon-ok.completed
+            %div.qtipContents
+              ='תוצאה הושגה'
+              =distance_of_time_in_words_from_now(rpm_block.completed_at)
+              %div.muted3.smaller3.em=l(rpm_block.completed_at, :format => '%d/%m/%Y %H:%M:%S')
+        -else
+          %i.icon-uncompleted.uncompleted
+    -t.column RpmBlock.human_attribute_name(:result), :binding_path => :result, :editor => {:fbox => true, :url => edit_rpm_block_path("_0_", :format => :fbox)}, :sortable => true do |rpm_block|
+      =rpm_block.result
+    -t.column '', :class => 'tcenter', :editor => {:fbox => true, :url => edit_rpm_block_path("_0_", :format => :fbox)}, :width => 75 do |rpm_block|
+      %span.inline-block.qtipTarget
+        =image_tag 'icons/target_arrow-24x24.png'
+        %div.qtipContents
+          %div
+            %span.strong='סיבות'
+            %span.muted3.smaller3.em='מדוע אני רוצה להשיג את זה? מה זה יתן לי? מה המטרה?'
+          %div.markdown=markdown_html rpm_block.purpose
+      %span.inline-block.qtipTarget
+        =image_tag 'icons/actions-24x24.png'
+        %div.qtipContents
+          %div
+            %span.strong='פעולות'
+            %span.muted3.smaller3.em='מה צריך לקרות כדי שהתוצאה תתממש? אילו פעולות יקרבו אותי להשגת התוצאה?'
+          %div.markdown=markdown_html rpm_block.actions
+    -t.column 'תכנוני יום' do |rpm_block|
+      -rpm_block.daily_plans.sort_by(&:date).reverse.each do |daily_plan|
+        =link_to day_view_daily_plans_path(:date => daily_plan.date.strftime), :target => :_blank do
+          =l(daily_plan.date, :format => '%d/%m/%Y')
+        &nbsp;
+    -t.column 'תכנוני שבוע' do |rpm_block|
+      -rpm_block.weekly_plans.sort_by(&:start_date).reverse.each do |weekly_plan|
+        =link_to week_view_weekly_plans_path(:date => weekly_plan.start_date.strftime), :target => :_blank do
+          =l(weekly_plan.start_date, :format => '%d/%m/%Y')
+          ='-'
+          =l(weekly_plan.end_date, :format => '%d/%m/%Y')
+        &nbsp;

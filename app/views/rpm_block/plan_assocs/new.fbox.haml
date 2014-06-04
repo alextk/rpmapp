@@ -1,0 +1,30 @@
+%div.fbox.blue.rpm_block_plan_assoc
+  %h3.with_subtext
+    ='הוספת בלוק rpm לתכנון'
+    %div.subtext=@rpm_block.result
+
+  %div.content
+    %div.daily_plan_date_chooser.pull-left
+    %div.chosen_date_plans.pull-left{:style => 'margin-right: 20px'}
+      =flash_message(:tip, 'נא לבחור בצד ימין תאריך')
+    %div.clear
+
+    -buttons_bar do
+      =link_to_function t('application.close'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+
+
+:javascript
+  $('.fbox .daily_plan_date_chooser').datepicker(jQuery.extend({}, jQuery.datepicker.regional['he-IL'], {
+    showOtherMonths: true,
+    selectOtherMonths: true,
+    dateFormat: 'yy-mm-dd',
+    onSelect: function(dateText, inst){
+      var url = '#{new_in_plan_rpm_block_plan_assocs_path(@rpm_block)}';
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'script',
+        data: $.param($.extend({date: dateText}, #{Hash[params.select{|k,v| k.to_s.start_with?('source') }].to_json}))
+      });
+    }
+  }));

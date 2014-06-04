@@ -1,0 +1,39 @@
+-categories = JournalEntryCategory.order('name asc').all
+=form_for @je, :url => @je.new_record? ? journal_entries_path : journal_entry_path(@je), :remote => true do |f|
+  =f.hidden_field :date, :value => I18n.l(@je.date)
+  %div.frow.float
+    %div.field
+      =f.label :category
+      =f.select :journal_entry_category_id, [['נא לבחור סיווג','']] + categories.collect{|c| [c.name, c.id] }, {}, 'data-error_wrap'=>'false'
+      %span.inline-block{:style => 'width: 40px'}
+        -categories.each do |category|
+          %span.category_icon_and_desc{:style => 'display: none', 'data-category_id'=>category.id}
+            %span.qtipTarget
+              =image_tag category.icon_path, :style => 'height: 24px'
+              -if category.description.present?
+                %div.qtipContents=markdown_html category.description
+      =f.field_errors :journal_entry_category_id
+    %div.field
+      =f.label :name
+      =f.text_field :name, :class => 'input-large'
+  %div.frow
+    %div.field
+      =f.label :description do
+        %div.pull-right
+          -categories.each do |category|
+            -if category.guiding_questions.present?
+              %span.qtipTarget.category_guiding_questions{:style => 'display: none', 'data-category_id'=>category.id}
+                %span.muted3.smaller2.em=JournalEntryCategory.human_attribute_name(:guiding_questions)
+                %i.icon-question-sign
+                %div.qtipContents
+                  %div.markdown=markdown_html category.guiding_questions
+
+        =@je.class.human_attribute_name(:description)
+      =f.text_area :description, :style => 'width: 100%; height: 150px; box-sizing: border-box;'
+
+  -buttons_bar(:class=>'reversed') do
+    -unless @je.new_record?
+      %div.pull-right
+        =link_to t('application.delete'), journal_entry_path(@je), :class => 'btn btn-small btn-danger', :remote => true, :method => :delete, :confirm => t('application.are_you_sure')
+    =link_to t('application.cancel'), 'javascript:;', :class => 'btn btn-large', 'data-action'=>'hide_form'
+    =f.submit t('application.save'), :class => 'btn btn-large btn-primary'

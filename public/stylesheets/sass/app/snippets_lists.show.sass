@@ -1,0 +1,61 @@
+@import "lib/_mixin"
+@import "_rpm_block_plan_assoc_fbox"
+
+body
+  div.snippets_list
+    .ui-sortable-placeholder, .ui-sortable-helper
+      background-color: #FBF9EE
+      border: 1px solid #FCEFA1
+      border-left: 0px
+      border-right: 0px
+      height: 46px
+    .ui-sortable-helper
+      background-color: #efefef
+      border-color: #aaa
+      padding: 10px 10px
+    div.snippet
+      //margin-bottom: 10px
+      padding: 10px 0px
+      border-bottom: 1px solid #aaa
+      div.info
+        .controls
+          margin: 0px 5px
+          //display: none
+        .name
+          line-height: 15px
+          max-width: 600px
+        .completion_status
+          cursor: pointer
+          i
+            display: none
+            border: 1px solid #ccc
+          &:hover
+            i
+              border-color: #333
+        i.icon-move
+          visibility: hidden
+        .purpose
+          img
+            height: 20px
+            opacity: 0.2
+      div.collapsible
+        //padding: 0px 15px
+        display: none
+        margin-right: 30px
+        div.box
+          .markdown
+            margin-right: 15px
+
+      &:hover
+        div.info
+          //.controls
+            display: block
+          i.icon-move
+            visibility: visible
+          .purpose
+            img
+              opacity: 1
+      &.show_collapsible
+        div.info
+        div.collapsible
+          display: block

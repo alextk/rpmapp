@@ -1,0 +1,45 @@
+body
+  div.fbox.rpm_block_plan_assoc
+    width: 800px
+    div.chosen_date_plans
+      table
+        width: 505px
+        border-collapse: collapse
+        tr
+          .left_border
+            border-left: 1px solid #aaa
+          td,th
+            padding: 2px 5px
+            vertical-align: top
+            width: 50%
+          th
+            border-bottom: 1px solid #AAA
+            font-size: 15px
+          td
+            div.plan_assocs
+              margin: 5px 5px
+              div.assoc
+                padding: 6px 4px
+                border-bottom: 1px dotted #ccc
+                i.completed, i.uncompleted
+                  display: none
+                  border: 1px solid #ccc
+                &:last-child
+                  border-bottom: 0px
+                &.already_exists, &.already_exists[data-completed=true]
+                  background-color: #FFF7D7
+                &[data-completed=true]
+                  background-color: #D7FFD7
+                  opacity: 0.4
+                  i.completed
+                    display: inline-block
+                &[data-completed=false]
+                  i.uncompleted
+                    display: inline-block
+
+        tfoot
+          tr
+            td
+              padding-top: 6px
+              border-top: 1px solid #AAA
+              text-align: center

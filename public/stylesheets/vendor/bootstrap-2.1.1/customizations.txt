@@ -1,0 +1,11 @@
+bootstrap.css generated via customize with the following changes:
+ - no Responsive
+ - no Tables
+ - @baseFontSize = 13px
+ - @baseLineHeight = 19px
+ - @iconSpritePath = 'images/glyphicons-halflings.png'
+ - @iconWhiteSpritePath = 'images/glyphicons-halflings-white.png'
+ - @inputBackground = #FFFFF5
+ - added phone icon to glyphicons (new row at y 160px)
+
+AFTER bootstrap.css is generated with above variable, modify the css as following (no way to override it):

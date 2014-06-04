@@ -1,0 +1,9 @@
+<% if @category.errors.any? %>
+  $('div.fbox').replaceWith("<%=escape_javascript render(:template => 'journal_entry_categories/edit.fbox') %>");
+<% else %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var newTableHtml = $('<%=escape_javascript render('grid', :dgc => AjaxDataGrid::Config.new(:rows => [@category.reload]), :skip_toolbar => true) %>');
+  apiDataGrid.onAjaxUpdateRow('<%= @category.id %>', newTableHtml);
+  $.fancybox.close();
+<% end %>
+

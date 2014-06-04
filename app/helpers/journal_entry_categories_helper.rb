@@ -1,0 +1,2 @@
+module JournalEntryCategoriesHelper
+end

@@ -1,0 +1,25 @@
+-top_navigation = TopNavigation.new(self, yield(:active_pill))
+%div.navbar.navbar-inverse
+  %div.navbar-inner
+    %div.container
+      =link_to destroy_admin_user_session_path, :class => 'btn btn-small pull-right logout', :method => :delete do
+        ='יציאה'
+        %i.icon-off
+      %div.brand.pull-left
+        =link_to 'MyRPM', home_path
+      %ul.nav
+        -top_navigation.nav_pills.each do |pill|
+          %li{:class=>"#{string_if('active', top_navigation.active_pill?(pill))} #{string_if('dropdown', pill.dropdown_menu?)}"}
+            -if pill.dropdown_menu?
+              =link_to 'javascript:;', :class=>"#{pill.css_class} as_table_cell", 'data-toggle'=>'dropdown' do
+                =pill.text
+                %b.caret
+              %ul.dropdown-menu
+                -for pill in pill.dropdown_pills do
+                  %li
+                    -link_to_method = pill.fbox_link? ? :link_to_fbox : :link_to
+                    =self.send(link_to_method, pill.path, :class=>pill.class) do
+                      %i{:class=>pill.icon}
+                      =pill.text
+            -else
+              =link_to pill.text, pill.path, :class=>"#{pill.css_class} as_table_cell"

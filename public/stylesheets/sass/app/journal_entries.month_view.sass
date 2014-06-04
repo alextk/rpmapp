@@ -1,0 +1,42 @@
+@import "lib/_mixin"
+@import "journal_entry_fbox"
+
+body
+  .calendar_month_view
+    .controls_bar
+      margin-bottom: 10px
+    table.month_view
+      border-collapse: collapse
+      width: 100%
+      thead
+        tr
+          th
+            text-align: center
+            background-color: #EFEFEF
+            border: 1px solid #CCC
+            padding: 3px 0px
+      tbody
+        tr
+          td
+            padding: 0px
+            width: 150px
+            height: 75px
+            border: 1px solid #ccc
+            vertical-align: top
+            cursor: pointer
+            div.day_date, div.contents
+              padding: 2px 3px
+          td.today
+            font-weight: bold
+            text-decoration: underline
+            div.day_date
+              background-color: #bdd8e6
+          td.other_month
+            opacity: 0.5
+          td.with_journal_entries
+            background-color: #DDFFE3
+          td.without_journal_entries
+            background-color: #ffd8d7
+          td:hover
+            background-color: #FAE4CC
+

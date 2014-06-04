@@ -1,0 +1,8 @@
+var fboxHTML = "<%=escape_javascript render(:partial => '_shared/fancybox_redirect.fbox', :locals => local_assigns) %>";
+if($('#fancybox-content').is(':visible')){
+  $('div.fbox').replaceWith(fboxHTML);
+} else {
+  $.fancybox(
+    $.extend({ content: fboxHTML }, FancyBoxInitalizer.config.forms.fancybox)
+  );
+}

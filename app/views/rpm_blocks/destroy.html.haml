@@ -1,0 +1,19 @@
+%div.destroy_qtip_confirmation
+  =form_tag rpm_block_path(@rpm_block), :method => :delete, :remote=>true do |f|
+    =hidden_field_tag :approved, true
+    ='שים לב! הבלוק נמצא'
+    %span.strong='בתכנוני יום'
+    ='בתאריכים הבאים:'
+    -@rpm_block.daily_plans.order('daily_plans.date desc').each do |daily_plan|
+      %div
+        =link_to day_view_daily_plans_path(:date => daily_plan.date.strftime), :target => :_blank do
+          =l(daily_plan.date, :format => '%d/%m/%Y')
+    %div.strong
+      ='האם הינך בטוח שברצונך למחוק אותו?'
+
+    -buttons_bar do
+      =link_to_function t('application.cancel'), '$(this).closest(".ui-tooltip").qtip("api").hide()', :class => 'btn btn-small'
+      =submit_tag t('application.delete'), :class => 'btn btn-small btn-danger'
+
+
+

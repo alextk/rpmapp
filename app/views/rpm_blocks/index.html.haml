@@ -1,0 +1,44 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+-content_for :html_title, 'Rpm blocks'
+-content_for(:active_pill, :rpm_blocks)
+
+%div.pull-right
+  =link_to_fbox 'הוספה', new_rpm_block_path, :class => 'btn btn-large btn-success'
+
+-filter_bar :submit_via_grid_id => @dgc.grid_id, :bar_class => 'pull-left' do
+  %div.separator
+  %div.float
+    %div='הושלם:'
+    =radio_bar_tag :filter_completed, :selected => @dgc.options.filter_completed  do |rb|
+      =rb.item :all, t('application.all')
+      =rb.item :true, t('application.btn_yes')
+      =rb.item :false, t('application.btn_no')
+  %div.separator
+  %div.float
+    %div='תכנון יום בעתיד:'
+    =radio_bar_tag :filter_has_future_daily_plan, :selected => @dgc.options.filter_has_future_daily_plan  do |rb|
+      =rb.item :all, t('application.all')
+      =rb.item :true, 'יש'
+      =rb.item :false, 'אין'
+  %div.separator
+  %div.float
+    %div='תכנון שבוע בעתיד:'
+    =radio_bar_tag :filter_has_future_weekly_plan, :selected => @dgc.options.filter_has_future_weekly_plan  do |rb|
+      =rb.item :all, t('application.all')
+      =rb.item :true, 'יש'
+      =rb.item :false, 'אין'
+
+%div.clear
+
+=render 'grid', :dgc => @dgc
+
+:javascript
+  //complete/uncomplete rpm block
+  $(document).on('click', '.grid td .cell .completion_status', function(e){
+    $.ajax({
+      url: $(this).data('url'),
+      type: 'post',
+      dataType: 'script'
+    });
+  });

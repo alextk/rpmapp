@@ -1,0 +1,6 @@
+<% if @snippet.errors.any? %>
+  $('div.fbox form').replaceWith("<%=escape_javascript render('form') %>");
+<% else %>
+  <%=render('_shared/fancybox_redirect', :url => snippets_list_path(@snippets_list)) %>
+<% end %>
+

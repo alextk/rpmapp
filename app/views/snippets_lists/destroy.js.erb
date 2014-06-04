@@ -1,0 +1,8 @@
+<% if @snippets_list.blank? || @snippets_list.destroyed? %>
+  <% if params[:origin] == 'grid' %>
+    var apiDataGrid = $.datagrid.helpers.firstAPI();
+    apiDataGrid.onAjaxRowDestroyed('<%= params[:id] %>');
+  <% else %>
+    <%=render('_shared/fancybox_redirect', :url => snippets_lists_path) %>
+  <% end %>
+<% end %>

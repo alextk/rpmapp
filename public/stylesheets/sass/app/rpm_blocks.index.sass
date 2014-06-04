@@ -1,0 +1,16 @@
+@import "lib/_mixin"
+@import "_rpm_block_plan_assoc_fbox"
+
+body
+  .grid
+    table
+      tr
+        td
+          .cell
+            .completion_status
+              cursor: pointer
+              i
+                border: 1px solid #ccc
+              &:hover
+                i
+                  border-color: #333

@@ -1,0 +1,68 @@
+@import "lib/mixin"
+
+body
+  .tooltipContents, .qtipContents /* convention for QTipIntializer */
+    display: none
+
+  /* global max size */
+  .ui-tooltip, .qtip
+    max-width: 1024px /* Change this? */
+    min-width: 50px /* ...and this! */
+
+  .ui-tooltip-default
+    border-color: #F0C36D
+    background-color: #F9EDBE
+    color: #222
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    //@include round(2px)
+    //@include shadow(0 2px 4px rgba(0, 0, 0, 0.2))
+
+  /*! Error tooltip style */
+  .ui-tooltip-error
+    border-color: red
+    background-color: #FCD0E4
+    color: #454545
+
+  .ui-tooltip-bootstrap
+    background-color: rgba(0, 0, 0, 0.8)
+    padding: 3px
+    border-radius: 6px
+    border: 0px
+
+
+  /*! help tooltips max width should be 400*/
+  .ui-tooltip-help
+    max-width: 400px
+    p
+      margin: 2px 0px
+      .underline
+        text-decoration: underline
+
+  /*! help tooltips max width should be 400*/
+  .ui-tooltip-ajax
+    border: 1px solid #888
+    background-color: #fafafa
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+
+    .ui-tooltip-content
+
+  // if initializes by qtip initializer script: removes padding from content and add padding to div.tooltipContents
+  .qtip-initializer
+    .ui-tooltip-content
+      padding: 0px
+      .tooltipContents, .qtipContents
+        padding: 5px 9px
+        &.rtl
+          direction: rtl
+          text-align: right
+
+
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  .ui-tooltip-content
+    text-align: right

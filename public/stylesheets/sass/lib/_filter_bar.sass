@@ -1,0 +1,161 @@
+body
+  div.filter_bar
+    border-radius: 0px 10px 10px 0px
+    border: 1px solid #c6c6c6
+    background: #f0f0f0
+    background: linear-gradient(to bottom, rgba(240,240,240,1) 0%,rgba(240,240,240,1) 36%,rgba(237,237,237,1) 49%,rgba(228,228,228,1) 74%,rgba(213,213,213,1) 100%)
+
+    position: relative
+    margin-left: 43px
+    margin-bottom: 10px
+    padding-left: 15px
+    padding-right: 10px
+
+    div.icon
+      border-radius: 10px
+      position: absolute
+      top: 0px
+      left: -43px
+      height: 40px
+      width: 52px
+      background: transparent url(/images/filter_bar/filter_bar_icon.png) no-repeat left top
+      cursor: pointer
+      img
+        background: transparent url(/images/filter_bar/search-white-24x24.png) no-repeat center center
+        width: 42px
+        height: 40px
+
+
+    div.search_fields
+      div.float, div.separator
+        float: left
+      div.float
+        padding: 6px 0px
+        span.togglebar
+          label
+            padding: 6px 8px
+      .togglebar
+        font-size: 12px
+      div.filter_id
+        input
+          width: 40px
+      div.free_text
+        position: relative
+        padding: 6px 0px
+        input
+          padding: 5px 10px
+          padding-right: 26px
+          font-size: 13px
+          border-radius: 7px
+          width: 100px
+          border: 1px solid #BBB
+          outline: none
+        div.delete
+          position: absolute
+          right: 6px
+          top: 12px
+          background: transparent url(/images/filter_bar/x-16x16.png) no-repeat center center
+          width: 16px
+          height: 16px
+          cursor: pointer
+          opacity: 0.6
+          &:hover
+            opacity: 1
+      div.search_button
+        input.button3
+          padding: 0px 10px
+          height: 27px
+          line-height: 27px
+        a.more_link
+          padding: 2px 5px
+          margin-left: 5px
+          text-decoration: underline
+      div.more
+        display: none
+      div.more_container
+        //border-top: 1px solid #DBDBDB
+        border-top: 1px solid #F3F3F3
+        display: none
+        div.more
+          display: block
+          border-top: 1px solid #DBDBDB
+      &.with_more
+        div.more_container
+          display: block
+        div.search_button
+          a.more_link
+            background-color: #1C6AF7
+            color: white
+    div.working_spinner
+      height: 40px
+      line-height: 40px
+
+    div.submit_error
+      display: none
+      height: 40px
+      line-height: 40px
+      span.message
+        color: red
+        font-weight: bold
+
+    div.separator
+      width: 1px
+      height: 40px
+      border-left: 1px solid #dbdbdb
+      border-right: 1px solid #f3f3f3
+      margin: 0px 10px
+
+    form.working
+      div.search_fields, div.search_button
+        display: none
+      div.working_spinner
+        display: block
+
+    form.submit_error
+      div.search_fields, div.search_button, div.working_spinner
+        display: none
+      div.submit_error
+        display: block
+
+    &.with_bootstrap
+      select
+        width: auto
+
+    &.no_icon
+      margin-left: 0px
+      div.icon
+        display: none
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  div.filter_bar
+    border-radius: 10px 0px 0px 10px
+    margin-left: 0px
+    margin-right: 43px
+    padding-left: 10px
+    padding-right: 15px
+
+    div.icon
+      background: transparent url(/images/filter_bar/filter_bar_icon_rtl.png) no-repeat right top
+      left: auto
+      right: -43px
+
+    div.search_fields
+      div.float, div.separator
+        float: right
+
+      div.free_text
+        input
+          padding-right: 10px
+          padding-left: 26px
+        div.delete
+          right: auto
+          left: 6px
+
+      div.search_button
+        a.more_link
+          margin-left: 0px
+          margin-right: 5px
+
+    &.no_icon
+      margin-right: 0px

@@ -1,0 +1,3 @@
+<% if @snippet.blank? || @snippet.destroyed? %>
+  <%=render('_shared/fancybox_redirect', :url => snippets_list_path(@snippets_list)) %>
+<% end %>

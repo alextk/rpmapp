@@ -1,0 +1,23 @@
+%div.fbox.blue.journal_entry.show
+  %h3
+    %span.inline-block='רישום יומן'
+    &nbsp;
+    %span.bigger4.em.inline-block=link_to l(@je.date, :format => '%d %B %Y - %A'), day_view_journal_entries_path(:date => @je.date.strftime('%Y-%m-%d')), :remote => true
+  %div.content
+    %div.bigger2.strong
+      %span.qtipTarget
+        =image_tag @je.category.icon_path
+        %div.qtipContents=@je.category.name
+      =@je.name
+    %div.markdown{:style => 'margin: 5px 30px;'}
+      =markdown_html @je.description
+
+    -buttons_bar do
+      %div.pull-left
+        =link_to t('application.delete'), journal_entry_path(@je), :class => 'btn btn-small btn-danger', :remote => true, :confirm => t('application.are_you_sure'), :method => :delete
+
+      =link_to t('application.edit'), edit_journal_entry_path(@je), :class => 'btn btn-large btn-primary', :remote => true
+      =link_to_function t('application.close'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+
+:javascript
+  $.fancybox.resize();

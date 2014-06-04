@@ -1,0 +1,50 @@
+=form_for @snippet, :url => @snippet.new_record? ? snippets_path : snippet_path(@snippet), :remote => true do |f|
+  %div.frow
+    %div.field
+      =f.label :name do
+        %div.pull-right
+          %div.btn-group.class_direction
+            %button.btn.btn-small{:type=>:button}
+              %i.icon-arrow-left
+            %button.btn.btn-small.ltr{:type=>:button}
+              %i.icon-arrow-right
+        =@snippet.class.human_attribute_name(:name)
+
+      =f.text_area :name, :class=>string_if('ltr', !LocaleUtils.instance.name_in_locale?(@snippet.name, :locale => 'he-IL')), :style => 'width: 546px; height: 40px;'
+  %div.frow.float
+    %div.field
+      =f.label :snippets_list_id, 'רשימה'
+      =f.select :snippets_list_id, [['נא לבחור ערך', '']] + SnippetsList.order('name').collect{|sl| [sl.name, sl.id]}
+
+  %div.frow.float
+    %div.field
+      =f.label :description do
+        %div.pull-right
+          %span.qtipTarget
+            %span.muted3.smaller2.em=JournalEntryCategory.human_attribute_name(:guiding_questions)
+            %i.icon-question-sign
+            %div.qtipContents
+              %div.markdown=markdown_html controller.render_to_string(:partial => 'guiding_questions_description.md')
+        =@snippet.class.human_attribute_name(:description)
+
+      =f.text_area :description, :style => 'width: 260px; height: 150px;'
+    %div.field
+      =f.label :purpose do
+        %div.pull-right
+          %span.qtipTarget
+            %span.muted3.smaller2.em=JournalEntryCategory.human_attribute_name(:guiding_questions)
+            %i.icon-question-sign
+            %div.qtipContents
+              %div.markdown=markdown_html controller.render_to_string(:partial => 'guiding_questions_purpose.md')
+        =@snippet.class.human_attribute_name(:purpose)
+      =f.text_area :purpose, :style => 'width: 260px; height: 150px;'
+
+  -buttons_bar do
+    =link_to_function t('application.cancel'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+    =f.submit t('application.save'), :class => 'btn btn-large btn-primary'
+
+:javascript
+  QTipIntializer.init($('#fancybox-content'));
+  $('.fbox .class_direction button').click(function(){
+    $('.fbox form textarea[name*=name]').toggleClass('ltr', $(this).hasClass('ltr'));
+  });

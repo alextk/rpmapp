@@ -1,0 +1,9 @@
+-#-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+  =javascript_include_tag "app/controllers/#{controller_name}.#{action_name}"
+
+-content_for :active_pill, :home
+
+%h1 Hi
+
+%div=link_to 'יומן מבט יומי', day_view_journal_entries_path

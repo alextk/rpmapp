@@ -1,0 +1,2 @@
+module SnippetsList::SnippetsHelper
+end

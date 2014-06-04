@@ -1,0 +1,67 @@
+@import "lib/_mixin"
+@import "_rpm_block_plan_assoc_fbox"
+
+body
+  div.rpm_block_assocs
+    .ui-sortable-placeholder, .ui-sortable-helper
+      background-color: #FBF9EE
+      border: 1px solid #FCEFA1
+      border-left: 0px
+      border-right: 0px
+      height: 46px
+    .ui-sortable-helper
+      background-color: #efefef
+      border-color: #aaa
+      padding: 10px 10px
+    div.rpm_block_assoc
+      //margin-bottom: 10px
+      padding: 10px 0px
+      border-bottom: 1px solid #aaa
+      div.info
+        .controls
+          margin: 0px 5px
+        //display: none
+        .outcome
+          line-height: 25px
+        .completion_status
+          cursor: pointer
+          i
+            display: none
+            border: 1px solid #ccc
+          &:hover
+            i
+              border-color: #333
+        i.icon-move
+          visibility: hidden
+        .purpose
+          img
+            height: 20px
+            opacity: 0.2
+      div.actions
+        //padding: 0px 15px
+        display: none
+        margin-right: 60px
+      &:hover
+        div.info
+          i.icon-move
+            visibility: visible
+          .purpose
+            img
+              opacity: 1
+      &.show_actions
+        div.info
+        div.actions
+          display: block
+    div.rpm_block_assoc[data-completed=true]
+      background-color: #D7FFD7
+      opacity: 0.4
+      div.info
+        .completion_status
+          i.completed
+            display: inline-block
+    div.rpm_block_assoc[data-completed=false]
+      div.info
+        .completion_status
+          i.uncompleted
+            display: inline-block
+

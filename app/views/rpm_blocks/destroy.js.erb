@@ -1,0 +1,30 @@
+var apiDataGrid = $.datagrid.helpers.firstAPI();
+<% if @rpm_block.blank? || @rpm_block.destroyed? %>
+  apiDataGrid.markRowAsDestroying('<%= params[:id] %>');
+  apiDataGrid.onAjaxRowDestroyed('<%= params[:id] %>');
+<% else %>
+  $(apiDataGrid.selectors.table).find('tr.grid_row[data-id=<%=@rpm_block.id %>] td.bootstrap_dropdown .btn-group').qtip({
+    content: "<%=escape_javascript render(:template => 'rpm_blocks/destroy.html') %>",
+    position: {
+      my: 'top center',
+      at: 'bottom center',
+      effect: false
+    },
+    show: {
+      event: false,
+      effect: false
+    },
+    hide: {
+      event: 'unfocus',
+      effect: false
+    },
+    style:{
+      classes: 'ui-tooltip-ajax',
+      tip: {
+        corner: true,
+        width: 10,
+        height: 10
+      }
+    }
+  }).qtip('api').show();
+<% end %>

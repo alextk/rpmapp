@@ -1,0 +1,85 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body .fbox.journal_entry {
+  width: 600px; }
+  body .fbox.journal_entry h3 a {
+    color: white; }
+body .fbox.journal_entry.day_view div.content div.journal_entry {
+  padding: 10px 10px;
+  border: 1px solid white; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry img {
+    height: 16px; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry .description {
+    display: none;
+    margin-top: 5px;
+    margin-right: 25px; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry .on_hover {
+    visibility: hidden; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry:hover .on_hover {
+    visibility: visible; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry.collapsed .description {
+    display: block; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry.odd {
+    background-color: #fffdd7; }
+  body .fbox.journal_entry.day_view div.content div.journal_entry.even {
+    background-color: #fff8f2; }
+
+body .calendar_month_view .controls_bar {
+  margin-bottom: 10px; }
+body .calendar_month_view table.month_view {
+  border-collapse: collapse;
+  width: 100%; }
+  body .calendar_month_view table.month_view thead tr th {
+    text-align: center;
+    background-color: #efefef;
+    border: 1px solid #cccccc;
+    padding: 3px 0px; }
+  body .calendar_month_view table.month_view tbody tr td {
+    padding: 0px;
+    width: 150px;
+    height: 75px;
+    border: 1px solid #cccccc;
+    vertical-align: top;
+    cursor: pointer; }
+    body .calendar_month_view table.month_view tbody tr td div.day_date, body .calendar_month_view table.month_view tbody tr td div.contents {
+      padding: 2px 3px; }
+  body .calendar_month_view table.month_view tbody tr td.today {
+    font-weight: bold;
+    text-decoration: underline; }
+    body .calendar_month_view table.month_view tbody tr td.today div.day_date {
+      background-color: #bdd8e6; }
+  body .calendar_month_view table.month_view tbody tr td.other_month {
+    opacity: 0.5; }
+  body .calendar_month_view table.month_view tbody tr td.with_journal_entries {
+    background-color: #ddffe3; }
+  body .calendar_month_view table.month_view tbody tr td.without_journal_entries {
+    background-color: #ffd8d7; }
+  body .calendar_month_view table.month_view tbody tr td:hover {
+    background-color: #fae4cc; }

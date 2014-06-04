@@ -1,0 +1,24 @@
+=form_for @time_commitment, :url => @time_commitment.new_record? ? daily_plan_rpm_block_assoc_time_commitments_path(@daily_plan, @rpm_block_assoc) : daily_plan_rpm_block_assoc_time_commitment_path(@daily_plan, @rpm_block_assoc, @time_commitment), :remote=>true do |f|
+  =f.hidden_field :start_at_date
+  =f.hidden_field :end_at_date
+  %div.frow
+    %div.field
+      %div.input-prepend
+        %span.add-on='הערה'
+        =f.text_field :notes, :class => 'input-medium'
+  %div.frow
+    %div.field
+      %div.input-prepend
+        %span.add-on='זמנים'
+        =f.text_field :end_at_time, :class => 'end_at_time ltr', 'data-error_wrap'=>false
+        %span.add-on.dash='-'
+        =f.text_field :start_at_time, :class => 'start_at_time ltr', 'data-error_wrap'=>false
+      =f.field_errors :start_at_time
+      =f.field_errors :end_at_time
+
+  -buttons_bar do
+    -unless @time_commitment.new_record?
+      %div.pull-left
+        =link_to t('application.delete'), daily_plan_rpm_block_assoc_time_commitment_path(@daily_plan, @rpm_block_assoc, @time_commitment), :class => 'btn btn-small btn-danger', :remote => true, :method => :delete, :style => 'margin: 0px'
+    =link_to_function t('application.cancel'), 'controller.hideTimeCommitmentQtip()', :class => 'btn btn-small'
+    =f.submit t('application.save'), :class => 'btn btn-small btn-success'

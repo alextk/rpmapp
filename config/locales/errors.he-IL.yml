@@ -1,0 +1,228 @@
+he-IL:
+  errors:
+    format: "%{attribute} %{message}"
+
+    messages:
+      inclusion: "לא נכלל ברשימה"
+      exclusion: "לא זמין"
+      invalid: "לא ולידי"
+      confirmation: "אינה תואמת לסיסמה שוב"
+      accepted: "חובה להסכים"
+      empty: "חובה להזין ערך"
+      blank: "חובה להזין ערך"
+      not_blank: חובה להשאיר ריק
+      too_long: "יותר מדי ארוך (לא יותר מ- %{count} תוים)"
+      too_short: "יותר מדי קצר (לפחות %{count} תוים)"
+      wrong_length: "לא באורך הנכון (חייב להיות %{count} תוים)"
+      not_a_number: "הוא לא מספר"
+      not_an_integer: "must be an integer"
+      greater_than: "חייב להיות גדול מ- %{count}"
+      greater_than_or_equal_to: "חייב להיות גדול או שווה ל- %{count}"
+      equal_to: "חייב להיות שווה ל- %{count}"
+      less_than: "חייב להיות קטן מ- %{count}"
+      less_than_or_equal_to: "חייב להיות קטן או שווה ל- %{count}"
+      odd: "חייב להיות אי זוגי"
+      even: "חייב להיות זוגי"
+      must_be_in_language: "חייב להיות ב%{language}"
+      files_limit: "לא ניתן לעלות יותר מ-%{limit} קבצים"
+      date_format: תאריך לא חוקי
+      after_event_date: חייב להיות לפני מועד האירוע
+      after_event_time: חייב להיות לפני תחילת אירוע
+    attributes:
+      title:
+        blank: "כותרת לא יכולה להיות ריקה"
+      reset_password_token:
+        invalid: קוד לאיפוס סיסמה פג תוקף או אינו חוקי
+      password:
+        invalid: לא נכונה
+        too_short: "יותר מדי קצרה (לפחות %{count} תוים)"
+      email:
+        format: "פורמט אימייל לא חוקי"
+        identical_to_current_email: זהה לאימייל הנוכחי
+      phone:
+        format: "פורמט טלפון לא חוקי"
+      cellular_phone:
+        format: "פורמט טלפון סלולרי לא חוקי"
+
+  activemodel:
+    errors:
+      models:
+        credit_card:
+          attributes:
+            month:
+              expired: 'חייב להיות בעתיד'
+            full_name:
+              must_contain_first_name_and_family_name: חייב לכלול שם פרטי ושם משפחה
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "לא ניתן לשמור %{model}: שגיאה אחת"
+          other: "לא ניתן לשמור %{model}: %{count} שגיאות."
+        body: "אנא בדוק את השדות הבאים:"
+
+      messages:
+        taken: "לא זמין"
+        record_invalid: "אימות נכשל: %{errors}"
+        #<<: *errors_messages DONT DO THIS --- it fucks up activerecord errors scope search, skips errors.attributes.<attribute_name>.blank
+
+      full_messages:
+        format: "%{attribute} %{message}"
+
+      models:
+        tables_cluster:
+          attributes:
+            tables_numbers:
+              out_of_range: 'מספרים חייבים להיות בטווח השולחנות הקיימים'
+              not_tables_numbers: 'חובה להזין מספרי שולחנות מופרדים בפסיקים'
+        account:
+          attributes:
+            email:
+              already_invited_to_this_event: 'לקוח עם אימייל זה כבר הוזמן לאירוע זה'
+            password:
+              wrong_try_again_or_reset: סיסמה שגויה. נא לנסות פעם נוספת או ללחוץ על שכחתי סיסמה
+        person:
+          attributes:
+            email:
+              locked_for_changes: נעול לשינויים
+        excel_sheet:
+          base:
+            parse_failed: "אירעה שגיאה בעיבוד קובץ אקסל"
+            invalid_excel_version: קובץ אקסל נשמר בגרסה לא נכונה - חייב להיות אקסל 2003 (סיומת xls)
+        guests_commitment:
+          attributes:
+            certain_guests:
+              must_be_greater_then_minimum_guests: 'מספר אורחים כולל להתחייבות חייב להיות גדול מ - %{guests_count} (מינימום)'
+          base:
+            locked_for_changes: "התחייבות נעולה לשינויים כאשר היא בסטטוס %{status}"
+        invitation:
+          base:
+            data_protection:
+              locked_for_table_arrangement_changes: לא ניתן למחוק הזמנות שהושבו בשולחן אחרי שסידור שולחנות ננעל לשינויים
+              locked_for_glat_meals_changes: לא ניתן למחוק הזמנות שסומנו עם מנות גלאט אחרי שאירוע ננעל לשינויי גלאט
+              created_before_event: הזמנות שנוצרו לפני האירוע לא ניתנות למחיקה אחרי שהאירוע נגמר
+              not_created_by_user: הזמנות שנוצרו בזמן האירוע לא ניתנות למחיקה
+              marked_by_hostess: הזמנות שסומנו בזמן האירוע לא ניתנות למחיקה
+          attributes:
+            transport_booking_status:
+              blank: נא לבחור תשובה
+            rsvp_status:
+              blank: נא לבחור תשובה
+            title:
+              not_in_event_locale: "שם הזמנה חייב להיות ב%{event_locale} בלבד"
+            estimated_gift_amount:
+              not_a_number: הערכה לסכום המתנה חייבת להיות מספר
+            gift_amount:
+              not_a_number: סכום המתנה חייב להיות מספר
+            group_name:
+              blank_side: 'חובה להזין צד בשביל להזין קבוצה'
+            event_date:
+              must_be_set: 'חובה להזין תאריך'
+            seated_guests_count:
+              less: "מספר אורחים שהושב (%{seated_count}) קטן ממספר אורחים צפוי (%{expected_count})"
+              greater: "מספר אורחים שהושב (%{seated_count}) גדול ממספר אורחים צפוי (%{expected_count})"
+              mismatch: "מספר אורחים שהושב (%{seated_count}) שונה ממספר אורחים צפוי (%{expected_count})"
+            invited_guests_count:
+              not_a_number: 'מספר מוזמנים חייב להיות מספר'
+              zero_undeliverable: 'מספר אורחים שהוזמנו צריך להיות גדול מ-0'
+              zero_guests_invited: 'חובה להזמין לפחות אורח אחד. אם ברצונך לסמן כי אורח לא יגיע, נא לבחור "לא מגיעים" בעמודת "אישור הגעה"'
+              not_created_by_user: 'ההזמנה נוספה בזמן האירוע על ידי מארחת'
+            arrived_guests_count_by_user:
+              event_not_started_yet: ניתן להזין כמה אורחים הגיעו רק אחרי שהאירוע נגמר
+            email:
+              blank_undeliverable: 'אימייל לא קיים'
+            mobile_phone:
+              blank_undeliverable: 'טלפון סלולרי לא קיים'
+              military_mirs_unsupported: 'מירס צבאי אינו נתמך כרגע'
+            confirmed:
+              already_confirmed: 'כבר קיים אישור הגעה'
+            email_confirmation:
+              sent: 'אישור הגעה באימייל כבר נשלח'
+            sms_confirmation:
+              sent: אישור הגעה בסמס נשלח ברגעים אלה
+              delivered: אישור הגעה בסמס כבר נשלח
+            side:
+              blank: "חובה לבחור צד (חתן או כלה בלבד)"
+        transportation:
+          attributes:
+            name:
+              taken: כבר קיימת הסעה עם השם הזה
+            color:
+              taken: כבר קיימת הסעה עם הצבע הזה
+        arrival_confirmation_project:
+          attributes:
+            base:
+              event_over: 'האירוע נגמר'
+              event_locked_for_confirmations: 'האירוע נעול לאישורי הגעה'
+              unsupported_communication_locales: 'לא הוזנו פרטי אירוע ב%{locales}'
+            emails_deliverer:
+              too_early: 'עדיין מוקדם מדי לשלוח אישורי הגעה במייל'
+              delivery_policies: זמן נוכחי אינו תואם את מדיניות זמני שליחת אימיילים
+            smses_deliverer:
+              too_early: 'עדיין מוקדם מדי לשלוח אישורי הגעה בסמס'
+              delivery_policies: זמן נוכחי אינו תואם את מדיניות זמני שליחת סמסים
+        communication_config:
+          attributes:
+            active_locales:
+              must_include_event_locale: חובה לבחור את השפה הראשית של האירוע
+              invitations_count_already_defined_in_locale: "%{language} חייבת להיבחר כי ישנן %{invitations_count} הזמנות בשפה זו"
+        table_arrangement:
+          base:
+            destroy_when_event_is_over: 'לא ניתן למחוק סידור שולחנות כי האירוע נגמר.'
+            destroy_when_event_is_in_less_than_48_hours: 'לא ניתן למחוק סידור שולחנות כאשר תחילת האירוע בתוך פחות מ-48 שעות מעכשיו.'
+        table:
+          base:
+            swap_table_seatings_target_table_is_source_table: 'אין טעם להחליף אורחים עם אותו שולחן'
+            swap_table_seatings_not_enough_seats: 'שולחן %{num} יכול להכיל מקסימום %{has_seats} אורחים ולא %{need_seats} אורחים'
+            swap_table_seatings_no_tables_selected: 'נא לבחור שני שולחנות להחליף ביניהם את האורחים'
+          attributes:
+            num:
+              taken: 'כבר קיים שולחן עם מספר זהה'
+        table_seating:
+          attributes:
+            guests_count:
+              too_many_special_markings: 'סומנו %{marked_count} סימונים מיוחדים מתוך %{guests_count} אורחים'
+              no_enough_seats: 'אין מספיק כסאות פנויים בשולחן #%{table_num} (פנויים %{got}, צריך %{need})'
+            guests_names:
+              not_in_event_locale: "שמות האורחים חייבים להיות ב%{event_locale} בלבד"
+            glat_meals:
+              locked: סידור השולחנות נעול לשינויי מנות גלאט
+            baby_chairs:
+              must_be_lower_than_children_below_age_x: 'מספר כסאות תינוק לא יכול להיות גדול יותר ממספר %{children_below_age}'
+            optioned_seats:
+              optioned_guests_must_be_seated_on_optioned_tables: לא ניתן לסמן רזרבה על הזמנה שהושבה בשולחן רגיל. הזמנות שסומנו כרזרבה, ניתן להושיב רק על שולחנות רזרבה.
+              non_optioned_guests_must_be_seated_on_non_optioned_tables: בהזמנה שיושבת על שולחן רזרבה, חובה לסמן את כל האורחים כרזרבה. כלומר על שולחנות רזרבה ניתן להושיב רק הזמנות שסומנו במלואן כרזרבה
+
+        minisite:
+          attributes:
+            url:
+              invalid: 'שם האתר חייב להתחיל באות אנגלית. תווים מורשים הם: אותיות אנגליות (a-z), מספרים (0-9) וסמלים: -,+,_'
+        event:
+          base:
+            destroy_has_clients: 'לא ניתן למחוק את האירוע כי מחוברים/הוזמנו אליו %{count} משתמשים.'
+            destroy_has_orders: לא ניתן למחוק אירוע כי יש לו רכישות
+            destroy_has_actual_arrivals: לא ניתן למחוק אירוע שנגמר ויש עליו נתוני הגעה של אייפד
+          attributes:
+            event_location_id:
+              table_arrangement_present: 'לא ניתן לשנות מיקום האירוע כי כבר הוגדר סידור שולחנות למיקום זה'
+        scheduled_delivery:
+          attributes:
+            due_at_time:
+              blank: 'צריך להיות בפורמט 24 שעות, למשל 17:30'
+        sms_notification_message:
+          attributes:
+            scheduled_delivery:
+              delivery_policies_violate: זמן משלוח סמסים שנבחר אינו תואם את מדיניות זמני שליחת סמסים
+              no_invitations_chosen: לא נבחרו הזמנות אליהם תשלח ההודעה
+              must_be_in_future: מועד משלוח ההודעה חייב להיות בעתיד (%{minutes_from_now} דקות מעכשיו או יותר)
+        after_event_sms_notification_message:
+          attributes:
+            scheduled_delivery:
+              only_after_event: ניתן לשלוח הודעה רק לאחר שהאירוע נגמר
+        event_day_sms_notification_message:
+          attributes:
+            scheduled_delivery:
+              only_before_event: לא ניתן לשלוח הודעה אחרי שהאירוע התחיל
+        order:
+          base:
+            no_features_chosen: נא לבחור שירות פרמיום אחד לפחות

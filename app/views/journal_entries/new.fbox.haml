@@ -1,0 +1,9 @@
+%div.fbox.blue.journal_entry
+  %h3
+    %span.inline-block='הוספת רישום יומן'
+    &nbsp;
+    %span.bigger4.em.inline-block=link_to l(@je.date, :format => '%d %B %Y - %A'), day_view_journal_entries_path(:date => @je.date.strftime('%Y-%m-%d')), :remote => true
+  =render 'form.html'
+
+:javascript
+  $.fancybox.resize();

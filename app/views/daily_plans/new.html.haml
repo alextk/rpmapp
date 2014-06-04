@@ -1,0 +1,23 @@
+-content_for :head do
+  =stylesheet_link_tag "app/#{controller_name}.#{action_name}"
+
+-content_for :html_title, 'תכנון יום - ' + l(@day_date, :format => '%A, %d %B')
+-content_for :active_pill, :planning
+
+%div.pull-right
+  %div.btn-group.plans_nav
+    =link_to day_view_daily_plans_path(:date=>(@day_date-1.day).strftime), :class => 'btn btn-large' do
+      %i.icon-chevron-right
+    =link_to 'javascript:;', :class => 'btn btn-large go_to_date', 'data-url'=>day_view_daily_plans_path(:date=>'__0__') do
+      %i.icon-calendar
+      =hidden_field_tag :go_to_date, ''
+    =link_to day_view_daily_plans_path(:date=>(@day_date+1.day).strftime), :class => 'btn btn-large' do
+      %i.icon-chevron-left
+%h1
+  ='Daily plan -'
+  =l(@day_date, :format => '%A, %d %B %Y')
+
+=flash_message(:error) do
+  ='אין תכנון יום למועד זה.'
+  =link_to 'יצירה', daily_plans_path(:date=>@day_date.strftime), :method => :post
+

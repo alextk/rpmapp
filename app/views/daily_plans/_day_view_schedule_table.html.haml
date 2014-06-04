@@ -1,0 +1,34 @@
+%div.day_view_schedule_table
+  %div.scroll_wrapper
+    %table.day_view{:border=>0, :cellpadding=>0, :cellspacing=>0}
+      %tbody
+        %tr{:height=>0}
+          %td.day_times_spacer
+            &nbsp;
+          %td.hours_markers
+            %div.hours_markers_wrapper
+              %div.hours_markers_abs
+                -(0..23).each do |h|
+                  %div.marker_wrapper
+                    %div.dual_marker  
+
+        %tr
+          %td.day_times
+            -(0..(23+0)).each do |h|
+              %div.time="%02d:00" % (h%24)
+          %td.col_day_contents
+            %div.event_boxes_wrapper
+              %div.event_boxes_abs
+                -@daily_plan.rpm_block_time_commitments.each do |commit_time|
+                  =render 'event_box_commit_time', :commit_time => commit_time
+
+  %div.qtip_templates{:style => 'display: none'}
+    %div.new_time_commitment_qtip
+      =image_tag 'spinner-10x10.gif'
+      =t('application.loading')
+    %div.edit_time_commitment_qtip
+      =image_tag 'spinner-10x10.gif'
+      =t('application.loading')
+  %div.time_commitment_qtip_loading_template{:style => 'display: none'}
+    =image_tag 'spinner-10x10.gif'
+    =t('application.loading')

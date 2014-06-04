@@ -1,0 +1,55 @@
+=form_for @snippets_list, :url => @snippets_list.new_record? ? snippets_lists_path : snippets_list_path(@snippets_list), :remote => true do |f|
+  =hidden_field_tag :origin, params[:origin]
+  %div.frow
+    %div.field
+      =f.label :name do
+        %div.pull-right
+          %div.btn-group.class_direction
+            %button.btn.btn-small{:type=>:button}
+              %i.icon-arrow-left
+            %button.btn.btn-small.ltr{:type=>:button}
+              %i.icon-arrow-right
+        =@snippets_list.class.human_attribute_name(:name)
+
+      =f.text_area :name, :class=>string_if('ltr', !LocaleUtils.instance.name_in_locale?(@snippets_list.name, :locale => 'he-IL')), :style => 'width: 546px; height: 40px;'
+
+  %div.tabbable
+    %ul.nav.nav-tabs{:style => 'padding: 0px 20px; margin-bottom: 10px'}
+      %li.active
+        =link_to 'javascript:;', 'data-tab'=>:description do
+          =image_tag 'icons/actions-24x24.png'
+          =@snippets_list.class.human_attribute_name(:description)
+      %li
+        =link_to 'javascript:;', 'data-tab'=>:purpose do
+          =image_tag 'icons/target_arrow-24x24.png'
+          =@snippets_list.class.human_attribute_name(:purpose)
+
+    %div.tab-content{:style => 'padding: 0px 10px;'}
+      %div.tab-pane.active{'data-tab'=>:description}
+        %div.frow
+          %div.field
+            =f.label :description do
+              %div.muted3.smaller2.font_weight_normal.em=controller.render_to_string(:partial => 'guiding_questions_description.md').split("\n").join(' ')
+            =f.text_area :description, :style => 'width: 530px; height: 150px;'
+      %div.tab-pane{'data-tab'=>:purpose}
+        %div.frow
+          %div.field
+            =f.label :purpose do
+              %div.muted3.smaller2.font_weight_normal.em=controller.render_to_string(:partial => 'guiding_questions_purpose.md').split("\n").join(' ')
+            =f.text_area :purpose, :style => 'width: 530px; height: 150px;'
+
+
+  -buttons_bar do
+    =link_to_function t('application.cancel'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+    =f.submit t('application.save'), :class => 'btn btn-large btn-primary'
+
+:javascript
+  QTipIntializer.init($('#fancybox-content'));
+  $('.fbox .class_direction button').click(function(){
+    $('.fbox form textarea[name*=name]').toggleClass('ltr', $(this).hasClass('ltr'));
+  });
+  $('.fbox .nav.nav-tabs li a').on('click', function(){
+    var activeTab = $(this).data('tab');
+    $('.fbox .tabbable .tab-content .tab-pane').each(function(){ $(this).toggleClass('active', $(this).data('tab') == activeTab); });
+    $('.fbox .tabbable .nav.nav-tabs li').each(function(){ $(this).toggleClass('active', $(this).find('a[data-tab]').data('tab') == activeTab); });
+  });

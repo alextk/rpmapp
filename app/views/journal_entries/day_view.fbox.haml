@@ -1,0 +1,40 @@
+-journal_entries = JournalEntry.where(:date => @date).includes(:category)
+%div.fbox.blue.journal_entry.day_view
+  %div.pull-right{:style => 'margin-left: 5px; margin-top: 15px;'}
+    %div.btn-group
+      =link_to day_view_journal_entries_path(:date => (@date-1.day).strftime('%Y-%m-%d')), :class => 'btn', :remote => true do
+        %i.icon-arrow-right
+      =link_to day_view_journal_entries_path(:date => (@date+1.day).strftime('%Y-%m-%d')), :class => 'btn', :remote => true do
+        %i.icon-arrow-left
+  %h3
+    %span.inline-block='רישומי יומן'
+    &nbsp;
+    %span.bigger4.em.inline-block=l(@date, :format => '%d %B %Y - %A')
+  %div.content
+    -if journal_entries.blank?
+      =flash_message(:error) do
+        ='אין רישומי יומן למועד זה...'
+        =link_to 'להוספת רישום חדש', new_journal_entry_path(:date => @date.strftime('%Y-%m-%d')), :class => 'blue_link2', :remote => true
+    -else
+      -journal_entries.each do |je|
+        %div.journal_entry{:class => cycle('odd','even')}
+          =image_tag je.category.icon_path
+          &nbsp;
+          =link_to journal_entry_path(je), :class => 'blue_link2', :remote => true do
+            %span.bigger1.strong=je.name
+          =link_to edit_journal_entry_path(je), :class => 'btn btn-small on_hover', :remote => true do
+            %i.icon-pencil
+            ='עריכה'
+          %div.description
+            %div.markdown=markdown_html je.description
+
+    -buttons_bar do
+      =link_to new_journal_entry_path(:date => @date.strftime('%Y-%m-%d')), :class => 'btn btn-large btn-success', :remote => true do
+        %i.icon-plus.icon-white
+        ='הוספה'
+      =link_to_function t('application.close'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+
+
+:javascript
+  $.fancybox.resize();
+  $('.fbox .journal_entry').on('click', function(e){ if($(e.target).closest('.btn').length == 0) $(this).toggleClass('collapsed'); });

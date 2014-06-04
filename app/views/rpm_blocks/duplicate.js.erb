@@ -1,0 +1,11 @@
+<% if @rpm_block.errors.any? %>
+  console.error('failed to duplicate');
+<% else %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var rowId = '<%= @rpm_block.id %>';
+  var newTableHtml = $('<%=escape_javascript render('grid', :dgc => AjaxDataGrid::Config.new(:rows => [@rpm_block]), :skip_toolbar => true) %>');
+  apiDataGrid.addCreatingRow(rowId, '<%= @rpm_block.id %>');
+  apiDataGrid.onAjaxRowCreated(rowId, rowId, newTableHtml);
+  $.fancybox.close();
+<% end %>
+

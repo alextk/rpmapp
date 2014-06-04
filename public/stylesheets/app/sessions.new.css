@@ -1,0 +1,189 @@
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg); }
+
+  to {
+    -webkit-transform: rotate(359deg); } }
+
+@-moz-keyframes rotation {
+  from {
+    -moz-transform: rotate(0deg); }
+
+  to {
+    -moz-transform: rotate(359deg); } }
+
+@-o-keyframes rotation {
+  from {
+    -o-transform: rotate(0deg); }
+
+  to {
+    -o-transform: rotate(359deg); } }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg); }
+
+  to {
+    transform: rotate(359deg);
+    left: -5px; } }
+
+body div.flash {
+  margin: 0px 10px; }
+  body div.flash.error, body div.flash.alert, body div.flash.notice, body div.flash.help {
+    clear: both;
+    padding-left: 25px;
+    background-position: 5px center;
+    background-repeat: no-repeat;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 15px;
+    line-height: 30px; }
+  body div.flash.error, body div.flash.alert {
+    border-color: #a3032e;
+    background-image: url(/images/icons/delete.png);
+    background-color: mistyrose;
+    color: black; }
+  body div.flash.notice {
+    border-color: #99cc99;
+    background-image: url(/images/icons/accept.png);
+    background-color: #e2f9e3;
+    color: #006600; }
+  body div.flash.help {
+    border-color: #173052;
+    background-image: url(/images/icons/help.png);
+    background-color: #bfddff;
+    color: #173052; }
+body div.flash_message {
+  padding: 10px;
+  border: 1px solid;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333333;
+  margin-bottom: 10px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+  body div.flash_message p {
+    margin: 0px;
+    padding: 0px;
+    display: inline; }
+  body div.flash_message .text {
+    padding-left: 20px;
+    background: transparent url(/images/blank.gif) no-repeat top left;
+    vertical-align: top; }
+  body div.flash_message.success, body div.flash_message.notice {
+    border-color: #c5d6a8;
+    background-color: #dff2bf; }
+    body div.flash_message.success .text, body div.flash_message.notice .text {
+      background-image: url(/images/flash_messages/success-16x16.png); }
+  body div.flash_message.tip {
+    border-color: #fbeed5;
+    background-color: #ffffcc; }
+    body div.flash_message.tip .text {
+      background-image: url(/images/flash_messages/tip-16x16.png); }
+  body div.flash_message.info {
+    border-color: #c4d8e3;
+    background-color: #d9f1ff; }
+    body div.flash_message.info .text {
+      background-image: url(/images/flash_messages/info-16x16.png); }
+  body div.flash_message.warning, body div.flash_message.warn {
+    border-color: #d9b38c;
+    background-color: #ffcc99; }
+    body div.flash_message.warning .text, body div.flash_message.warn .text {
+      background-image: url(/images/flash_messages/warning2-16x16.png); }
+  body div.flash_message.error, body div.flash_message.alert {
+    border-color: #ebc6c2;
+    background-color: mistyrose; }
+    body div.flash_message.error .text, body div.flash_message.alert .text {
+      background-image: url(/images/flash_messages/error2-16x16.png); }
+  body div.flash_message.center {
+    text-align: center; }
+  body div.flash_message.no_icon .text {
+    background: none;
+    padding: 0px; }
+
+body.rtl div.flash_message .text {
+  background-position: right top;
+  padding-left: 0px;
+  padding-right: 20px; }
+body.rtl div.flash_message.no_icon .text {
+  padding: 0px; }
+body.rtl div.flash.error, body.rtl div.flash.alert, body.rtl div.flash.notice, body.rtl div.flash.help {
+  padding-right: 25px;
+  padding-left: 0px;
+  background-position: right center; }
+
+body div.actions div.buttons {
+  text-align: right; }
+  body div.actions div.buttons a.button3, body div.actions div.buttons input.button3, body div.actions div.buttons .btn {
+    margin-left: 10px; }
+body div.actions div.working_spinner, body div.actions div.ajax_error {
+  display: none;
+  line-height: 38px;
+  text-align: right; }
+body div.actions div.ajax_error span.message {
+  color: red;
+  font-weight: bold; }
+body div.actions.ajax_error div.buttons {
+  display: none; }
+body div.actions.ajax_error div.ajax_error {
+  display: block; }
+body div.actions.working div.buttons {
+  display: none; }
+body div.actions.working div.working_spinner {
+  display: block; }
+body div.actions.reversed div.buttons {
+  text-align: left; }
+  body div.actions.reversed div.buttons a.button3, body div.actions.reversed div.buttons input.button3, body div.actions.reversed div.buttons .btn {
+    margin-left: 0px;
+    margin-right: 10px; }
+body div.actions.reversed div.working_spinner, body div.actions.reversed div.ajax_error {
+  text-align: left; }
+
+body.rtl div.actions div.buttons {
+  text-align: left; }
+  body.rtl div.actions div.buttons a.button3, body.rtl div.actions div.buttons input.button3, body.rtl div.actions div.buttons .btn {
+    margin-left: 0px;
+    margin-right: 10px; }
+body.rtl div.actions div.working_spinner, body.rtl div.actions div.ajax_error {
+  text-align: left; }
+body.rtl div.actions.reversed div.buttons {
+  text-align: right; }
+  body.rtl div.actions.reversed div.buttons a.button3, body.rtl div.actions.reversed div.buttons input.button3, body.rtl div.actions.reversed div.buttons .btn {
+    margin-left: 10px;
+    margin-right: 0px; }
+body.rtl div.actions.reversed div.working_spinner, body.rtl div.actions.reversed div.ajax_error {
+  text-align: right; }
+
+body {
+  background-color: #efefef; }
+  body div.box2 {
+    margin: 100px auto;
+    width: 400px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+    padding: 10px; }
+    body div.box2 h2 {
+      margin: 0px;
+      margin-bottom: 10px;
+      padding: 0px;
+      font-size: 26px;
+      line-height: 30px;
+      font-weight: bold;
+      color: white;
+      padding: 10px 38px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px; }
+    body div.box2.grey h2 {
+      background-color: #838383; }
+    body div.box2.blue h2 {
+      background-color: #4d6b82; }
+    body div.box2 form.form-horizontal div.actions div.buttons {
+      text-align: center;
+      margin: 0px; }

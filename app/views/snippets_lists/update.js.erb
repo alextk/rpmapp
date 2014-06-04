@@ -1,0 +1,10 @@
+<% if @snippets_list.errors.any? %>
+  $('div.fbox form').replaceWith("<%=escape_javascript render('form') %>");
+<% elsif params[:origin] == 'grid' %>
+  var apiDataGrid = $.datagrid.helpers.firstAPI();
+  var newTableHtml = $('<%=escape_javascript render('grid', :dgc => AjaxDataGrid::Config.new(:rows => [@snippets_list.reload]), :skip_toolbar => true) %>');
+  apiDataGrid.onAjaxUpdateRow('<%= @snippets_list.id %>', newTableHtml);
+  $.fancybox.close();
+<% else %>
+  <%=render('_shared/fancybox_redirect', :url => snippets_list_path(@snippets_list)) %>
+<% end %>

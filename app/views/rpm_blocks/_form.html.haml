@@ -1,0 +1,55 @@
+=form_for @rpm_block, :url => url, :remote => true do |f|
+  %div.frow
+    %div.field
+      =f.label :result do
+        ='תוצאה'
+        %span.muted3.smaller2.font_weight_normal.em
+          ='מה אני באמת רוצה שיקרה?'
+          ='מה התוצאה הספציפית שאני רוצה להשיג?'
+      =f.text_field :result, :class => 'input-xxlarge'
+
+  %div.tabbable
+    %ul.nav.nav-tabs{:style => 'padding: 0px 20px; margin-bottom: 10px'}
+      %li.active
+        =link_to 'javascript:;', 'data-tab'=>:actions do
+          =image_tag 'icons/actions-24x24.png'
+          ='פעולות'
+      %li
+        =link_to 'javascript:;', 'data-tab'=>:purpose do
+          =image_tag 'icons/target_arrow-24x24.png'
+          ='סיבות'
+      %li
+        =link_to 'javascript:;', 'data-tab'=>:details do
+          =image_tag 'icons/notes-24x24.png'
+          ='פירוט'
+
+    %div.tab-content{:style => 'padding: 0px 10px;'}
+      %div.tab-pane.active{'data-tab'=>:actions}
+        %div.frow
+          %div.field
+            =f.label :actions do
+              %div.muted3.smaller2.font_weight_normal.em='מה צריך לקרות כדי שהתוצאה תתממש? אילו פעולות יקרבו אותי להשגת התוצאה?'
+            =f.text_area :actions, :style => 'width: 530px; height: 150px;'
+      %div.tab-pane{'data-tab'=>:purpose}
+        %div.frow
+          %div.field
+            =f.label :purpose do
+              %div.muted3.smaller2.font_weight_normal.em='מדוע אני רוצה להשיג את זה? מה זה יתן לי? מה המטרה?'
+            =f.text_area :purpose, :style => 'width: 530px; height: 150px;'
+      %div.tab-pane{'data-tab'=>:details}
+        %div.frow
+          %div.field
+            =f.label :details do
+              %div.muted3.smaller2.font_weight_normal.em='פירוט של התוצאה, מרכיבים, דגשים'
+            =f.text_area :details, :style => 'width: 530px; height: 150px;'
+
+  -buttons_bar do
+    =link_to_function t('application.cancel'), 'jQuery.fancybox.close()', :class => 'btn btn-large'
+    =f.submit t('application.save'), :class => 'btn btn-large btn-primary'
+
+:javascript
+  $('.fbox .nav.nav-tabs li a').on('click', function(){
+    var activeTab = $(this).data('tab');
+    $('.fbox .tabbable .tab-content .tab-pane').each(function(){ $(this).toggleClass('active', $(this).data('tab') == activeTab); });
+    $('.fbox .tabbable .nav.nav-tabs li').each(function(){ $(this).toggleClass('active', $(this).find('a[data-tab]').data('tab') == activeTab); });
+  });

@@ -1,0 +1,30 @@
+body
+  .fbox.journal_entry
+    width: 600px
+    h3
+      a
+        color: white
+
+  .fbox.journal_entry.day_view
+    div.content
+      div.journal_entry
+        padding: 10px 10px
+        border: 1px solid #FFF
+        img
+          height: 16px
+        .description
+          display: none
+          margin-top: 5px
+          margin-right: 25px
+        .on_hover
+          visibility: hidden
+        &:hover
+          .on_hover
+            visibility: visible
+        &.collapsed
+          .description
+            display: block
+        &.odd
+          background-color: #FFFDD7
+        &.even
+          background-color: #FFF8F2
