@@ -1,0 +1,181 @@
+@mixin border_image($border_image)
+  -webkit-border-image: #{$border_image} /* Safari 5 */
+  -o-border-image: #{$border_image} /* Opera */
+  border-image: #{$border_image}
+@mixin round($radius)
+  -webkit-border-radius: #{$radius}
+  -moz-border-radius: #{$radius}
+  border-radius: #{$radius}
+@mixin round_corners($tlr, $trr, $brr, $blr) //radius: top left, top right, bottom right, bottom left
+  -webkit-border-radius: #{$tlr} #{$trr} #{$brr} #{$blr}
+  -moz-border-radius: #{$tlr} #{$trr} #{$brr} #{$blr}
+  border-radius: #{$tlr} #{$trr} #{$brr} #{$blr}
+@mixin shadow($shadow)
+  -webkit-box-shadow: #{$shadow}
+  -moz-box-shadow: #{$shadow}
+  box-shadow: #{$shadow}
+@mixin text_shadow($shadow)
+  text-shadow: $shadow
+
+@mixin gradient($from, $to)
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff0000, endColorstr=#f08080) /* for IE */
+  // DON'T use gradient filter for ie, because it doesn't work with border-radius in ie9
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$from}, endColorstr=#{$to}) /* for IE */
+  //filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$from', endColorstr='$to') /* for IE */
+  //background: -webkit-gradient(linear, left top, left bottom, from($from), to($to)) /* for webkit browsers */
+  //background: -moz-linear-gradient(top,  $from,  $to) /* for firefox 3.6+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to)) /*Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, $from, $to) /* Chrome 10+, Saf5.1+ */
+  background-image: -moz-linear-gradient(top, $from, $to) /* FF3.6 */
+  background-image: -ms-linear-gradient(top, $from, $to) /* IE10 */
+  background-image: -o-linear-gradient(top, $from, $to) /* Opera 11.10+ */
+  background-image: linear-gradient(top, $from, $to)
+
+@mixin reflect()
+  -webkit-box-reflect: below 2px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(white))
+
+@mixin box-sizing($value)
+  box-sizing: $value
+  -moz-box-sizing: $value
+  -webkit-box-sizing: $value
+
+@mixin transition($transition)
+  transition: $transition
+  -o-transition: $transition
+  -moz-transition: $transition
+  -webkit-transition: $transition
+
+@mixin transform($transform)
+  transform: $transform
+  -webkit-transform: $transform
+  -moz-transform: $transform
+  -o-transform: $transform
+
+@mixin animation($animation)
+  -webkit-animation: $animation
+  -moz-animation: $animation
+  -o-animation: $animation
+  animation: $animation
+
+@mixin opacity($opacity)
+  //-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity*100})"
+  opacity: $opacity
+  -moz-opacity: $opacity
+  -khtml-opacity: $opacity
+
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"
+  filter: alpha(opacity=#{$opacity*100})
+
+@mixin unselectable()
+  -webkit-user-select: none
+  -webkit-touch-callout: none
+  -khtml-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  -o-user-select: none
+  user-select: none
+
+@mixin random_rotation()
+  @include transform(rotate(-1deg))
+  &:nth-child(even)
+    @include transform(rotate(1deg))
+  &:nth-child(3n)
+    @include transform(rotate(0deg))
+    position: relative
+    top: -5px
+  &:nth-child(5n)
+    @include transform(rotate(3deg))
+    position: relative
+    right: 5px
+  &:nth-child(8n)
+    position: relative
+    top: 8px
+    right: 5px
+  &:nth-child(11n)
+    position: relative
+    top: 3px
+    left: -5px
+
+@mixin spinner($width, $height)
+  @include custom_spinner($width, $height, 6px, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1), .6s)
+
+@mixin custom_spinner($width, $height, $border-width, $border-color-1, $border-color-2, $time)
+  margin: 0px auto
+  height: $height
+  width: $width
+  @include animation(rotation $time infinite linear)
+  //border: 6px solid rgba(0,174,239,.15)
+  border: $border-width solid $border-color-1
+  border-radius: 50%
+  position: relative
+  &:before
+    content: ""
+    display: block
+    position: absolute
+    top: -#{$border-width}
+    height: 100%
+    width: 100%
+    border: $border-width solid transparent
+    border-top-color: $border-color-2
+    border-radius: 50%
+
+@mixin blink($time, $delay)
+  -webkit-animation: blink 0.4s linear $time $delay alternate
+  -moz-animation: blink 0.4s linear $time $delay alternate
+  -o-animation: blink 0.4s linear $time $delay alternate
+  animation: blink 0.4s linear $time $delay alternate
+
+  @-webkit-keyframes rotation
+  from
+    -webkit-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(359deg)
+  @-moz-keyframes rotation
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -moz-transform: rotate(359deg)
+  @-o-keyframes rotation
+  from
+    -o-transform: rotate(0deg)
+  to
+    -o-transform: rotate(359deg)
+  @keyframes rotation
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(359deg)
+    left: -5px
+
+  @-webkit-keyframes blink
+  from
+    opacity: 1
+  to
+    opacity: 0
+  @-moz-keyframes blink
+  from
+    opacity: 1
+  to
+    opacity: 0
+  @-o-keyframes blink
+  from
+    opacity: 1
+  to
+    opacity: 0
+  @keyframes blink
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+
+@mixin vendor($prop, $args)
+  -webkit-#{$prop}: $args
+  -moz-#{$prop}: $args
+  -ms-#{$prop}: $args
+  -o-#{$prop}: $args
+  #{$prop}: $args
+
+@mixin retina()
+  @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-resolution: 240dpi)
+    @content  

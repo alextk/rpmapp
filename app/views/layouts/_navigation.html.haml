@@ -1,13 +1,19 @@
 -top_navigation = TopNavigation.new(self, yield(:active_pill))
 %div.navbar.navbar-inverse
-  %div.navbar-inner
-    %div.container
-      =link_to destroy_admin_user_session_path, :class => 'btn btn-small pull-right logout', :method => :delete do
+  %div.container
+    %div.navbar-header.pull-left
+      %button.navbar-toggle.collapsed{"data-target" => ".bs-navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      =link_to 'MyRPM', home_path, :class=>'navbar-brand'
+    %div.navbar-header.pull-right
+      =link_to destroy_admin_user_session_path, :class=>'btn btn-default logout', :method=>:delete do
         ='יציאה'
-        %i.icon-off
-      %div.brand.pull-left
-        =link_to 'MyRPM', home_path
-      %ul.nav
+        %i.fa.fa-power-off
+    %div.navbar-collapse.bs-navbar-collapse.collapse{:role=>"navigation"}
+      %ul.nav.navbar-nav
         -top_navigation.nav_pills.each do |pill|
           %li{:class=>"#{string_if('active', top_navigation.active_pill?(pill))} #{string_if('dropdown', pill.dropdown_menu?)}"}
             -if pill.dropdown_menu?

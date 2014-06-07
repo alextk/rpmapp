@@ -1,0 +1,51 @@
+-categories = JournalEntryCategory.order('name asc').all
+=form_for @je, :url => @je.new_record? ? journal_entries_path : journal_entry_path(@je), :remote => true do |f|
+  =f.hidden_field :date, :value => I18n.l(@je.date)
+  %div.frow.float
+    %div.field
+      =f.label :category
+      =f.select :journal_entry_category_id, [['נא לבחור סיווג','']] + categories.collect{|c| [c.name, c.id] }, {}, 'data-error_wrap'=>'false'
+      %span.inline-block{:style => 'width: 40px'}
+        -categories.each do |category|
+          %span.category_icon_and_desc{:style => 'display: none', 'data-category_id'=>category.id}
+            %span.qtipTarget
+              =image_tag category.icon_path, :style => 'height: 24px'
+              -if category.description.present?
+                %div.qtipContents=markdown_html category.description
+      =f.field_errors :journal_entry_category_id
+    %div.field
+      =f.label :name
+      =f.text_field :name, :class => 'input-large'
+  %div.frow
+    %div.field
+      =f.label :description do
+        %div.pull-right
+          -categories.each do |category|
+            -if category.guiding_questions.present?
+              %span.qtipTarget.category_guiding_questions{:style => 'display: none', 'data-category_id'=>category.id}
+                %span.muted3.smaller2.em=JournalEntryCategory.human_attribute_name(:guiding_questions)
+                %i.icon-question-sign
+                %div.qtipContents
+                  %div.markdown=markdown_html category.guiding_questions
+
+        =@je.class.human_attribute_name(:description)
+      =f.text_area :description, :style => 'width: 567px; height: 150px;'
+
+  -buttons_bar do
+    -unless @je.new_record?
+      %div.pull-left
+        =link_to t('application.delete'), journal_entry_path(@je), :class => 'btn btn-small btn-danger', :remote => true, :method => :delete, :confirm => t('application.are_you_sure')
+    =link_to t('application.cancel'), day_view_journal_entries_path(:date => @je.date.strftime('%Y-%m-%d')), :class => 'btn btn-large', :remote => true
+    =f.submit t('application.save'), :class => 'btn btn-large btn-primary'
+
+:javascript
+  QTipIntializer.init($('#fancybox-content'));
+  var defaultEntryNames = #{categories.inject({}){|h,c| h[c.id]=c.default_entry_name; h }.to_json};
+  $('.fbox form select[name*=journal_entry_category_id]').on('change', function(){
+    var categoryId = $(this).val();
+    var form = $(this).closest('form');
+    form.find('.category_icon_and_desc').hide().filter('[data-category_id={0}]'.format(categoryId)).show();
+    var nameValue = form.find('input[name*=name]').val().strip();
+    if(nameValue == '' || Object.keys(defaultEntryNames).collect(function(c){ return defaultEntryNames[c] }).include(nameValue)) form.find('input[name*=name]').val(defaultEntryNames[categoryId]);
+    form.find('.category_guiding_questions').hide().filter('[data-category_id={0}]'.format(categoryId)).show();
+  }).trigger('change');

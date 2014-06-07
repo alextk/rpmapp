@@ -17,6 +17,14 @@ module ApplicationHelper
     end
   end
 
+  def distance_of_time_in_words_from_now_qtip(to_time, format = :full)
+    from_now_words = distance_of_time_in_words_from_now(to_time)
+    content_tag :span, :class => 'qtipTarget' do
+      html = from_now_words.html_safe
+      html << content_tag(:div, I18n.l(to_time, :format => format), :class => 'qtipContents')
+      html
+    end
+  end
 
   # display flash message box with design from _flash_message.sass
   # usage1: flash_message(type, message, html_options)
@@ -38,6 +46,12 @@ module ApplicationHelper
     end
   end
 
+  def bs3_form_for(*args, &block)
+    options = args.extract_options!
+    options.reverse_merge!({:builder => ActionView::Helpers::B3FormBuilder})
+    form_for(*(args << options), &block)
+  end
+
   def link_to_fbox(*args, &block)
     if block_given?
       options      = args.first || {}
@@ -52,6 +66,28 @@ module ApplicationHelper
       html_options['data-url'] = html_escape(url)
       html_options['data-fbox'] ||= :form
 
+      link_to(name, 'javascript:;', html_options)
+    end
+  end
+
+  def link_to_fbox2(*args, &block)
+    if block_given?
+      options      = args.first || {}
+      html_options = args.second
+      link_to_fbox2(capture(&block), options, html_options)
+    else
+      name         = args[0]
+      options      = args[1] || {}
+      html_options = args[2] || {}
+
+      html_options['data-fancybox-type'] ||= 'ajax'
+      url = url_for(options)
+      if html_options['data-fancybox-type'] == 'ajax' && !(url =~/\.(fbox|popo)(\?|\/?$)/i) #popo link without popo format
+        url = url =~ /\?/ ? url.sub('?', '.fbox?') : "#{url}.fbox" #add fbox at end ob path, before query string
+      end
+      html_options['data-fancybox-href'] = html_escape(url)
+      # This class is here so that quotouch js will not initialize fancy box links cause they don't play nice together
+      html_options[:class] = "notap #{html_options[:class]}"
       link_to(name, 'javascript:;', html_options)
     end
   end

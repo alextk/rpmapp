@@ -1,0 +1,8 @@
+@import "lib/mixin"
+
+body
+  .btn-spinner
+    .btn-spinner-icon
+      @include custom_spinner(40px, 40px, 4px, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1), .6s)
+      &.dark
+        @include custom_spinner(40px, 40px, 4px, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25), .6s)

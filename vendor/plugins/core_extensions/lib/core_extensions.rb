@@ -1,6 +1,6 @@
 # Change FieldWithError behavior
 ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
-  if html_tag =~ /<(input|textarea|select)/ && !(html_tag =~ /type=['"]hidden["']/)
+  if html_tag =~ /<(input|textarea|select)/ && !(html_tag =~ /^<input[^>]+type=['"]hidden["']/i)
     error_class = "error"
     error_message = instance.error_message.kind_of?(Array) ? instance.error_message.last : instance.error_message
     if html_tag =~ /<[^>]+class=/ # html tag has class attribute, append to its value
@@ -15,7 +15,7 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
     #html_tag.insert(end_of_tag_index, %( data-error="true" data-error_message="#{error_message}"))
     unless html_tag =~ /data-error_wrap=['"]false["']/
       arrow = I18n.t('language.direction') == 'rtl' ? "&larr;" : "&rarr;"
-      html_tag = %(#{html_tag} <div class="error-explanation">#{arrow} #{error_message}</div>).html_safe
+      html_tag = %(#{html_tag} <div class="error-explanation help-block">#{arrow} #{error_message}</div>).html_safe
     end
   end
   html_tag
@@ -36,39 +36,48 @@ module ActionView::Helpers
       render_item = lambda { |item, klass|
         item, value = item
         concat(
-            content_tag(:li, '', :class=> klass) do
-              link_to 'javascript:;', 'data-value'=>value do
-                block.call(item)
-              end
+          content_tag(:li, '', :class=> klass) do
+            link_to 'javascript:;', 'data-value'=>value do
+              block.call(item)
             end
+          end
         )
       }
 
 
       #create markup
-      concat( hidden_field_tag(name, options[:selected]) )
-      content_tag(:div, '', :style=>'position:relative;display: inline-block') do
-        link_to('#', :class=>'btn dropdown-toggle', 'data-toggle'=>'dropdown', :style => 'text-decoration: none;') do
+      div_html_options = {}
+      div_html_options = {'data-error_wrap' => options['data-error_wrap']} if options.has_key?('data-error_wrap')
+      content_tag(:div, '', div_html_options.update(:style=>'position:relative;display: inline-block')) do
+        html = hidden_field_tag(name, options[:selected])
+        html << link_to('#', :class=>'btn btn-default dropdown-toggle', 'data-toggle'=>'dropdown', :style => 'text-decoration: none;') do
           content_tag(:span, :class=>'dropdown-label') do
             block.call(selected) unless selected.nil?
           end +
-              content_tag(:span, '', :class=>'caret')
-        end +
-          content_tag(:ul, :class=>'dropdown-menu scrolled', 'data-update'=>"[name=\"#{name}\"]") do
-            concat(
-              content_tag(:li) do
-                text_field_tag('filter', '', :auto_complete => 'off', 'data-provides'=>"filter", :placeholder => 'חפש...')
-              end
-            )
-            concat( content_tag(:li, '', :class=>'divider') )
-            sticky_items.each do |item|
-              render_item.call(item, '')
+            content_tag(:span, '', :class=>'caret')
+        end
+        html << content_tag(:ul, :class=>'dropdown-menu scrolled', 'data-update'=>"[name=\"#{name}\"]") do
+          concat(
+            content_tag(:li, :class => 'filtered_search') do
+              text_field_tag('filter', '', :auto_complete => 'off', 'data-provides'=>"filter", :placeholder => 'חפש...', :class=>'form-control')
             end
-            concat( content_tag(:li, '', :class=>'divider') ) unless sticky_items.empty?
-            items.each do |item|
-              render_item.call(item, 'filterable')
-            end
+          )
+          concat( content_tag(:li, '', :class=>'divider') )
+          sticky_items.each do |item|
+            render_item.call(item, 'sticky')
           end
+          concat( content_tag(:li, '', :class=>'divider') ) unless sticky_items.empty?
+          items.each do |item|
+            render_item.call(item, 'filterable')
+          end
+        end
+        html
+      end
+    end
+
+    def form_group_tag(attribute_name = nil, options={}, &block)
+      content_tag 'div', :class=>"form-group #{string_if('has-error', options[:error])} #{options[:class]||''}" do
+        capture(attribute_name, &block)
       end
     end
 
@@ -76,50 +85,16 @@ module ActionView::Helpers
 
   module FormOptionsHelper
 
-    def multiple_select(object, method, choices, options = {}, html_options = {})
-      options = {:selected => []}.merge(options)
-      html_options = {:class => 'select_multiple', :value => options[:selected].join(',')}.merge(html_options)
-      id = "#{object.id}_#{object.gsub(/\]\[|[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")}_#{method.to_s.sub(/\?$/, "")}"
-      capture_haml do
-        haml_tag :span, :style => 'display:none' do
-          haml_concat check_box_tag "#{object}[#{method}][]", '', true,
-                                    options.merge(:id => id)
-        end
-
-        haml_tag :div, :id => "select_#{id}_container", :class => 'select_multiple', :style => 'position:relative' do
-          haml_concat select_tag "select_multiple_#{id}", options_for_select(choices), html_options
-          haml_concat link_to 'Select multiple', nil, :id => "select_multiple_#{id}_open"
-          haml_tag :div, :id => "select_#{id}_options", :class => 'select_multiple_container', :style => 'display:none' do
-            haml_tag :div, 'Select Multiple', :class => 'select_multiple_header'
-            haml_tag :table, :cellspacing => "0", :cellpadding => "0", :class => "select_multiple_table", :width => "100%" do
-              for choice in choices
-                selected = options[:selected].include?(choice[1])
-                haml_tag :tr, :class => cycle('odd', 'even') do
-                  haml_tag :td, :class => 'select_multiple_name' do
-                    haml_concat label_tag "#{object}[#{method}][]#{choice[1]}", choice[0]
-                  end
-                  haml_tag :td, :class => 'select_multiple_checkbox' do
-                    haml_concat check_box_tag "#{object}[#{method}][]", choice[1], selected,
-                                              options.merge(:id => "#{object.gsub(/\]\[|[^-a-zA-Z0-9:.]/, "_").sub(/_$/, "")}_#{method.to_s.sub(/\?$/, "")}_#{choice[1]}")
-                  end
-                end unless choice[1].blank?
-              end
-            end
-            haml_tag :div, :class => 'select_multiple_submit' do
-              haml_concat submit_tag 'Done', :id => "select_multiple_#{id}_close"
-            end
-          end
-        end
-        haml_concat javascript_tag "new Horizon.UI.SelectMultiple('#{id}')"
-      end
-    end
-
     def field_errors(object, method, errors, options = {}, html_options = {})
       InstanceTag.new(object, method, self, options.delete(:object)).to_field_errors_tag(errors, options, html_options)
     end
 
     def filtered_dropdown(object_name, method, items, options = {}, &block)
       InstanceTag.new(object_name, method, self, options.delete(:object)).to_filtered_dropdown(items, options, &block)
+    end
+
+    def form_group(object_name, method, options = {}, &block)
+      InstanceTag.new(object_name, method, self, options.delete(:object)).to_form_group(options, &block)
     end
 
   end
@@ -147,17 +122,17 @@ module ActionView::Helpers
       error_wrapping( @template_object.filtered_dropdown_tag(options['name'], items, options, &block) )
     end
 
+    def to_form_group(options={}, &block)
+      options[:error] ||= @object.errors[self.method_name].present?
+      @template_object.form_group_tag(self.method_name, options, &block)
+    end
+
   end
 
   class FormBuilder
 
     def filtered_dropdown(method, items, options = {}, &block)
       @template.filtered_dropdown(@object_name, method, items, objectify_options(options), &block)
-    end
-
-    def multiple_select(method, choices, options = {}, html_options = {})
-      options = {:selected => @object.send(method)}.merge(options)
-      @template.multiple_select(@object_name, method, choices, objectify_options(options), @default_options.merge(html_options))
     end
 
     alias_method :label_original, :label
@@ -174,6 +149,79 @@ module ActionView::Helpers
     def field_errors(method, options = {}, html_options = {})
       options = {:inline => false, :arrow => true}.update(options)
       @template.field_errors(@object_name, method, @object.errors[method], objectify_options(options), html_options)
+    end
+  end
+
+  class B3FormBuilder < FormBuilder
+
+    def form_group(method, options={}, &block)
+      @template.form_group(@object_name, method, objectify_options(options), &block)
+    end
+    def human_attribute_name(attribute)
+      self.object.class.human_attribute_name(attribute)
+    end
+
+    def text_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def date_field(method, html_options = {})
+      add_bs3_input_class(html_options)
+      super
+    end
+    def select(method, items, options = {}, html_options ={})
+      add_bs3_input_class(html_options)
+      super
+    end
+    def text_area(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def password_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def telephone_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    alias phone_field telephone_field
+    def email_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def url_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def number_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def range_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+    def search_field(method, options = {})
+      add_bs3_input_class(options)
+      super
+    end
+
+
+    def submit(value=nil, options={})
+      options['data-ajax_error_message'] ||= I18n.t('application.ajax_error_message')
+      super
+    end
+
+    def field_errors(method, options = {}, html_options = {})
+      add_bs3_input_class(html_options, 'help-block')
+      super
+    end
+
+    private
+    def add_bs3_input_class(options, klass='form-control')
+      options[:class] ||= ''
+      options[:class] << " #{klass}"
     end
 
   end

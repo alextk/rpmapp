@@ -1,5 +1,8 @@
--envs = {'development' => 'label-info', 'staging1' => 'label-warning', 'staging2' => 'label-warning2'}
+-envs = {'development' => 'label-default', 'staging1' => 'label-warning', 'staging2' => 'label-warning2', 'staging3' => 'label-warning3'}
 -unless envs[Rails.env.to_s].nil?
   %div#environment_alert.ltr.label{:class => envs[Rails.env.to_s], :style => 'text-align: center'}
     =Rails.env.to_s
-    ="- CLASSES ARE CACHED" if Rails.env.development? && MyRpm::Application.config.cache_classes
+    %span
+      ='- שרת אותחל'
+      =distance_of_time_in_words_from_now_qtip(Rails.application.config.server_worker_started_at)
+    ="- CLASSES ARE CACHED" if Rails.env.development? && Rails.application.config.cache_classes

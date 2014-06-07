@@ -1,0 +1,58 @@
+// --------------------------------------------------
+body.rtl
+  //
+  // Navs
+  // --------------------------------------------------
+
+  .nav
+    padding-left: 0
+    padding-right: 0
+
+  // Tabs
+  .nav-tabs
+    > li
+      float: right
+      > a
+        margin-right: 0px
+        margin-left: 2px
+        border-radius: $border-radius-base 0 0 $border-radius-base
+
+  // Pills
+  .nav-pills
+    > li
+      float: right
+
+      + li
+        margin-left: 0px
+        margin-right: 2px
+
+  // Stacked pills
+  .nav-stacked
+    > li
+      + li
+        margin-left: 0
+        margin-right: 0
+
+
+  // Nav variations
+  // --------------------------------------------------
+
+  // Justified nav links
+  // -------------------------
+
+  .nav-justified
+    > .dropdown .dropdown-menu
+      right: auto
+
+  // Move borders to anchors instead of bottom of list
+  //
+  // Mixin for adding on top the shared `.nav-justified` styles for our tabs
+  .nav-tabs-justified
+    > li > a
+      margin-left: 0
+
+    @media (min-width: $screen-sm-min)
+      > li > a
+        border-radius: $border-radius-base 0 0 $border-radius-base
+
+ 

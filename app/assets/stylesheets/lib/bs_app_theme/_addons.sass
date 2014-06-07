@@ -1,0 +1,161 @@
+body.touch_device:not(.mouse_device)
+  .btn-default:hover:not(:active)
+    color: #333333
+    background-color: #ffffff
+    border-color: #cccccc
+
+body
+  .btn.disabled:hover, .btn.disabled:focus
+    background-position: 0px 0px
+  .navbar-blue
+    background: #4B688D url('/images/shared/textures/grey_overlay.png')
+    .navbar-toggle
+      border-color: transparent
+      &:hover, &:focus
+        background-color: transparent
+        .icon-bar
+          background-color: white
+    .navbar-brand
+      color: #222
+      &:hover, &:focus
+        color: #111
+    .navbar-nav
+      > .open
+        @media (max-width: 767px)
+          .dropdown-menu > li > a
+            color: #222
+            &:hover, &:focus
+              color: white
+              text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+        > a, > a:hover, > a:focus
+          background: #2B4A70
+          color: white
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+      > .active
+        > a, > a:hover, > a:focus
+          background: #2B4A70
+          color: white
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+      > li > a
+        color: #222
+        color: lightgrey
+        &:hover, &:focus
+          color: white
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+      .dropdown > a
+        &:hover, &:focus
+          .caret
+            border-top-color: white
+            border-bottom-color: white
+        .caret
+          border-top-color: #222
+          border-bottom-color: #222
+          border-top-color: lightgray
+          border-bottom-color: lightgray
+  .glyphicon
+    vertical-align: text-top
+
+  //two more styles for label warnings
+  .label-warning2
+    background-color: #D6BD00
+  .label-warning3
+    background-color: #C274FF
+
+  // tip alert (yellow style)
+  .alert-tip
+    @include alert-variant(#FFC, #FBEED5, #333)
+
+  // Danger and error appear as red
+  .btn-inverse
+    @include button-variant($btn-danger-color, #383838, #181818)
+
+  .col-auto
+    width: auto
+
+  //new sizes x-mini and auto to autosize inputs/selects etc.
+  .input-auto, .input-group .form-control.input-auto
+    width: auto
+  .input-xmini, .input-group .form-control.input-xmini
+    width: #{30+8*2}px
+  .input-mini, .input-group .form-control.input-mini
+    width: #{60+8*2}px
+  .input-small, .input-group .form-control.input-small
+    width: #{90+8*2}px
+  .input-medium, .input-group .form-control.input-medium
+    width: #{150+8*2}px
+  .input-large, .input-group .form-control.input-large
+    width: #{210+8*2}px
+  .input-xlarge, .input-group .form-control.input-xlarge
+    width: #{270+8*2}px
+  .input-xxlarge, .input-group .form-control.input-xxlarge
+    width: #{530+8*2}px
+
+  //default bootstrap wisth of %1 causes fancyboxes to become hugely wide
+  .input-group-addon
+    width: auto
+
+body.rtl
+  .pagination>li
+    &:last-child
+      >a, >span
+        border-top-left-radius: 4px
+        border-bottom-left-radius: 4px
+        border-top-right-radius: 0px
+        border-bottom-right-radius: 0px
+    &:first-child
+      >a, >span
+        border-top-right-radius: 4px
+        border-bottom-right-radius: 4px
+        border-top-left-radius: 0px
+        border-bottom-left-radius: 0px
+    >a, >span
+      float: right
+      margin-left: 0px
+      margin-right: -1px
+
+  .navbar-toggle
+    float: left
+  .navbar-brand
+    float: right
+  .nav
+    padding-right: 0
+    padding-left: 0
+  .popover
+    text-align: right
+    &.bottom, &.top
+      .arrow
+        left: auto
+        right: 50%
+        margin-left: 0px
+        margin-right: -11px
+        &:after
+          margin-left: 0px
+          margin-right: -10px
+
+  .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11
+    float: right
+
+  @media (max-width: 767px)
+    .navbar-nav
+      .open
+        .dropdown-menu
+          >li>a, .dropdown-header
+            padding: 5px 25px 5px 15px
+
+  @media (min-width: 768px)
+    .navbar-header
+      float: right
+    .navbar-nav
+      float: right
+      > li
+        float: right
+    .navbar-right
+      float: left!important
+    .navbar > .container .navbar-brand
+      margin-left: 0px
+      margin-right: -15px
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11
+      float: right
+  @media (min-width: 992px)
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11
+      float: right 

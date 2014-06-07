@@ -1,0 +1,33 @@
+body .fancybox-wrap.no-padding .fancybox-skin {
+  padding: 0px !important; }
+  body .fancybox-wrap.no-padding .fancybox-skin .fancybox-inner {
+    overflow: visible !important; }
+body .fbox h3 {
+  background-color: #efefef;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 5px 15px;
+  margin-bottom: 10px;
+  border-radius: 6px 0px 0px 6px;
+  font-size: 26px;
+  font-weight: bold;
+  line-height: 46px; }
+  body .fbox h3 img, body .fbox h3 i {
+    float: left;
+    margin-right: 10px;
+    font-size: 48px; }
+  body .fbox h3.with_subtext {
+    line-height: 30px; }
+    body .fbox h3.with_subtext .subtext {
+      font-size: 18px;
+      line-height: 18px;
+      font-weight: normal; }
+body .fbox form, body .fbox .content {
+  padding: 0 15px;
+  padding-bottom: 15px; }
+  body .fbox form .alert, body .fbox .content .alert {
+    margin-bottom: 10px; }
+
+body.rtl .fbox h3 img, body.rtl .fbox h3 i {
+  float: right;
+  margin-right: 0px;
+  margin-left: 10px; }

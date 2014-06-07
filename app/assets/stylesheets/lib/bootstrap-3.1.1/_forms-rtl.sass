@@ -1,0 +1,62 @@
+body.rtl
+  // --------------------------------------------------
+  // Forms
+  // --------------------------------------------------
+
+  .radio,
+  .checkbox
+    padding-left: 0px
+    padding-right: 20px
+
+  .radio input[type="radio"],
+  .radio-inline input[type="radio"],
+  .checkbox input[type="checkbox"],
+  .checkbox-inline input[type="checkbox"]
+    float: right
+    margin-left: 0
+    margin-right: -20px
+
+  .radio-inline,
+  .checkbox-inline
+    padding-left: 0
+    padding-right: 20px
+
+
+  .radio-inline + .radio-inline,
+  .checkbox-inline + .checkbox-inline
+    margin-left: 0
+    margin-right: 10px
+
+  .has-feedback
+    .form-control
+      padding-left: 0
+      padding-right: ($input-height-base * 1.25)
+
+    .form-control-feedback
+      right: auto
+      left: 0
+
+
+  .form-inline
+    @media (min-width: $screen-sm-min)
+      .radio,
+      .checkbox
+        padding-left: 0
+        padding-right: 0
+
+      .radio input[type="radio"],
+      .checkbox input[type="checkbox"]
+        float: none
+        margin-left: 0
+        margin-right: 0
+
+  .form-horizontal
+    @media (min-width: $screen-sm-min)
+      .control-label
+        text-align: left
+
+    .has-feedback .form-control-feedback
+      right: auto
+      left: ($grid-gutter-width / 2)
+
+ 

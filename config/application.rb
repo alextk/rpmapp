@@ -16,6 +16,9 @@ module MyRpm
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths += %w(app/classes  app/middlewares).collect{|p| "#{config.root}/#{p}" }
 
+
+    # set sass folder location
+    Sass::Plugin.add_template_location("#{Rails.root}/app/assets/stylesheets")
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -34,19 +37,6 @@ module MyRpm
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
-    config.action_view.javascript_expansions[:lib] = %w{jquery.filterbar  text-expander-initializer   fancybox-initializer   qtip-initializer   forms-initializer   togglebar-initializer}.collect{|js| "lib/#{js}"}
-    config.action_view.javascript_expansions[:jquery] = %w(
-            jquery-1.7.2   rails
-            jquery-ui/jquery.ui.core-1.8.16   jquery-ui/jquery.ui.position-1.8.16   jquery-ui/jquery.ui.widget-1.8.16   jquery-ui/jquery.ui.mouse-1.8.16
-            jquery-ui/jquery.ui.draggable-1.8.16   jquery-ui/jquery.ui.droppable-1.8.16   jquery-ui/jquery.ui.sortable-1.8.16
-            jquery-ui/datepicker/jquery.ui.datepicker-1.8.16   jquery-ui/datepicker/jquery.ui.datepicker-en   jquery-ui/datepicker/jquery.ui.datepicker-he
-            jquery.autosize
-            jquery.qtip   jquery.fancybox-1.3.4
-            jquery.expander-1.4.2.min   jquery.to_json
-            jquery.togglebar
-            jquery.jqext   jquery.jqlog   jquery.keynav
-            jquery.mousewheel
-        ).collect { |js| "vendor/#{js}" }
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -59,6 +49,9 @@ module MyRpm
     config.app_usage = ENV['RAILS_APP_USAGE']
     config.app_usage = 'web' if config.app_usage.blank? && defined?(::PhusionPassenger) # if blank, try to auto detect
     config.app_usage = 'other' unless %w(web cron_rake console).include?(config.app_usage)
+
+    config.app_version = File.read("#{Rails.root}/VERSION")
+    config.server_worker_started_at = Time.now
 
     #------------------------------------------------------ logging gem configurations - set logging destinations (appenders) ------------------------------------------------------
     # Set the logging destinations - appenders

@@ -5,22 +5,31 @@
 -content_for :html_title, 'רישומי יומן - ' + l(@day_date, :format => '%d %B %Y - %A')
 -content_for :active_pill, :journal
 
-%div.pull-right
-  %div.btn-group.plans_nav
-    =link_to day_view_journal_entries_path(:date=>(@day_date-1.day).strftime), :class => 'btn btn-large' do
-      %i.icon-chevron-right
-    =link_to day_view_journal_entries_path, :class => 'btn btn-large' do
+
+%div.pull-right.text-center.dates_nav
+  %div.btn-group
+    =link_to day_view_journal_entries_path(:date=>(@day_date-1.day).strftime), :class => 'btn btn-default' do
+      %i.fa.fa-chevron-right
+    =link_to day_view_journal_entries_path, :class => 'btn btn-default' do
       ='היום'
-    =link_to 'javascript:;', :class => 'btn btn-large go_to_date', 'data-url'=>day_view_journal_entries_path(:date=>'__0__') do
-      %i.icon-calendar
+    =link_to day_view_journal_entries_path(:date=>(@day_date+1.day).strftime), :class => 'btn btn-default' do
+      %i.fa.fa-chevron-left
+    =link_to 'javascript:;', :class => 'btn btn-default go_to_date', 'data-url'=>day_view_journal_entries_path(:date=>'__0__') do
+      %i.fa.fa-calendar
       =hidden_field_tag :go_to_date, ''
-    =link_to day_view_journal_entries_path(:date=>(@day_date+1.day).strftime), :class => 'btn btn-large' do
-      %i.icon-chevron-left
-%div
+
+%ol.breadcrumb
+  %li
+    =link_to 'רישומי יומן', month_view_journal_entries_path(:month => @day_date.beginning_of_month.strftime('%Y-%m'))
+  %li.active
+    =l(@day_date, :format => '%d %B %Y - %A')
+
+
+-#%div
   %span.bigger6.strong
     =link_to 'רישומי יומן', month_view_journal_entries_path(:month => @day_date.beginning_of_month.strftime('%Y-%m'))
   &nbsp;
-  %i.icon-chevron-left{:style=>'margin-top: -2px;'}
+  %i.fa.fa-chevron-left{:style=>'margin-top: -2px;'}
   &nbsp;
   %span.bigger4.muted4.em=l(@day_date, :format => '%d %B %Y - %A')
 %div.clear

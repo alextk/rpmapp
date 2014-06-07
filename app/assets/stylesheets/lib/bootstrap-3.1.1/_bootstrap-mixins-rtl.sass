@@ -1,0 +1,140 @@
+// --------------------------------------------------
+// Mixins
+// --------------------------------------------------
+
+@mixin make-xs-column($columns, $gutter: $grid-gutter-width)
+  position: relative
+  float: right
+  width: percentage(($columns / $grid-columns))
+  min-height: 1px
+  padding-left:  ($gutter / 2)
+  padding-right: ($gutter / 2)
+
+@mixin make-xs-column-offset($columns)
+  @media (min-width: $screen-xs-min)
+    margin-left: 0
+    margin-right: percentage(($columns / $grid-columns))
+
+@mixin make-xs-column-push($columns)
+  @media (min-width: $screen-xs-min)
+    left: auto
+    right: percentage(($columns / $grid-columns))
+
+
+@mixin make-xs-column-pull($columns)
+  @media (min-width: $screen-xs-min)
+    right: auto
+    left: percentage(($columns / $grid-columns))
+
+@mixin make-sm-column($columns, $gutter: $grid-gutter-width)
+  position: relative
+  min-height: 1px
+  padding-left:  ($gutter / 2)
+  padding-right: ($gutter / 2)
+  @media (min-width: $screen-sm-min)
+    float: right
+    width: percentage(($columns / $grid-columns))
+
+
+@mixin make-sm-column-offset($columns)
+  @media (min-width: $screen-sm-min)
+    margin-left: 0
+    margin-right: percentage(($columns / $grid-columns))
+
+
+@mixin make-sm-column-push($columns)
+  @media (min-width: $screen-sm-min)
+    left: auto
+    right: percentage(($columns / $grid-columns))
+
+
+@mixin make-sm-column-pull($columns)
+  @media (min-width: $screen-sm-min)
+    right: auto
+    left: percentage(($columns / $grid-columns))
+
+
+@mixin make-md-column($columns, $gutter: $grid-gutter-width)
+  position: relative
+  min-height: 1px
+  padding-left:  ($gutter / 2)
+  padding-right: ($gutter / 2)
+  @media (min-width: $screen-md-min)
+    float: right
+    width: percentage(($columns / $grid-columns))
+
+
+@mixin make-md-column-offset($columns)
+  @media (min-width: $screen-md-min)
+    margin-left: 0
+    margin-right: percentage(($columns / $grid-columns))
+
+
+@mixin make-md-column-push($columns)
+  @media (min-width: $screen-md-min)
+    left: auto
+    right: percentage(($columns / $grid-columns))
+
+
+@mixin make-md-column-pull($columns)
+  @media (min-width: $screen-md-min)
+    right: auto
+    left: percentage(($columns / $grid-columns))
+
+
+@mixin make-lg-column($columns, $gutter: $grid-gutter-width)
+  position: relative
+  min-height: 1px
+  padding-left:  ($gutter / 2)
+  padding-right: ($gutter / 2)
+  @media (min-width: $screen-lg-min)
+    float: right
+    width: percentage(($columns / $grid-columns))
+
+@mixin make-lg-column-offset($columns)
+  @media (min-width: $screen-lg-min)
+    margin-left: 0
+    margin-right: percentage(($columns / $grid-columns))
+
+
+@mixin make-lg-column-push($columns)
+  @media (min-width: $screen-lg-min)
+    left: auto
+    right: percentage(($columns / $grid-columns))
+
+
+@mixin make-lg-column-pull($columns)
+  @media (min-width: $screen-lg-min)
+    right: auto
+    left: percentage(($columns / $grid-columns))
+
+@mixin float-grid-columns($class)
+  $list: ''
+  $i: 1
+  $list: ".col-#{$class}-#{$i}"
+  @for $i from (1 + 1) through $grid-columns
+    $list: "#{$list}, .col-#{$class}-#{$i}"
+
+  #{$list}
+    float: right
+
+
+@mixin calc-grid-column($index, $class, $type)
+  @if ($type == width) and ($index > 0)
+    .col-#{$class}-#{$index}
+      width: percentage(($index / $grid-columns))
+
+  @if ($type == push)
+    .col-#{$class}-push-#{$index}
+      left: auto
+      right: percentage(($index / $grid-columns))
+
+  @if ($type == pull)
+    .col-#{$class}-pull-#{$index}
+      right: auto
+      left: percentage(($index / $grid-columns))
+
+  @if ($type == offset)
+    .col-#{$class}-offset-#{$index}
+      margin-left: 0
+      margin-right: percentage(($index / $grid-columns)) 

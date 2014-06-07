@@ -5,8 +5,14 @@ module RadioBar
       def radio_bar_tag(name, options = {})
         raise ArgumentError, "Missing block" unless block_given?
         builder = RadioBar::Builder.new(self, options.update(:name => name.to_s))
-        content_tag :span, :class => 'togglebar', 'data-type' => :radio do
-          yield builder
+        if options[:bs3]
+          content_tag :div, :class => "btn-group #{options[:class]}", 'data-toggle' => :buttons do
+            yield builder
+          end
+        else
+          content_tag :span, :class => "togglebar #{options[:class]}", 'data-type' => :radio do
+            yield builder
+          end
         end
       end
 

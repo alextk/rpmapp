@@ -18,7 +18,7 @@ MyRPM.controllers.JournalEntriesDayViewController = $.ext.Class.create('MyRPM.co
 
 
     //init show/hide rpm block actions
-    $(document).on('click', '.journal_entry', function(e){
+    $(document).on('click touchend', '.journal_entry', function(e){
       var target = $(e.target);
       if(target.closest('.description, .btn, .dropdown').length > 0) return;
       $(this).closest('.journal_entry').toggleClass('show_description');
@@ -42,16 +42,16 @@ MyRPM.controllers.JournalEntriesDayViewController = $.ext.Class.create('MyRPM.co
     var self = this;
     divJE.find('.show_view').hide();
     divJE.find('.edit_view').html(formHtml).show();
-    divJE.find('form select[name*=journal_entry_category_id]').on('change', function(){
+    divJE.find('form [name*=journal_entry_category_id]').on('change', function(){
       var categoryId = $(this).val();
       var form = $(this).closest('form');
       form.find('.category_icon_and_desc').hide().filter('[data-category_id={0}]'.format(categoryId)).show();
       var nameValue = form.find('input[name*=name]').val().strip();
       if(nameValue == '' || Object.keys(self.defaultEntryNames).collect(function(c){ return self.defaultEntryNames[c] }).include(nameValue)) form.find('input[name*=name]').val(self.defaultEntryNames[categoryId]);
       form.find('.category_guiding_questions').hide().filter('[data-category_id={0}]'.format(categoryId)).show();
-    }).trigger('change');
-    QTipIntializer.init(divJE.find('.edit_view'));
-    divJE.find('form textarea').autosize();
+    }).filter(':checked').trigger('change');
+
+    Initializers.initNonLive(divJE.find('.edit_view'));
   },
 
   onAjaxJournalEntryCreated: function(jeHtml){

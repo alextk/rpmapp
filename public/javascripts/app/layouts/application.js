@@ -1,22 +1,20 @@
-FancyBoxInitalizer.liveInit();
-
-FancyBoxInitalizer.reloadCurrentPage = function(){
-  var fboxHTML = '<div class="tcenter" style="padding: 20px">נא להמתין...</div>';
-  if($('#fancybox-content').is(':visible')){
-    $('div.fbox').replaceWith(fboxHTML);
-  } else {
-    $.fancybox(
-      $.extend({ content: fboxHTML }, FancyBoxInitalizer.config.forms.fancybox)
-    );
-  }
-  window.location.reload();
-};
+//FancyBoxInitalizer.liveInit();
+//
+//FancyBoxInitalizer.reloadCurrentPage = function(){
+//  var fboxHTML = '<div class="tcenter" style="padding: 20px">נא להמתין...</div>';
+//  if($('#fancybox-content').is(':visible')){
+//    $('div.fbox').replaceWith(fboxHTML);
+//  } else {
+//    $.fancybox(
+//      $.extend({ content: fboxHTML }, FancyBoxInitalizer.config.forms.fancybox)
+//    );
+//  }
+//  window.location.reload();
+//};
 
 jQuery(document).ready(function(){
-  QTipIntializer.init();
-  ToggleBarInitalizer.init();
+  Initializers.init($('body'));
 });
-
 
 //init goto date picker button
 $(document).ready(function(){

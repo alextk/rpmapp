@@ -1,0 +1,129 @@
+@import "lib/mixin"
+
+body
+  .tooltipContents, .qtipContents /* convention for QTipIntializer */
+    display: none
+
+  /* global max size */
+  .ui-tooltip, .qtip
+    max-width: 1024px /* Change this? */
+    min-width: 50px /* ...and this! */
+
+  .ui-tooltip-default, .qtip-default
+    border-color: #F0C36D
+    background-color: #F9EDBE
+    color: #222
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    //@include round(2px)
+    //@include shadow(0 2px 4px rgba(0, 0, 0, 0.2))
+
+  /*! Error tooltip style */
+  .ui-tooltip-error
+    border-color: red
+    background-color: #FCD0E4
+    color: #454545
+
+  // Twitter Bootstrap style.
+  //
+  // Tested with IE 8, IE 9, Chrome 18, Firefox 9, Opera 11.
+  // Does not work with IE 7.
+  //
+  .ui-tooltip-bootstrap
+    background-color: rgba(0, 0, 0, 0.8)
+    padding: 3px
+    border-radius: 6px
+    border: 0px
+
+    font-size: 13px
+    line-height: 18px
+    color: #333333
+
+    //*border-right-width: 2px
+    //*border-bottom-width: 2px
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
+
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+
+    -webkit-background-clip: padding-box
+    -moz-background-clip: padding
+    background-clip: padding-box
+
+    .qtip-tip
+      -webkit-transform: translateY(-1px)
+    .ui-tooltip-tip
+      background-color: black
+    .ui-tooltip-content, .qtip-content
+      background-color: white
+      border-radius: 3px
+    .ui-tooltip-titlebar
+      font-size: 18px
+      line-height: 22px
+      border-bottom: 1px solid #ccc
+      background-color: transparent
+      .ui-state-default
+        right: 9px
+        top: 49%
+        border-style: none
+    .ui-tooltip-icon
+      background: white
+
+    .ui-tooltip-icon .ui-icon
+      width: auto
+      height: auto
+      float: right
+      font-size: 20px
+      font-weight: bold
+      line-height: 18px
+      color: #000000
+      text-shadow: 0 1px 0 #ffffff
+      opacity: 0.2
+      filter: alpha(opacity=20)
+
+    .ui-tooltip-icon .ui-icon:hover
+      color: #000000
+      text-decoration: none
+      cursor: pointer
+      opacity: 0.4
+      filter: alpha(opacity=40)
+
+  /*! help tooltips max width should be 400*/
+  .ui-tooltip-help
+    max-width: 400px
+    p
+      margin: 2px 0px
+      .underline
+        text-decoration: underline
+
+  /*! help tooltips max width should be 400*/
+  .ui-tooltip-ajax
+    border-color: #aaa
+    background-color: #fafafa
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+
+    .ui-tooltip-content
+
+  // if initializes by qtip initializer script: removes padding from content and add padding to div.tooltipContents
+  .qtip-initializer
+    .ui-tooltip-content, .qtip-content
+      padding: 0px
+      .tooltipContents, .qtipContents
+        padding: 5px 9px
+        &.rtl
+          direction: rtl
+          text-align: right
+
+
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  .ui-tooltip-content, .qtip-content
+    text-align: right
+    direction: rtl 

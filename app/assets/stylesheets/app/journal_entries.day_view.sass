@@ -1,0 +1,33 @@
+@import "lib/_mixin"
+@import "journal_entry_fbox"
+
+body
+  .dates_nav
+    margin-top: 1px
+  @media (max-width: 400px)
+    .pull-right.dates_nav
+      float: none !important
+
+  .journal_entries_list
+    .journal_entry
+      border-top: 1px solid #ccc
+      padding: 15px 10px
+      img.category_icon
+        height: 24px
+      div.description
+        margin-top: 10px
+        margin-right: 20px
+        display: none
+      .pull-right.controls
+        margin-top: -5px
+      .on_hover
+        visibility: hidden
+      &.show_description
+        div.description
+          display: block
+      &:hover
+        .on_hover
+          visibility: visible
+  .add_journal_entry
+    border-top: 1px solid #CCC
+    padding: 15px 10px

@@ -1,0 +1,1 @@
+jQuery.rails.href = function(element) {  return jQuery(element).data('href') || jQuery(element).attr('href'); };

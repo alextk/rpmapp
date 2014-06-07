@@ -1,0 +1,98 @@
+*
+  margin: 0
+  padding: 0
+
+body.ltr
+  direction: ltr
+body
+  img, .vmiddle
+    vertical-align: middle
+  .ul
+    text-decoration: underline
+  .em
+    font-style: italic
+  .strong
+    font-weight: bold
+  .font-weight-normal, .font_weight_normal
+    font-weight: normal
+  .ltr
+    direction: ltr
+  .block
+    display: block
+  .inline-block, .inline_block
+    display: inline-block
+  span.money
+    direction: ltr
+    display: inline-block
+    white-space: nowrap
+  span.phone
+    display: inline-block
+    vertical-align: middle
+  .line-start
+    text-align-last: start /*makes IE display correctly when there is only one line*/
+    text-align: start
+  .line-end
+    text-align-last: end /*makes IE display correctly when there is only one line*/
+    text-align: end
+
+
+  .muted4
+    color: #999
+  .muted3
+    color: #777
+  .muted2
+    color: #555
+  .muted1
+    color: #333
+
+  .smaller1
+    font-size: 12px
+    line-height: 14px
+  .smaller2
+    font-size: 11px
+  .smaller3
+    font-size: 10px
+  .smaller4
+    font-size: 9px
+
+  .bigger1
+    font-size: 14px
+  .bigger2
+    font-size: 16px
+  .bigger3
+    font-size: 18px
+  .bigger4
+    font-size: 20px
+  .bigger5
+    font-size: 22px
+  .bigger6
+    font-size: 22px
+
+  div.clear
+    clear: both
+    &.left
+      clear: left
+    &.right
+      clear: right
+
+  // needed for filter_bar
+  div.working_spinner
+    display: none
+    span.text
+      color: #777
+      background: transparent url(/images/spinner-16x16.gif) no-repeat left center
+      padding-left: 24px
+
+
+// ------------------------------------------ RTL ----------------------------------------------------------------------
+body.rtl
+  direction: rtl
+  font-family: Arial, sans-serif
+
+  div.working_spinner
+    span.text
+      background-position: right center
+      padding-right: 24px
+      padding-left: 0px
+
+  

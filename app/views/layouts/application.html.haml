@@ -3,13 +3,34 @@
   %head
     =csrf_meta_tag
     %meta{:name=>"SKYPE_TOOLBAR", :content=>"SKYPE_TOOLBAR_PARSER_COMPATIBLE"}
+    %meta{:content=>"width=device-width, initial-scale=1, maximum-scale=1", :name=>"viewport"}
     %title=yield :html_title
 
-    =stylesheet_link_tag 'vendor/fancybox/jquery.fancybox-1.3.4', 'vendor/jquery.qtip', 'lib/jquery.qtip', 'vendor/jquery.togglebar', 'lib/jquery.fancybox', 'vendor/jquery-ui/jquery-ui-1.8.16.custom'
-    =stylesheet_link_tag 'vendor/bootstrap-2.1.1/bootstrap', 'lib/bootstrap-2.1.1'
-    =stylesheet_link_tag 'app/application-v2', 'app/layouts/application'
+    =stylesheet_link_tag t('language.direction') == 'rtl' ? 'lib/bs_app_theme/theme-rtl' : 'lib/bs_app_theme/theme'
+    =stylesheet_link_tag 'vendor/font-awesome/font-awesome-4.0.3',
+                         'lib/quotouch.touch', 'app/application-bs3',
+                         'vendor/fancy-box-2/jquery.fancybox', 'vendor/jquery.qtip-2.2.0',
+                         'lib/jquery.qtip', 'lib/jquery.fbox2', 'lib/btn-spinner'
 
-    =javascript_include_tag :jquery, :lib, 'vendor/bootstrap-2.1.1', 'app/layouts/application', 'vendor/ajax_data_grid'
+    =stylesheet_link_tag 'vendor/jquery-ui/jquery.ui.core-1.10.4', 'vendor/jquery-ui/jquery.ui.theme-1.10.4', 'vendor/jquery-ui/jquery.ui.datepicker-1.10.4'
+    -#=stylesheet_link_tag 'vendor/bootstrap-2.1.1/bootstrap', 'lib/bootstrap-2.1.1'
+    -#=stylesheet_link_tag 'app/application-v2', 'app/layouts/application'
+    =stylesheet_link_tag 'app/layouts/application'
+
+    -#=javascript_include_tag :jquery, :lib, 'vendor/bootstrap-2.1.1', 'app/layouts/application', 'vendor/ajax_data_grid'
+    =javascript_include_tag 'vendor/jquery-1.10.2', 'vendor/bootstrap-3.1.1', 'vendor/rails', 'lib/rails_ext',
+      'vendor/fancy-box-2/jquery.fancybox', 'vendor/fancy-box-2/jquery.fancybox-media',
+      'vendor/jquery-ui/jquery.ui.core-1.10.4', 'vendor/jquery-ui/jquery.ui.position-1.10.4', 'vendor/jquery-ui/jquery.ui.widget-1.10.4', 'vendor/jquery-ui/jquery.ui.mouse-1.10.4',
+      'vendor/jquery-ui/jquery.ui.draggable-1.10.4', 'vendor/jquery-ui/jquery.ui.droppable-1.10.4', 'vendor/jquery-ui/jquery.ui.sortable-1.10.4',
+      'vendor/jquery-ui/datepicker/jquery.ui.datepicker-1.10.4', 'vendor/jquery-ui/datepicker/jquery.ui.datepicker-en', 'vendor/jquery-ui/datepicker/jquery.ui.datepicker-he',
+      'vendor/jquery.qtip-2.2.0', 'vendor/jquery.autosize', 'vendor/jquery.mousewheel',
+      'vendor/jquery.jqext', 'vendor/jquery.jqlog', 'vendor/jquery.keynav',
+      'vendor/jquery.to_json',
+      'vendor/ajax_data_grid',
+      'lib/jquery.filterbar', 'lib/filtered_dropdown', 'lib/btn-spinner',
+      'initializers/init', 'initializers/fancybox2', 'initializers/qtip2', 'initializers/textarea_autosize'
+
+    =javascript_include_tag 'app/layouts/application'
 
     =yield :head
 
